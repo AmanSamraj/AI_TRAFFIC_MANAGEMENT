@@ -1,15 +1,15 @@
 import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
 import './App.css'
+import playAlert from './component/alert'
+
 
 function App() {
   const [count, setCount] = useState(0)
 
   return (
     <>
-    <h1 className='bg-amber-600   '>Sih  project</h1>
+    <button className="warning-dot" onClick={playAlert}>Aman Samraj</button>
+    <h1 className='bg-amber-600'> Sih  project</h1>
     </>
   )
 }

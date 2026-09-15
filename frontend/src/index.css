@@ -1,4 +1,37 @@
 @import "tailwindcss";
 *{
   box-sizing:border-box;
+  background-color:#061A2F ;
+  --bg-card: #151E2E;
+  --text-color:white;
+  --text-highlight-color:rgb(8, 108, 249);
+  --success-color:rgb(29, 231, 29);
+  
 }
+
+.warning-dot{
+  /* rule */
+   width: 100px;
+   height: 100px;
+   background-color: rgb(98, 9, 9);
+   border-radius: 50%;
+   display:inline-block;
+   animation: warning-dot 2s infinite;
+   /* //animation name, animation time , how  mant  time it run */
+   box-shadow:0 0 0 rgba(216, 13, 10, 0.5);
+  }
+  @keyframes warning-dot{
+    /* animation */
+    0%{
+      opacity:1;
+      box-shadow: 0 0 0 rgba(216, 13, 13, 0.7);
+    }
+    50%{
+      opacity:0.4;
+         box-shadow: 0 0 6px rgba(253, 2, 2, 0);
+    }
+    100%{
+      opacity:1;
+      box-shadow: 0 0 0 rgba(248, 2, 2, 0);
+    }
+  }
