@@ -1,153 +1,271 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Card,
   CardHeader,
-  CardTitle,
-  CardDescription,
   CardContent,
   Badge,
   Button,
-  StatusIndicator,
   useToast
 } from '../component';
-import { ScanLine, Eye, Camera, ShieldAlert, Volume2, RefreshCw, Layers } from 'lucide-react';
+import {
+  ScanLine,
+  Camera,
+  Car,
+  Volume2,
+  VolumeX,
+  Play,
+  Pause,
+  RefreshCw,
+  Clock,
+  ArrowRight,
+  Radio,
+  Wifi
+} from 'lucide-react';
 import playAlert from '../component/alert';
+
+// Sample sequence of detected vehicles matching SIH demonstration
+const VEHICLE_STREAM = [
+  {
+    plate: 'HP01AB1234',
+    vehicle: 'Car',
+    vehicleDetail: 'White Sedan (Hyundai Verna)',
+    confidence: 94,
+    time: '10:42:21',
+    camera: 'CAM-12',
+    cameraLocation: 'North Highway Interchange, Mile 28',
+    speed: '58 km/h',
+    status: 'Verified Clean'
+  },
+  {
+    plate: 'DL05XY7788',
+    vehicle: 'SUV',
+    vehicleDetail: 'Black Mahindra Scorpio-N',
+    confidence: 98,
+    time: '10:42:26',
+    camera: 'CAM-12',
+    cameraLocation: 'North Highway Interchange, Mile 28',
+    speed: '76 km/h',
+    status: 'Overspeed Warning'
+  },
+  {
+    plate: 'MH12CD5678',
+    vehicle: 'Truck',
+    vehicleDetail: 'Tata Signa Commercial Freight',
+    confidence: 96,
+    time: '10:42:31',
+    camera: 'CAM-12',
+    cameraLocation: 'North Highway Interchange, Mile 28',
+    speed: '44 km/h',
+    status: 'Verified Clean'
+  },
+  {
+    plate: 'KA03EF9012',
+    vehicle: 'Motorcycle',
+    vehicleDetail: 'Yamaha R15 V4',
+    confidence: 92,
+    time: '10:42:36',
+    camera: 'CAM-12',
+    cameraLocation: 'North Highway Interchange, Mile 28',
+    speed: '65 km/h',
+    status: 'Helmetless Rider'
+  }
+];
 
 export const LiveANPR = () => {
   const toast = useToast();
-  const [activeCam, setActiveCam] = useState('CAM-04');
 
-  const liveDetections = [
-    {
-      plate: 'DL 01 AB 1234',
-      vehicle: 'White Sedan (Honda City)',
-      speed: '78 km/h',
-      confidence: '99.4%',
-      status: 'Flagged (Overspeeding)',
-      severity: 'danger',
-      time: '14:48:12'
-    },
-    {
-      plate: 'MH 12 CD 5678',
-      vehicle: 'Blue Commercial Truck',
-      speed: '42 km/h',
-      confidence: '98.8%',
-      status: 'Verified Clean',
-      severity: 'success',
-      time: '14:48:08'
-    },
-    {
-      plate: 'KA 03 EF 9012',
-      vehicle: 'Black Sports Bike',
-      speed: '65 km/h',
-      confidence: '97.6%',
-      status: 'Red Signal Jump',
-      severity: 'danger',
-      time: '14:48:01'
-    }
-  ];
+  // Playback & Audio Controls
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [soundEnabled, setSoundEnabled] = useState(true);
+  const [activeCam, setActiveCam] = useState('CAM-12');
+  const [activeVehicleIndex, setActiveVehicleIndex] = useState(0);
+
+  const currentVehicle = VEHICLE_STREAM[activeVehicleIndex];
+
+  // Automated live OCR detection loop every 4.5 seconds
+  useEffect(() => {
+    if (!isPlaying) return;
+
+    const interval = setInterval(() => {
+      setActiveVehicleIndex((prev) => {
+        const nextIndex = (prev + 1) % VEHICLE_STREAM.length;
+        // Trigger sound alert on overspeed/warning detection if sound is enabled
+        if (soundEnabled && VEHICLE_STREAM[nextIndex].status.includes('Warning')) {
+          playAlert(0.6);
+        }
+        return nextIndex;
+      });
+    }, 4500);
+
+    return () => clearInterval(interval);
+  }, [isPlaying, soundEnabled]);
+
+  // Generate ASCII-like block representation of confidence: ██████████████████░░ 94%
+  const getAsciiBar = (percent) => {
+    const totalBlocks = 20;
+    const filledBlocks = Math.round((percent / 100) * totalBlocks);
+    const emptyBlocks = totalBlocks - filledBlocks;
+    return '█'.repeat(filledBlocks) + '░'.repeat(emptyBlocks);
+  };
+
+  const handleNextDetection = () => {
+    const nextIdx = (activeVehicleIndex + 1) % VEHICLE_STREAM.length;
+    setActiveVehicleIndex(nextIdx);
+    if (soundEnabled) playAlert(0.5);
+    toast.addToast({
+      type: 'info',
+      title: 'Vehicle Detected',
+      message: `ANPR Plate scan: ${VEHICLE_STREAM[nextIdx].plate}`
+    });
+  };
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h2 className="text-xl font-bold text-white flex items-center gap-2">
-            <ScanLine className="w-5 h-5 text-cyan-400" />
-            Live Video ANPR Stream & Optical Alignment
-            <Badge variant="danger" size="sm" dot={true} pulse={true}>
-              60 FPS FEED
-            </Badge>
-          </h2>
-          <p className="text-xs text-slate-400 mt-0.5">
-            Edge AI video ingestion with instant YOLOv8 license plate localization
-          </p>
-        </div>
+    <div className="space-y-6 max-w-6xl mx-auto">
+      {/* ────────────────────────────────────────────
+          HEADER: LIVE ANPR
+      ──────────────────────────────────────────── */}
+      <div>
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-800">
+          <div className="flex items-center gap-3">
+            <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
+              <ScanLine className="w-6 h-6 stroke-[2.2]" />
+            </div>
+            <div>
+              <h1 className="text-xl sm:text-2xl font-black tracking-wider text-white uppercase flex items-center gap-2">
+                LIVE ANPR
+                <Badge variant="danger" size="sm" dot={true} pulse={true}>
+                  60 FPS STREAM
+                </Badge>
+              </h1>
+              <p className="text-xs text-slate-400 mt-0.5">
+                Real-Time Optical Character Recognition & Neural Plate Alignment (SIH Core)
+              </p>
+            </div>
+          </div>
 
-        <div className="flex items-center gap-2.5">
-          <Button
-            variant="danger"
-            size="sm"
-            leftIcon={<Volume2 className="w-4 h-4" />}
-            onClick={() => {
-              playAlert();
-              toast.addToast({
-                type: 'danger',
-                title: 'Live Violation Triggered',
-                message: 'Alert sound played on vehicle detection.'
-              });
-            }}
-          >
-            Test Violation Alarm
-          </Button>
+          {/* Quick Action Controls */}
+          <div className="flex items-center gap-2">
+            <Button
+              variant="secondary"
+              size="sm"
+              leftIcon={isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4" />}
+              onClick={() => setIsPlaying(!isPlaying)}
+            >
+              {isPlaying ? 'Pause Feed' : 'Resume Feed'}
+            </Button>
+
+            <Button
+              variant={soundEnabled ? 'danger' : 'outline'}
+              size="sm"
+              leftIcon={soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+              onClick={() => {
+                const next = !soundEnabled;
+                setSoundEnabled(next);
+                if (next) playAlert();
+              }}
+            >
+              {soundEnabled ? 'Alarm Sound: ON' : 'Alarm Sound: MUTE'}
+            </Button>
+
+            <Button
+              variant="primary"
+              size="sm"
+              leftIcon={<RefreshCw className="w-4 h-4" />}
+              onClick={handleNextDetection}
+            >
+              Simulate Pass
+            </Button>
+          </div>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Main Live OCR Video Canvas Simulator */}
-        <div className="lg:col-span-2 space-y-4">
-          <Card variant="glow">
-            <CardHeader className="p-3.5">
+      {/* ────────────────────────────────────────────
+          MAIN GRID: VIDEO STREAM + DETECTION TELEMETRY
+      ──────────────────────────────────────────── */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        {/* LEFT COLUMN (7 COLS): CAMERA VIDEO */}
+        <div className="lg:col-span-7 space-y-4">
+          <Card variant="glow" className="overflow-hidden bg-[#070e1c] border-slate-700/80 shadow-2xl">
+            {/* Camera Viewport Header */}
+            <CardHeader className="p-3.5 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <StatusIndicator status="online" size="sm" />
-                <span className="font-bold text-slate-200 text-xs">
-                  {activeCam} — Ring Road North 4K Optical Feed
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500" />
+                </span>
+                <span className="font-bold text-xs text-white uppercase tracking-wider">
+                  CAMERA VIDEO — {currentVehicle.camera}
                 </span>
               </div>
-              <div className="flex items-center gap-2">
-                <span className="text-[11px] font-mono text-cyan-300">Bitrate: 8.4 Mbps</span>
-                <span className="text-[11px] font-mono text-emerald-400">FPS: 59.8</span>
+              <div className="flex items-center gap-2 text-[11px] font-mono">
+                <span className="text-cyan-400">1080p 60 FPS</span>
+                <span className="text-slate-500">|</span>
+                <span className="text-emerald-400">LIVE</span>
               </div>
             </CardHeader>
 
-            {/* Video Viewport with AI Bounding Boxes */}
-            <div className="relative aspect-video bg-slate-950 flex items-center justify-center border-y border-slate-800 overflow-hidden select-none">
-              {/* Camera Grid Overlay */}
-              <div className="absolute inset-0 bg-[radial-gradient(#162b4c_1px,transparent_1px)] [background-size:20px_20px] opacity-35" />
+            {/* VIDEO CANVAS / CAMERA VIEWPORT */}
+            <div className="relative aspect-video bg-[#040810] flex items-center justify-center overflow-hidden select-none border-b border-slate-800">
+              {/* Traffic Highway Background Simulation */}
+              <div className="absolute inset-0 bg-[radial-gradient(#132644_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-35" />
 
-              {/* Target 1 OCR Bounding Box */}
-              <div className="absolute top-1/3 left-1/4 w-36 h-20 border-2 border-cyan-400 rounded-md bg-cyan-500/10 p-1 flex flex-col justify-between shadow-[0_0_15px_rgba(0,210,255,0.4)] animate-pulse">
-                <div className="flex items-center justify-between text-[9px] font-mono bg-cyan-950/90 text-cyan-200 px-1 py-0.5 rounded">
-                  <span>DL 01 AB 1234</span>
-                  <span className="text-emerald-400 font-bold">99.4%</span>
+              {/* Road Perspective Lines */}
+              <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-40">
+                <line x1="20%" y1="100%" x2="45%" y2="40%" stroke="#38bdf8" strokeWidth="2" strokeDasharray="6 4" />
+                <line x1="80%" y1="100%" x2="55%" y2="40%" stroke="#38bdf8" strokeWidth="2" strokeDasharray="6 4" />
+                <line x1="50%" y1="100%" x2="50%" y2="40%" stroke="#eab308" strokeWidth="3" strokeDasharray="12 8" />
+              </svg>
+
+              {/* Live Laser Scanning Line Beam */}
+              {isPlaying && (
+                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_15px_#00d2ff] opacity-80 animate-pulse" />
+              )}
+
+              {/* Vehicle Graphical Sprite with YOLO Bounding Box */}
+              <div className="relative z-10 flex flex-col items-center justify-center p-4 border-2 border-cyan-400 rounded-xl bg-cyan-950/20 backdrop-blur-xs shadow-[0_0_20px_rgba(0,210,255,0.35)] transition-all duration-300">
+                {/* Bounding Box Label */}
+                <div className="absolute -top-3.5 left-2 bg-cyan-500 text-slate-950 text-[10px] font-mono font-black px-2 py-0.5 rounded shadow">
+                  {currentVehicle.vehicle} {currentVehicle.confidence}%
                 </div>
-                <div className="text-[8px] font-mono text-slate-300 bg-black/60 px-1 rounded self-start">
-                  Speed: 78 km/h [OVER]
+
+                {/* Vehicle SVG / Emoji Graphic */}
+                <div className="my-2 p-3 text-cyan-400">
+                  <Car className="w-20 h-20 text-cyan-300 stroke-[1.3] filter drop-shadow-[0_0_12px_rgba(0,210,255,0.5)]" />
+                </div>
+
+                {/* Sub-label under vehicle */}
+                <div className="text-[11px] font-mono text-slate-300 bg-black/70 px-2 py-0.5 rounded border border-slate-700">
+                  Speed: {currentVehicle.speed}
                 </div>
               </div>
 
-              {/* Target 2 OCR Bounding Box */}
-              <div className="absolute bottom-1/4 right-1/3 w-32 h-16 border-2 border-emerald-400 rounded-md bg-emerald-500/10 p-1 flex flex-col justify-between shadow-[0_0_10px_rgba(16,185,129,0.3)]">
-                <div className="flex items-center justify-between text-[9px] font-mono bg-emerald-950/90 text-emerald-200 px-1 py-0.5 rounded">
-                  <span>MH 12 CD 5678</span>
-                  <span className="text-emerald-300">98.8%</span>
-                </div>
-                <div className="text-[8px] font-mono text-slate-300 bg-black/60 px-1 rounded self-start">
-                  Speed: 42 km/h [PASS]
-                </div>
-              </div>
-
-              {/* Live HUD Badges */}
-              <div className="absolute top-3 left-3 flex items-center gap-1.5 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-lg text-xs font-mono text-red-400 font-bold">
+              {/* HUD Overlays */}
+              <div className="absolute top-3 left-3 bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-md text-xs font-mono text-red-400 font-bold flex items-center gap-1.5 border border-red-500/30">
                 <span className="w-2 h-2 rounded-full bg-red-500 animate-ping inline-block" />
-                OPTICAL AI LIVE
+                REC ● {currentVehicle.camera}
               </div>
 
-              <div className="absolute bottom-3 right-3 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded-lg text-xs font-mono text-slate-300">
-                Inference Latency: <strong>11.2 ms</strong>
+              <div className="absolute top-3 right-3 bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-md text-xs font-mono text-cyan-300 border border-slate-700">
+                {currentVehicle.time}
+              </div>
+
+              <div className="absolute bottom-3 left-3 bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-md text-xs font-mono text-slate-300 border border-slate-700">
+                AI Tracking: <span className="text-emerald-400 font-bold">LOCKED</span>
               </div>
             </div>
 
-            <CardContent className="p-3.5 flex items-center justify-between text-xs text-slate-400">
+            {/* Video Controls & Camera Switcher */}
+            <CardContent className="p-3.5 bg-slate-900/60 flex flex-wrap items-center justify-between gap-3 text-xs">
               <div className="flex items-center gap-2">
-                <span>Switch Camera Feed:</span>
-                {['CAM-01', 'CAM-02', 'CAM-04', 'CAM-09'].map((c) => (
+                <span className="text-slate-400 font-medium">Switch Active Node:</span>
+                {['CAM-12', 'CAM-08', 'CAM-01', 'CAM-04'].map((c) => (
                   <button
                     key={c}
                     type="button"
                     onClick={() => setActiveCam(c)}
-                    className={`px-2 py-0.5 rounded text-xs font-medium cursor-pointer transition-colors ${
+                    className={`px-2.5 py-1 rounded-lg text-xs font-mono font-bold cursor-pointer transition-all ${
                       activeCam === c
-                        ? 'bg-cyan-500 text-slate-950 font-bold'
+                        ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
                         : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
                     }`}
                   >
@@ -155,44 +273,172 @@ export const LiveANPR = () => {
                   </button>
                 ))}
               </div>
+
+              <div className="flex items-center gap-1.5 text-[11px] text-slate-400">
+                <Radio className="w-3.5 h-3.5 text-cyan-400" />
+                <span>RTSP Low-Latency WebRTC Stream</span>
+              </div>
             </CardContent>
           </Card>
         </div>
 
-        {/* Live Plate Recognition Feed Sidebar */}
-        <div className="space-y-4">
-          <Card variant="default">
-            <CardHeader className="p-4">
-              <CardTitle className="text-sm">Instant Plate Detections</CardTitle>
-              <Badge variant="info" size="sm">
-                Stream Sync
-              </Badge>
-            </CardHeader>
-            <CardContent className="p-4 pt-0 space-y-3">
-              {liveDetections.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="p-3 rounded-xl bg-slate-950/70 border border-slate-800 space-y-1.5"
-                >
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono font-bold text-cyan-300 bg-cyan-950/50 px-2 py-0.5 rounded border border-cyan-500/30 text-xs">
-                      {item.plate}
-                    </span>
-                    <Badge variant={item.severity} size="sm" dot={item.severity === 'danger'}>
-                      {item.status}
-                    </Badge>
+        {/* RIGHT COLUMN (5 COLS): TELEMETRY CARDS MATCHING EXACT WIREFRAME */}
+        <div className="lg:col-span-5 space-y-4">
+          <Card variant="default" className="bg-[#0c182b] border-slate-700/80 shadow-2xl p-6 space-y-5">
+            {/* 1. DETECTED PLATE */}
+            <div>
+              <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                <ScanLine className="w-4 h-4 text-cyan-400" />
+                Detected Plate
+              </label>
+
+              {/* Embossed High-Security Indian License Plate Box */}
+              <div className="p-4 rounded-xl bg-[#040810] border border-slate-700 flex items-center justify-center shadow-inner">
+                <div className="relative w-full max-w-xs px-4 py-2.5 bg-gradient-to-r from-slate-100 via-white to-slate-200 border-3 border-slate-900 rounded-lg shadow-xl flex items-center justify-between gap-3">
+                  {/* Blue IND Badge */}
+                  <div className="flex flex-col items-center justify-center text-blue-900 pr-2.5 border-r-2 border-slate-300 select-none">
+                    <div className="w-3.5 h-3.5 rounded-full border border-blue-900 flex items-center justify-center text-[7px] font-black">
+                      🇮🇳
+                    </div>
+                    <span className="text-[9px] font-black font-sans leading-none mt-0.5">IND</span>
                   </div>
-                  <p className="text-xs text-slate-300 font-medium">{item.vehicle}</p>
-                  <div className="flex items-center justify-between text-[11px] text-slate-400 pt-1 border-t border-slate-800/60 font-mono">
-                    <span>Speed: {item.speed}</span>
-                    <span>Confidence: {item.confidence}</span>
+
+                  {/* License Plate String */}
+                  <span className="font-mono text-2xl sm:text-3xl font-black tracking-widest text-slate-950 select-all">
+                    {currentVehicle.plate}
+                  </span>
+
+                  {/* Ashoka Chakra Hologram Stamp */}
+                  <div className="w-4 h-4 rounded-full border border-blue-800/40 bg-blue-100 flex items-center justify-center text-[7px] text-blue-900 opacity-80">
+                    ⚙
                   </div>
                 </div>
-              ))}
-            </CardContent>
+              </div>
+            </div>
+
+            {/* 2. CONFIDENCE WITH ASCII & VISUAL BAR */}
+            <div className="space-y-2 pt-2 border-t border-slate-800/80">
+              <div className="flex items-center justify-between">
+                <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                  Confidence
+                </label>
+                <span className="text-sm font-mono font-extrabold text-emerald-400">
+                  {currentVehicle.confidence}%
+                </span>
+              </div>
+
+              {/* ASCII Block Bar as specified in wireframe */}
+              <div className="font-mono text-xs text-cyan-400 tracking-wider bg-slate-950 p-2 rounded-lg border border-slate-800 select-none truncate">
+                {getAsciiBar(currentVehicle.confidence)} {currentVehicle.confidence}%
+              </div>
+
+              {/* Smooth Animated Visual Gradient Bar */}
+              <div className="w-full h-2.5 rounded-full bg-slate-950 border border-slate-800 overflow-hidden p-0.5">
+                <div
+                  className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-emerald-400 transition-all duration-500 shadow-[0_0_8px_rgba(0,210,255,0.6)]"
+                  style={{ width: `${currentVehicle.confidence}%` }}
+                />
+              </div>
+            </div>
+
+            {/* 3. VEHICLE */}
+            <div className="pt-2 border-t border-slate-800/80">
+              <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
+                Vehicle
+              </label>
+              <div className="p-3 rounded-xl bg-slate-950 border border-slate-800/90 flex items-center justify-between">
+                <span className="text-base font-bold text-white flex items-center gap-2">
+                  <Car className="w-4 h-4 text-cyan-400" />
+                  {currentVehicle.vehicle}
+                </span>
+                <span className="text-xs text-slate-400 font-medium">
+                  {currentVehicle.vehicleDetail}
+                </span>
+              </div>
+            </div>
+
+            {/* 4. TIME */}
+            <div className="pt-2 border-t border-slate-800/80">
+              <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
+                Time
+              </label>
+              <div className="p-3 rounded-xl bg-slate-950 border border-slate-800/90 flex items-center justify-between">
+                <span className="font-mono text-base font-bold text-cyan-300 flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-slate-400" />
+                  {currentVehicle.time}
+                </span>
+                <Badge variant="info" size="sm">
+                  UTC+05:30
+                </Badge>
+              </div>
+            </div>
+
+            {/* 5. CAMERA */}
+            <div className="pt-2 border-t border-slate-800/80">
+              <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
+                Camera
+              </label>
+              <div className="p-3 rounded-xl bg-slate-950 border border-slate-800/90 space-y-1">
+                <div className="flex items-center justify-between">
+                  <span className="font-mono font-bold text-base text-white flex items-center gap-2">
+                    <Camera className="w-4 h-4 text-cyan-400" />
+                    {currentVehicle.camera}
+                  </span>
+                  <Badge
+                    variant={currentVehicle.status.includes('Clean') ? 'success' : 'warning'}
+                    dot={true}
+                  >
+                    {currentVehicle.status}
+                  </Badge>
+                </div>
+                <p className="text-[11px] text-slate-400 pl-6">
+                  {currentVehicle.cameraLocation}
+                </p>
+              </div>
+            </div>
           </Card>
         </div>
       </div>
+
+      {/* ────────────────────────────────────────────
+          ARCHITECTURE PIPELINE FLOW BADGE (AS IN WIREFRAME)
+          Camera → Backend → AI Model → WebSocket → React
+      ──────────────────────────────────────────── */}
+      <Card variant="default" className="p-4 bg-[#070e1c] border-slate-800">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
+            <Radio className="w-4 h-4 text-cyan-400 animate-pulse" />
+            <span className="uppercase tracking-wider">SIH Production Architecture Pipeline:</span>
+          </div>
+
+          <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-mono font-bold">
+            <span className="px-3 py-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 shadow">
+              Camera
+            </span>
+            <ArrowRight className="w-3.5 h-3.5 text-cyan-400" />
+
+            <span className="px-3 py-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 shadow">
+              Backend
+            </span>
+            <ArrowRight className="w-3.5 h-3.5 text-cyan-400" />
+
+            <span className="px-3 py-1 rounded-lg bg-cyan-950/80 border border-cyan-500/50 text-cyan-300 shadow">
+              AI Model (YOLOv8)
+            </span>
+            <ArrowRight className="w-3.5 h-3.5 text-cyan-400" />
+
+            <span className="px-3 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 shadow flex items-center gap-1.5">
+              <Wifi className="w-3 h-3" />
+              WebSocket
+            </span>
+            <ArrowRight className="w-3.5 h-3.5 text-cyan-400" />
+
+            <span className="px-3 py-1 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-md">
+              React UI
+            </span>
+          </div>
+        </div>
+      </Card>
     </div>
   );
 };

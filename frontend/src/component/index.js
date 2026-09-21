@@ -14,3 +14,4 @@ export { Chart } from './Chart';
 export { StatusIndicator } from './StatusIndicator';
 export { Navbar } from './Navbar';
 export { Sidebar } from './Sidebar';
+export { playAlert, stopAlert } from './alert';
