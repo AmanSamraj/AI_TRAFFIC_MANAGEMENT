@@ -8,53 +8,62 @@ import {
   CardContent,
   Badge,
   Button,
-  StatusIndicator,
   useToast
 } from '../component';
-import { Navigation, ArrowLeft, Siren, CheckCircle2, AlertTriangle, Shield, Clock } from 'lucide-react';
+import {
+  Navigation,
+  ArrowLeft,
+  Siren,
+  Camera,
+  Clock,
+  ArrowDown,
+  Car,
+  Compass,
+  Radio,
+  Layers
+} from 'lucide-react';
 import playAlert from '../component/alert';
 
+const TRAJECTORY_DATA = {
+  'HP01AB1234': {
+    plate: 'HP01AB1234',
+    vehicle: 'Car',
+    speedAvg: '52 km/h',
+    totalDistance: '24.6 km',
+    nodes: [
+      { id: 'CAM-01', time: '08:31', location: 'Shimla', speed: '42 km/h', confidence: '99%', x: 260, y: 60 },
+      { id: 'CAM-04', time: '09:12', location: 'Mall Road', speed: '28 km/h', confidence: '97%', x: 310, y: 160 },
+      { id: 'CAM-07', time: '09:45', location: 'ISBT', speed: '36 km/h', confidence: '98%', x: 230, y: 270 },
+      { id: 'CAM-12', time: '10:20', location: 'Highway', speed: '58 km/h', confidence: '94%', x: 280, y: 380 }
+    ],
+    currentLocation: { location: 'Highway Mile 31 (Heading North)', time: 'Live Now', speed: '62 km/h', x: 300, y: 470 }
+  }
+};
+
 export const TrackingDetails = () => {
-  const { plate = 'DL-01-AB-1234' } = useParams();
+  const { plate = 'HP01AB1234' } = useParams();
   const navigate = useNavigate();
   const toast = useToast();
 
-  const formattedPlate = plate.replace(/-/g, ' ').toUpperCase();
-
-  const checkpointsTimeline = [
-    {
-      checkpoint: 'Checkpoint 1: North Toll Plaza Entry',
-      timestamp: '14:10:02',
-      speed: '58 km/h',
-      status: 'Passed (Clear)',
-      severity: 'success'
-    },
-    {
-      checkpoint: 'Checkpoint 2: Outer Ring Road Overpass',
-      timestamp: '14:21:40',
-      speed: '72 km/h',
-      status: 'Warning (High Speed)',
-      severity: 'warning'
-    },
-    {
-      checkpoint: 'Checkpoint 3: Central Interchange Radar',
-      timestamp: '14:32:10',
-      speed: '78 km/h',
-      status: 'Overspeed Violation Flagged',
-      severity: 'danger'
-    },
-    {
-      checkpoint: 'Checkpoint 4: South Radial Gateway',
-      timestamp: 'Projected 14:45:00',
-      speed: 'Est. 65 km/h',
-      status: 'Next Expected Node',
-      severity: 'info'
-    }
-  ];
+  const clean = plate.replace(/[\s\-_]/g, '').toUpperCase();
+  const target = TRAJECTORY_DATA[clean] || {
+    plate: clean || 'HP01AB1234',
+    vehicle: 'Car',
+    speedAvg: '52 km/h',
+    totalDistance: '24.6 km',
+    nodes: [
+      { id: 'CAM-01', time: '08:31', location: 'Shimla', speed: '42 km/h', confidence: '99%', x: 260, y: 60 },
+      { id: 'CAM-04', time: '09:12', location: 'Mall Road', speed: '28 km/h', confidence: '97%', x: 310, y: 160 },
+      { id: 'CAM-07', time: '09:45', location: 'ISBT', speed: '36 km/h', confidence: '98%', x: 230, y: 270 },
+      { id: 'CAM-12', time: '10:20', location: 'Highway', speed: '58 km/h', confidence: '94%', x: 280, y: 380 }
+    ],
+    currentLocation: { location: 'Highway Mile 31', time: 'Live Now', speed: '62 km/h', x: 300, y: 470 }
+  };
 
   return (
-    <div className="space-y-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div className="space-y-6 max-w-6xl mx-auto">
+      {/* Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-slate-800">
         <div className="flex items-center gap-3">
           <Button
             variant="ghost"
@@ -66,20 +75,28 @@ export const TrackingDetails = () => {
           </Button>
 
           <div>
-            <h2 className="text-xl font-bold text-white flex items-center gap-2">
+            <h1 className="text-xl font-bold text-white flex items-center gap-2">
               <Navigation className="w-5 h-5 text-cyan-400" />
-              Live Target Trajectory: {formattedPlate}
+              Target Trajectory: {target.plate}
               <Badge variant="danger" size="sm" dot={true} pulse={true}>
-                ACTIVE INTERCEPT
+                ACTIVE PURSUIT
               </Badge>
-            </h2>
+            </h1>
             <p className="text-xs text-slate-400 mt-0.5">
-              Continuous optical checkpoint reconstruction & GPS velocity vectoring
+              Continuous multi-camera optical checkpoint vectoring and spatial triangulation
             </p>
           </div>
         </div>
 
         <div className="flex items-center gap-2.5">
+          <Button
+            variant="outline"
+            size="sm"
+            leftIcon={<Car className="w-4 h-4 text-cyan-400" />}
+            onClick={() => navigate(`/vehicles/${target.plate}`)}
+          >
+            Vehicle Dossier
+          </Button>
           <Button
             variant="danger"
             size="sm"
@@ -88,93 +105,237 @@ export const TrackingDetails = () => {
               playAlert();
               toast.addToast({
                 type: 'danger',
-                title: 'Patrol Intercept Unit Alerted',
-                message: `Nearest PCR unit dispatched to intercept ${formattedPlate} at Checkpoint 4.`
+                title: 'PCR Intercept Unit Dispatched',
+                message: `Nearest highway patrol unit dispatched to intercept ${target.plate}.`
               });
             }}
           >
-            Dispatch Intercept Patrol
+            Dispatch Intercept
           </Button>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Timeline Map Card */}
-        <div className="lg:col-span-2 space-y-4">
-          <Card variant="glow">
-            <CardHeader className="p-4">
-              <CardTitle>Trip Velocity & Checkpoint Progression</CardTitle>
-              <span className="text-xs font-mono text-cyan-300">Estimated Speed: 74 km/h</span>
+      {/* Grid: Vertical Wireframe Timeline (Left) + Vector Map (Right) */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        {/* LEFT COLUMN: Vertical Timeline */}
+        <div className="lg:col-span-5 space-y-4">
+          <Card variant="glow" className="bg-[#0c182b] border-slate-700/80 p-5 shadow-2xl">
+            <CardHeader className="p-0 pb-4 border-b border-slate-800">
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="text-sm uppercase tracking-wider text-cyan-400 flex items-center gap-2">
+                    <Layers className="w-4 h-4" />
+                    CAMERA DETECTION CHAIN
+                  </CardTitle>
+                  <CardDescription className="text-xs">
+                    Optical handoff timeline for <span className="font-mono text-white font-bold">{target.plate}</span>
+                  </CardDescription>
+                </div>
+                <Badge variant="info" size="sm">
+                  {target.nodes.length} CAMERAS
+                </Badge>
+              </div>
             </CardHeader>
-            <CardContent className="p-6">
-              <div className="relative border-l-2 border-cyan-500/40 ml-4 pl-6 space-y-6">
-                {checkpointsTimeline.map((step, idx) => (
-                  <div key={idx} className="relative group">
-                    {/* Checkpoint Node Dot */}
-                    <span
-                      className={`absolute -left-[31px] top-1.5 flex h-4 w-4 rounded-full border-2 border-slate-900 ${
-                        step.severity === 'danger'
-                          ? 'bg-red-500 animate-ping'
-                          : step.severity === 'warning'
-                          ? 'bg-amber-400'
-                          : step.severity === 'info'
-                          ? 'bg-cyan-400'
-                          : 'bg-emerald-400'
-                      }`}
-                    />
-                    <span
-                      className={`absolute -left-[31px] top-1.5 flex h-4 w-4 rounded-full border-2 border-slate-900 ${
-                        step.severity === 'danger'
-                          ? 'bg-red-500'
-                          : step.severity === 'warning'
-                          ? 'bg-amber-400'
-                          : step.severity === 'info'
-                          ? 'bg-cyan-400'
-                          : 'bg-emerald-400'
-                      }`}
-                    />
 
-                    <div className="p-4 rounded-xl bg-slate-950/70 border border-slate-800 space-y-1">
+            <CardContent className="p-0 pt-5">
+              <div className="relative font-mono text-sm space-y-1">
+                {target.nodes.map((node) => (
+                  <div key={node.id} className="relative">
+                    <div className="p-3.5 rounded-xl border bg-slate-900/90 border-slate-700">
                       <div className="flex items-center justify-between">
-                        <h4 className="font-semibold text-xs text-slate-100">{step.checkpoint}</h4>
-                        <Badge variant={step.severity} size="sm">
-                          {step.status}
-                        </Badge>
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-7 h-7 rounded-lg bg-cyan-500 text-slate-950 flex items-center justify-center font-bold text-xs shadow-md">
+                            <Camera className="w-4 h-4" />
+                          </div>
+                          <div>
+                            <span className="font-black text-base text-white tracking-wider">
+                              {node.id}
+                            </span>
+                            <span className="text-xs text-slate-400 block font-sans">
+                              {node.location}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="text-right">
+                          <span className="text-xs font-bold text-cyan-300 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800/60 block">
+                            {node.speed}
+                          </span>
+                          <span className="text-[10px] text-slate-400 mt-0.5 block">
+                            OCR {node.confidence}
+                          </span>
+                        </div>
                       </div>
-                      <div className="flex items-center justify-between text-xs text-slate-400 pt-1">
-                        <span className="flex items-center gap-1 font-mono">
-                          <Clock className="w-3.5 h-3.5 text-slate-500" />
-                          {step.timestamp}
+                    </div>
+
+                    <div className="py-2.5 px-6 flex items-center gap-3 select-none">
+                      <div className="flex flex-col items-center">
+                        <div className="w-0.5 h-6 bg-cyan-400 shadow-[0_0_8px_#00d2ff]" />
+                        <ArrowDown className="w-4 h-4 -my-0.5 text-cyan-400" />
+                      </div>
+                      <div className="text-xs px-2.5 py-1 rounded-md border bg-cyan-500/10 border-cyan-500/30 text-cyan-300 font-bold flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5 text-slate-400" />
+                        <span>{node.time}</span>
+                        <span className="text-[10px] text-slate-400 font-sans">
+                          ({node.location})
                         </span>
-                        <span className="font-mono font-bold text-white">Speed: {step.speed}</span>
                       </div>
                     </div>
                   </div>
                 ))}
+
+                {/* CURRENT LOCATION */}
+                <div className="p-4 rounded-xl border-2 bg-gradient-to-r from-red-950/40 via-amber-950/20 to-red-950/40 border-red-500 shadow-[0_0_20px_rgba(239,68,68,0.3)]">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-3">
+                      <span className="relative flex h-3.5 w-3.5">
+                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
+                        <span className="relative inline-flex rounded-full h-3.5 w-3.5 bg-red-500" />
+                      </span>
+                      <div>
+                        <h4 className="font-black text-sm text-red-400 uppercase tracking-widest flex items-center gap-1.5">
+                          CURRENT LOCATION
+                        </h4>
+                        <p className="text-xs font-mono text-slate-300 mt-0.5">
+                          {target.currentLocation.location}
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="text-right font-mono">
+                      <Badge variant="danger" size="sm" pulse={true}>
+                        LIVE NOW
+                      </Badge>
+                      <span className="text-[10px] text-slate-400 block mt-1">
+                        Est: {target.currentLocation.speed}
+                      </span>
+                    </div>
+                  </div>
+                </div>
               </div>
             </CardContent>
           </Card>
         </div>
 
-        {/* Tactical Coordination Sidebar */}
-        <div className="space-y-4">
-          <Card variant="alert">
-            <CardHeader className="p-4">
-              <CardTitle className="text-sm">Assigned Intercept Unit</CardTitle>
+        {/* RIGHT COLUMN: Interactive GIS Vector Map */}
+        <div className="lg:col-span-7 space-y-4">
+          <Card variant="glow" className="bg-[#070e1c] border-slate-700/80 overflow-hidden shadow-2xl">
+            <CardHeader className="p-4 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Compass className="w-4 h-4 text-cyan-400 animate-spin" style={{ animationDuration: '12s' }} />
+                <span className="font-bold text-xs text-white uppercase tracking-wider">
+                  GIS SPATIAL CORRIDOR MAP — MULTI-CAMERA VECTOR
+                </span>
+              </div>
+              <div className="flex items-center gap-2 text-[11px] font-mono">
+                <span className="text-slate-400">COORDINATE GRID:</span>
+                <span className="text-cyan-400">NH-44 SPATIAL REEF</span>
+              </div>
             </CardHeader>
-            <CardContent className="p-4 pt-0 space-y-3 text-xs">
-              <div className="flex items-center justify-between">
-                <span className="text-slate-400">Patrol Squad:</span>
-                <span className="font-bold text-white">PCR-14 (North Sector)</span>
+
+            <div className="relative aspect-4/3 bg-[#040810] flex items-center justify-center overflow-hidden select-none p-4">
+              <div className="absolute inset-0 bg-[radial-gradient(#0e2238_1.5px,transparent_1.5px)] [background-size:28px_28px] opacity-40" />
+
+              <svg viewBox="0 0 540 540" className="w-full h-full max-h-[460px] drop-shadow-[0_0_20px_rgba(0,210,255,0.25)]">
+                <defs>
+                  <filter id="detail-glow" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="3" result="blur" />
+                    <feMerge>
+                      <feMergeNode in="blur" />
+                      <feMergeNode in="SourceGraphic" />
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                {/* Connecting Lines */}
+                {target.nodes.map((node, idx) => {
+                  if (idx === target.nodes.length - 1) {
+                    const curr = target.currentLocation;
+                    return (
+                      <line
+                        key={`line-${node.id}-curr`}
+                        x1={node.x}
+                        y1={node.y}
+                        x2={curr.x}
+                        y2={curr.y}
+                        stroke="#ef4444"
+                        strokeWidth="3.5"
+                        strokeDasharray="6 4"
+                        className="animate-pulse"
+                        filter="url(#detail-glow)"
+                      />
+                    );
+                  }
+                  const nextNode = target.nodes[idx + 1];
+                  return (
+                    <line
+                      key={`line-${node.id}-${nextNode.id}`}
+                      x1={node.x}
+                      y1={node.y}
+                      x2={nextNode.x}
+                      y2={nextNode.y}
+                      stroke="#00d2ff"
+                      strokeWidth="3.5"
+                      filter="url(#detail-glow)"
+                      strokeDasharray="8 4"
+                    />
+                  );
+                })}
+
+                {/* Nodes */}
+                {target.nodes.map((node) => (
+                  <g key={`map-detail-node-${node.id}`}>
+                    <circle cx={node.x} cy={node.y} r="10" fill="#00d2ff" stroke="#ffffff" strokeWidth="2.5" filter="url(#detail-glow)" />
+                    <circle cx={node.x} cy={node.y} r="3.5" fill="#050c18" />
+                    <g transform={`translate(${node.x + 16}, ${node.y - 12})`}>
+                      <rect x="0" y="0" width="120" height="28" rx="6" fill="#091424" stroke="#00d2ff" strokeWidth="1" opacity="0.9" />
+                      <text x="8" y="13" fill="#ffffff" fontSize="10" fontFamily="monospace" fontWeight="bold">
+                        {node.id}
+                      </text>
+                      <text x="60" y="13" fill="#00d2ff" fontSize="9" fontFamily="monospace" fontWeight="bold">
+                        {node.time}
+                      </text>
+                      <text x="8" y="23" fill="#94a3b8" fontSize="8" fontFamily="sans-serif">
+                        {node.location}
+                      </text>
+                    </g>
+                  </g>
+                ))}
+
+                {/* Current Location */}
+                <g transform={`translate(${target.currentLocation.x}, ${target.currentLocation.y})`}>
+                  <circle cx="0" cy="0" r="24" fill="none" stroke="#ef4444" strokeWidth="1.5" className="animate-ping" opacity="0.6" />
+                  <circle cx="0" cy="0" r="9" fill="#ef4444" stroke="#ffffff" strokeWidth="2" filter="url(#detail-glow)" />
+                  <g transform="translate(-85, 14)">
+                    <rect x="0" y="0" width="170" height="38" rx="8" fill="#1a0b12" stroke="#ef4444" strokeWidth="1.5" />
+                    <text x="10" y="16" fill="#ef4444" fontSize="10" fontFamily="monospace" fontWeight="black">
+                      ● CURRENT LOCATION
+                    </text>
+                    <text x="10" y="30" fill="#fca5a5" fontSize="9" fontFamily="monospace">
+                      {target.plate} ({target.currentLocation.speed})
+                    </text>
+                  </g>
+                </g>
+              </svg>
+
+              <div className="absolute bottom-3 right-3 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-mono border border-slate-700">
+                <span className="text-slate-400">TARGET: </span>
+                <span className="text-cyan-300 font-bold">{target.plate}</span>
+                <span className="text-slate-500 mx-1.5">|</span>
+                <span className="text-emerald-400">VECTOR LOCKED</span>
               </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate-400">Officer in Command:</span>
-                <span className="text-slate-200">Sub-Inspector V. Sharma</span>
-              </div>
-              <div className="flex items-center justify-between">
-                <span className="text-slate-400">Estimated Intercept Time:</span>
-                <span className="font-mono font-bold text-red-400">3 mins (at CP-04)</span>
-              </div>
+            </div>
+
+            <CardContent className="p-4 bg-slate-900/60 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs">
+              <Button
+                variant="primary"
+                size="sm"
+                leftIcon={<Radio className="w-3.5 h-3.5" />}
+                onClick={() => navigate('/anpr/live')}
+              >
+                Switch to Live ANPR View
+              </Button>
+              <span className="text-slate-400 font-mono text-[11px]">Corridor: NH-44 Northward Trajectory</span>
             </CardContent>
           </Card>
         </div>
