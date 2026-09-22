@@ -40,7 +40,7 @@ import {
 const CustomDarkTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-[var(--color-card)] border border-[var(--color-border)]  rounded-xl p-3 shadow-2xl text-xs font-mono">
+      <div className="bg-[var(--color-card)] border border-[var(--color-border)]  rounded-xl p-3 shadow-sm text-xs font-mono">
         <p className="font-bold text-[var(--color-text)] border-b border-[var(--color-border)] pb-1 mb-1.5 flex items-center justify-between gap-4">
           <span>Interval: {label}</span>
           <span className="text-[var(--color-amber)]">ANPR Aggregated</span>
@@ -175,7 +175,7 @@ export const Analytics = () => {
       {/* ────────────────────────────────────────────
           SECTION 1: TRAFFIC VOLUME (VEHICLES / HOUR) 📈
       ──────────────────────────────────────────── */}
-      <Card variant="glow" className="bg-[#070e1c] border-[var(--color-border)] shadow-2xl p-5">
+      <Card variant="default" className="bg-[var(--color-card)] border-[var(--color-border)] shadow-sm p-5">
         <CardHeader className="p-0 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[var(--color-border)]">
           <div>
             <div className="flex items-center gap-2">
@@ -244,7 +244,7 @@ export const Analytics = () => {
           SECTION 2: VEHICLE TYPES MODAL SPLIT
           Cars: 52%, Bikes: 28%, Buses: 10%, Trucks: 10%
       ──────────────────────────────────────────── */}
-      <Card variant="glow" className="bg-[#070e1c] border-[var(--color-border)] shadow-2xl p-5">
+      <Card variant="default" className="bg-[var(--color-card)] border-[var(--color-border)] shadow-sm p-5">
         <CardHeader className="p-0 pb-4 border-b border-[var(--color-border)] flex items-center justify-between">
           <div>
             <CardTitle className="text-base uppercase tracking-wider text-[var(--color-text)] flex items-center gap-2">
@@ -343,7 +343,7 @@ export const Analytics = () => {
             CAM-03 █████████████████
             CAM-04 ██████
         ============================================================ */}
-        <Card variant="default" className="bg-[#070e1c] border-[var(--color-border)] p-5 shadow-2xl space-y-4">
+        <Card variant="default" className="bg-[var(--color-card)] border-[var(--color-border)] p-5 shadow-sm space-y-4">
           <CardHeader className="p-0 pb-3 border-b border-[var(--color-border)] flex items-center justify-between">
             <div>
               <CardTitle className="text-sm uppercase tracking-wider text-[var(--color-text)] flex items-center gap-2">
@@ -419,7 +419,7 @@ export const Analytics = () => {
             17:00 → █████████████████
             18:00 → ███████████████████
         ============================================================ */}
-        <Card variant="default" className="bg-[#070e1c] border-[var(--color-border)] p-5 shadow-2xl space-y-4">
+        <Card variant="default" className="bg-[var(--color-card)] border-[var(--color-border)] p-5 shadow-sm space-y-4">
           <CardHeader className="p-0 pb-3 border-b border-[var(--color-border)] flex items-center justify-between">
             <div>
               <CardTitle className="text-sm uppercase tracking-wider text-[var(--color-text)] flex items-center gap-2">
@@ -494,7 +494,7 @@ export const Analytics = () => {
       {/* ────────────────────────────────────────────
           INTELLIGENT SIGNAL RECOMMENDATION CALLOUT
       ──────────────────────────────────────────── */}
-      <Card variant="glow" className="p-4 bg-[#070e1c] border-[var(--color-amber)]/30">
+      <Card variant="default" className="p-4 bg-[var(--color-card)] border-[var(--color-amber)]/30">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
           <div className="flex items-center gap-2 text-[var(--color-text-secondary)]">
             <Zap className="w-4 h-4 text-amber-400 animate-pulse" />

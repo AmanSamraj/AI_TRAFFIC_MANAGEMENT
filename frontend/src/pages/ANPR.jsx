@@ -279,7 +279,7 @@ export const ANPR = () => {
           SEARCH & FILTER TOOLBAR
           [ Search Plate ] [ Camera ▼ ] [ Date ▼ ] [ Search ]
       ──────────────────────────────────────────────────── */}
-      <Card variant="default" className="p-4 bg-[#0c182b]/95 border-[var(--color-border)] shadow-xl">
+      <Card variant="default" className="p-4 bg-[var(--color-card)] border-[var(--color-border)] shadow-sm">
         <div className="flex flex-wrap items-center gap-3">
           {/* [ Search Plate ] */}
           <div className="relative flex-1 min-w-[200px] max-w-sm">
@@ -290,7 +290,7 @@ export const ANPR = () => {
               onChange={(e) => setSearchPlate(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSearchClick()}
               placeholder="Search Plate (e.g. HP01, DL05)..."
-              className="w-full bg-[#070e1c] text-[var(--color-text)] placeholder-[var(--color-text-muted)] border border-[var(--color-border)] rounded-xl pl-9 pr-3 py-2 text-xs font-mono focus:outline-none focus:border-[var(--color-amber)] focus:ring-1 focus:ring-[var(--color-amber)] transition-all"
+              className="w-full bg-[var(--color-card)] text-[var(--color-text)] placeholder-[var(--color-text-muted)] border border-[var(--color-border)] rounded-xl pl-9 pr-3 py-2 text-xs font-mono focus:outline-none focus:border-[var(--color-amber)] focus:ring-1 focus:ring-[var(--color-amber)] transition-all"
             />
           </div>
 
@@ -472,7 +472,7 @@ export const ANPR = () => {
               </label>
               <div className="p-3.5 rounded-xl bg-[var(--color-charcoal)] border border-[var(--color-border)] flex items-center justify-center">
                 {/* Indian High Security Registration Plate Style */}
-                <div className="relative px-6 py-2.5 bg-gradient-to-r from-slate-100 via-white to-slate-200 border-2 border-slate-900 rounded-md shadow-lg flex items-center gap-3">
+                <div className="relative px-6 py-2.5 bg-gradient-to-r bg-[var(--color-surface)] border border-[var(--color-border-dark)] rounded-md shadow-sm flex items-center gap-3">
                   {/* Blue IND stripe */}
                   <div className="flex flex-col items-center justify-center text-blue-900 pr-2 border-r border-slate-300 select-none">
                     <div className="w-2.5 h-2.5 rounded-full border border-blue-900 flex items-center justify-center text-[5px] font-bold">

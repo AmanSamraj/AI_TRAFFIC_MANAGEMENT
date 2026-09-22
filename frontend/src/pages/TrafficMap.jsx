@@ -433,7 +433,7 @@ export const TrafficMap = () => {
           <span class="absolute w-7 h-7 rounded-full opacity-60 ${pulseClass}"></span>
 
           <!-- Floating Badged Pill: 🟢 CAM-01, 🔴 CAM-04, etc. -->
-          <div class="relative flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border shadow-xl  transition-transform duration-200 group-hover:scale-110"
+          <div class="relative flex items-center gap-1.5 px-2.5 py-1.5 rounded-xl border shadow-sm  transition-transform duration-200 group-hover:scale-110"
                style="background: rgba(10, 20, 36, 0.92); border-color: ${dotColor}; box-shadow: 0 0 12px ${dotColor}40;">
             <span class="text-xs leading-none">${statusEmoji}</span>
             <span class="font-mono font-bold text-xs text-[var(--color-text)] tracking-wider">${cam.id}</span>
@@ -934,7 +934,7 @@ export const TrafficMap = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-5">
         {/* Left / Center Map Section (8 Cols on Desktop) */}
         <div className="lg:col-span-8 space-y-3">
-          <Card variant="glow" className="relative overflow-hidden p-0 border border-[var(--color-border)]">
+          <Card variant="default" className="relative overflow-hidden p-0 border border-[var(--color-border)]">
             {/* Map Top Floating Subheader */}
             <div className="p-3 bg-[var(--color-charcoal)]/90 border-b border-[var(--color-border)] flex flex-wrap items-center justify-between gap-2.5">
               <div className="flex items-center gap-2">
@@ -1018,7 +1018,7 @@ export const TrafficMap = () => {
               <div ref={mapContainerRef} className="w-full h-full" style={{ zIndex: 1 }} />
 
               {/* Floating Layer Toggles Toolbar */}
-              <div className="absolute top-3 right-3 z-[400] flex flex-col gap-1 bg-[var(--color-charcoal)]/90  p-2 rounded-xl border border-[var(--color-border)] shadow-2xl text-[11px]">
+              <div className="absolute top-3 right-3 z-[400] flex flex-col gap-1 bg-[var(--color-charcoal)]/90  p-2 rounded-xl border border-[var(--color-border)] shadow-sm text-[11px]">
                 <span className="text-[10px] font-bold text-[var(--color-text-muted)] uppercase tracking-wider px-1 pb-1 border-b border-[var(--color-border)] flex items-center gap-1">
                   <Layers className="w-3 h-3 text-[var(--color-amber)]" />
                   GIS Layers
@@ -1081,7 +1081,7 @@ export const TrafficMap = () => {
               </div>
 
               {/* Floating Bottom Legend */}
-              <div className="absolute bottom-4 left-4 z-[400] bg-[var(--color-charcoal)]/90  border border-[var(--color-border)] px-3 py-2 rounded-xl text-[11px] text-[var(--color-text-secondary)] space-y-1.5 shadow-2xl font-medium">
+              <div className="absolute bottom-4 left-4 z-[400] bg-[var(--color-charcoal)]/90  border border-[var(--color-border)] px-3 py-2 rounded-xl text-[11px] text-[var(--color-text-secondary)] space-y-1.5 shadow-sm font-medium">
                 <div className="font-bold text-[10px] uppercase text-[var(--color-text-muted)] tracking-wider">
                   Velocity & Status Legend
                 </div>
@@ -1133,7 +1133,7 @@ export const TrafficMap = () => {
         {/* Right Inspection & Telemetry Panel (4 Cols on Desktop) */}
         <div className="lg:col-span-4 space-y-4">
           {/* Selected Item Telemetry Inspector */}
-          <Card variant="glow">
+          <Card variant="default">
             <CardHeader className="p-4 pb-2 border-b border-[var(--color-border)]">
               <div className="flex items-center justify-between">
                 <CardTitle className="text-sm flex items-center gap-2">

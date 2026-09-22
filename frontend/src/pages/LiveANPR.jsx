@@ -185,7 +185,7 @@ export const LiveANPR = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* LEFT COLUMN (7 COLS): CAMERA VIDEO */}
         <div className="lg:col-span-7 space-y-4">
-          <Card variant="glow" className="overflow-hidden bg-[#070e1c] border-[var(--color-border)] shadow-2xl">
+          <Card variant="default" className="overflow-hidden bg-[var(--color-card)] border-[var(--color-border)] shadow-sm">
             {/* Camera Viewport Header */}
             <CardHeader className="p-3.5 bg-[var(--color-card)] border-b border-[var(--color-border)] flex items-center justify-between">
               <div className="flex items-center gap-2">
@@ -284,7 +284,7 @@ export const LiveANPR = () => {
 
         {/* RIGHT COLUMN (5 COLS): TELEMETRY CARDS MATCHING EXACT WIREFRAME */}
         <div className="lg:col-span-5 space-y-4">
-          <Card variant="default" className="bg-[#0c182b] border-[var(--color-border)] shadow-2xl p-6 space-y-5">
+          <Card variant="default" className="bg-[var(--color-card)] border-[var(--color-border)] shadow-sm p-6 space-y-5">
             {/* 1. DETECTED PLATE */}
             <div>
               <label className="block text-xs font-bold text-[var(--color-text-muted)] uppercase tracking-widest mb-2 flex items-center gap-1.5">
@@ -294,7 +294,7 @@ export const LiveANPR = () => {
 
               {/* Embossed High-Security Indian License Plate Box */}
               <div className="p-4 rounded-xl bg-[#040810] border border-[var(--color-border)] flex items-center justify-center shadow-inner">
-                <div className="relative w-full max-w-xs px-4 py-2.5 bg-gradient-to-r from-slate-100 via-white to-slate-200 border-3 border-slate-900 rounded-lg shadow-xl flex items-center justify-between gap-3">
+                <div className="relative w-full max-w-xs px-4 py-2.5 bg-gradient-to-r bg-[var(--color-surface)] border border-[var(--color-border-dark)] rounded-lg shadow-sm flex items-center justify-between gap-3">
                   {/* Blue IND Badge */}
                   <div className="flex flex-col items-center justify-center text-blue-900 pr-2.5 border-r-2 border-slate-300 select-none">
                     <div className="w-3.5 h-3.5 rounded-full border border-blue-900 flex items-center justify-center text-[7px] font-black">
@@ -404,7 +404,7 @@ export const LiveANPR = () => {
           ARCHITECTURE PIPELINE FLOW BADGE (AS IN WIREFRAME)
           Camera → Backend → AI Model → WebSocket → React
       ──────────────────────────────────────────── */}
-      <Card variant="default" className="p-4 bg-[#070e1c] border-[var(--color-border)]">
+      <Card variant="default" className="p-4 bg-[var(--color-card)] border-[var(--color-border)]">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2 text-xs font-semibold text-[var(--color-text-secondary)]">
             <Radio className="w-4 h-4 text-[var(--color-amber)] animate-pulse" />

@@ -573,7 +573,7 @@ export const Reports = () => {
       {/* -------------------------------------------------------------
           LIVE GENERATED REPORT DOSSIER PREVIEW
       ------------------------------------------------------------- */}
-      <Card variant="glow">
+      <Card variant="default">
         <CardHeader className="p-4 border-b border-[var(--color-border)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <div className="flex items-center gap-2">

@@ -257,14 +257,14 @@ export const VehicleDetails = () => {
           </Badge>
         </div>
 
-        <Card variant="glow" className="bg-[#0c182b] border-2 border-[var(--color-amber)] p-6 shadow-2xl rounded-2xl">
+        <Card variant="default" className="bg-[var(--color-card)] border-2 border-[var(--color-amber)] p-6 shadow-sm rounded-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             {/* Embossed Number Plate */}
             <div className="lg:col-span-4 flex flex-col items-center justify-center p-4 bg-[#050b14] rounded-xl border border-[var(--color-border)] shadow-inner">
               <div className="text-[11px] font-bold text-[var(--color-text-muted)] uppercase tracking-wider mb-2.5">
                 Official Registration Plate
               </div>
-              <div className="relative w-full max-w-xs px-4 py-2.5 bg-gradient-to-r from-slate-100 via-white to-slate-200 border-3 border-slate-950 rounded-lg shadow-2xl flex items-center justify-between gap-3 select-all">
+              <div className="relative w-full max-w-xs px-4 py-2.5 bg-gradient-to-r bg-[var(--color-surface)] border border-[var(--color-border-dark)] rounded-lg shadow-sm flex items-center justify-between gap-3 select-all">
                 <div className="flex flex-col items-center justify-center text-blue-900 pr-2 border-r-2 border-slate-300 select-none">
                   <div className="w-3.5 h-3.5 rounded-full border border-blue-900 flex items-center justify-center text-[7px] font-black">
                     🇮🇳
@@ -358,7 +358,7 @@ export const VehicleDetails = () => {
         </div>
 
         {/* Visual Route Corridor Progression Bar */}
-        <Card variant="default" className="bg-[#070e1c] border-[var(--color-border)] p-4">
+        <Card variant="default" className="bg-[var(--color-card)] border-[var(--color-border)] p-4">
           <div className="text-xs font-bold text-[var(--color-text-muted)] uppercase tracking-wider mb-3">
             Corridor Movement Progression:
           </div>
@@ -382,7 +382,7 @@ export const VehicleDetails = () => {
         </Card>
 
         {/* Detection History Table */}
-        <Card variant="default" className="bg-[#070e1c] border-[var(--color-border)]">
+        <Card variant="default" className="bg-[var(--color-card)] border-[var(--color-border)]">
           <CardContent className="p-0">
             <Table columns={detectionColumns} data={currentProfile.detectionHistory} />
           </CardContent>

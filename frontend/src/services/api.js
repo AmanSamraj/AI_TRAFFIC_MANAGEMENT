@@ -2,7 +2,7 @@ const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8000';
 const WS_BASE_URL = import.meta.env.VITE_WS_URL || 'ws://localhost:8000';
 
 export const api = {
-  // Cameras
+  // Cameras & Live Streams
   getCameras: async () => {
     const res = await fetch(`${API_BASE_URL}/api/cameras`);
     return res.json();
@@ -13,6 +13,18 @@ export const api = {
   },
   controlPtz: async (id, action) => {
     const res = await fetch(`${API_BASE_URL}/api/cameras/${id}/ptz?action=${action}`, { method: 'POST' });
+    return res.json();
+  },
+  getWindyWebcams: async (country = 'IN', limit = 15) => {
+    const res = await fetch(`${API_BASE_URL}/api/streams/windy/list?country=${country}&limit=${limit}`);
+    return res.json();
+  },
+  addCustomCamera: async (payload) => {
+    const res = await fetch(`${API_BASE_URL}/api/streams/add`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
     return res.json();
   },
 

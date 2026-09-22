@@ -119,7 +119,7 @@ export const TrackingDetails = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* LEFT COLUMN: Vertical Timeline */}
         <div className="lg:col-span-5 space-y-4">
-          <Card variant="glow" className="bg-[#0c182b] border-[var(--color-border)] p-5 shadow-2xl">
+          <Card variant="default" className="bg-[var(--color-card)] border-[var(--color-border)] p-5 shadow-sm">
             <CardHeader className="p-0 pb-4 border-b border-[var(--color-border)]">
               <div className="flex items-center justify-between">
                 <div>
@@ -219,7 +219,7 @@ export const TrackingDetails = () => {
 
         {/* RIGHT COLUMN: Interactive GIS Vector Map */}
         <div className="lg:col-span-7 space-y-4">
-          <Card variant="glow" className="bg-[#070e1c] border-[var(--color-border)] overflow-hidden shadow-2xl">
+          <Card variant="default" className="bg-[var(--color-card)] border-[var(--color-border)] overflow-hidden shadow-sm">
             <CardHeader className="p-4 bg-[var(--color-card)] border-b border-[var(--color-border)] flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Compass className="w-4 h-4 text-[var(--color-amber)] animate-spin" style={{ animationDuration: '12s' }} />

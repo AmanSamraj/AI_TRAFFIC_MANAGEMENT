@@ -48,7 +48,7 @@ export const SearchBar = ({
     <div className={`relative flex items-center w-full ${className}`}>
       <Search
         className={`absolute pointer-events-none ${iconSizes[size] || iconSizes.md}`}
-        style={{ color: 'var(--color-text-muted)', width: size === 'lg' ? 18 : undefined, height: size === 'lg' ? 18 : undefined }}
+        style={{ color: '#666666', width: size === 'lg' ? 18 : undefined, height: size === 'lg' ? 18 : undefined }}
       />
 
       <input
@@ -58,8 +58,8 @@ export const SearchBar = ({
         placeholder={placeholder}
         className={`w-full rounded-lg focus:outline-none transition-all duration-150 ${sizeStyles[size] || sizeStyles.md}`}
         style={{
-          background: 'var(--color-background)',
-          color: 'var(--color-text)',
+          background: '#ffffff',
+          color: '#000000',
           border: '1px solid var(--color-border)',
           caretColor: 'var(--color-amber)',
         }}

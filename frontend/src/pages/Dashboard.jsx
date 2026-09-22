@@ -260,7 +260,7 @@ export const Dashboard = () => {
 
       {/* KPI Metric Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <Card variant="glow">
+        <Card variant="default">
           <CardContent className="p-5 flex items-center justify-between">
             <div>
               <p className="text-xs text-[var(--color-text-muted)] font-medium">Total Monitored Vehicles</p>

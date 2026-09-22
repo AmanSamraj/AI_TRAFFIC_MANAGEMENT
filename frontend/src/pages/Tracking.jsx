@@ -269,7 +269,7 @@ export const Tracking = () => {
       {/* ────────────────────────────────────────────
           TARGET SELECTOR & TELEMETRY STRIP
       ──────────────────────────────────────────── */}
-      <Card variant="glow" className="bg-[#070e1c] border-[var(--color-border)] p-4 shadow-xl">
+      <Card variant="default" className="bg-[var(--color-card)] border-[var(--color-border)] p-4 shadow-sm">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           {/* Search / Target Input */}
           <form onSubmit={handleSearch} className="flex items-center gap-2 flex-1 max-w-md">
@@ -356,7 +356,7 @@ export const Tracking = () => {
             CURRENT LOCATION
         ============================================================ */}
         <div className="lg:col-span-5 space-y-4">
-          <Card variant="glow" className="bg-[#0c182b] border-[var(--color-border)] p-5 shadow-2xl">
+          <Card variant="default" className="bg-[var(--color-card)] border-[var(--color-border)] p-5 shadow-sm">
             <CardHeader className="p-0 pb-4 border-b border-[var(--color-border)]">
               <div className="flex items-center justify-between">
                 <div>
@@ -520,7 +520,7 @@ export const Tracking = () => {
                    [🚗 CURRENT LOCATION]
         ============================================================ */}
         <div className="lg:col-span-7 space-y-4">
-          <Card variant="glow" className="bg-[#070e1c] border-[var(--color-border)] overflow-hidden shadow-2xl">
+          <Card variant="default" className="bg-[var(--color-card)] border-[var(--color-border)] overflow-hidden shadow-sm">
             {/* Map Header */}
             <CardHeader className="p-4 bg-[var(--color-card)] border-b border-[var(--color-border)] flex items-center justify-between">
               <div className="flex items-center gap-2">
