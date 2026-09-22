@@ -522,8 +522,8 @@ export const TrafficMap = () => {
       const pointHtml = `
         <div class="w-4 h-4 rounded-full border-2 ${
           isMainCam
-            ? 'bg-cyan-400 border-white shadow-[0_0_8px_#00d2ff]'
-            : 'bg-[var(--color-background)] border-cyan-400/70'
+            ? 'bg-[var(--color-amber)] border-white shadow-sm'
+            : 'bg-[var(--color-background)] border-[var(--color-amber)]'
         } flex items-center justify-center cursor-pointer hover:scale-125 transition-transform">
         </div>
       `;
@@ -551,8 +551,8 @@ export const TrafficMap = () => {
     const currentPt = TRAJECTORY_CHECKPOINTS[trajectoryStep] || TRAJECTORY_CHECKPOINTS[0];
     const vehicleHtml = `
       <div class="relative flex items-center justify-center cursor-pointer" style="width: 120px; height: 36px;">
-        <span class="absolute w-8 h-8 rounded-full bg-cyan-400/40 animate-ping"></span>
-        <div class="relative flex items-center gap-1.5 px-2 py-1 rounded-xl bg-cyan-500 text-slate-950 border-2 border-white shadow-[0_0_15px_#00d2ff] font-bold text-xs">
+        <span class="absolute w-8 h-8 rounded-full bg-[var(--color-amber)]/40 animate-ping"></span>
+        <div class="relative flex items-center gap-1.5 px-2 py-1 rounded-xl bg-[var(--color-amber)] text-[var(--color-charcoal)] border-2 border-white shadow-sm font-bold text-xs">
           <span class="text-xs">🚗</span>
           <span class="font-mono tracking-wide">HP01AB1234</span>
         </div>
@@ -683,7 +683,7 @@ export const TrafficMap = () => {
           <span class="absolute w-8 h-8 rounded-full bg-red-600/70 beacon-red-pulse"></span>
 
           <!-- Pill Badge -->
-          <div class="relative flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-red-950/90 text-red-200 border border-red-500 shadow-[0_0_12px_rgba(239,68,68,0.5)] text-xs font-bold transition-transform group-hover:scale-110">
+          <div class="relative flex items-center gap-1.5 px-2.5 py-1 rounded-xl bg-red-950/90 text-red-200 border border-red-500 shadow-sm text-xs font-bold transition-transform group-hover:scale-110">
             <span class="text-sm">⚠️</span>
             <span class="font-mono">${inc.id}</span>
             <span class="w-1.5 h-1.5 rounded-full bg-red-400 animate-ping"></span>
@@ -816,7 +816,7 @@ export const TrafficMap = () => {
               onClick={() => setSelectedTileKey('dark')}
               className={`px-3 py-1.5 rounded-lg font-medium transition-all ${
                 selectedTileKey === 'dark'
-                  ? 'bg-cyan-500 text-slate-950 shadow-sm font-bold'
+                  ? 'bg-[var(--color-amber)] text-[var(--color-charcoal)] shadow-sm font-bold'
                   : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)]'
               }`}
             >
@@ -826,7 +826,7 @@ export const TrafficMap = () => {
               onClick={() => setSelectedTileKey('osm')}
               className={`px-3 py-1.5 rounded-lg font-medium transition-all ${
                 selectedTileKey === 'osm'
-                  ? 'bg-cyan-500 text-slate-950 shadow-sm font-bold'
+                  ? 'bg-[var(--color-amber)] text-[var(--color-charcoal)] shadow-sm font-bold'
                   : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)]'
               }`}
             >
@@ -987,7 +987,7 @@ export const TrafficMap = () => {
                   className={`p-1 rounded-md transition-colors ${
                     isPlayingTrajectory
                       ? 'bg-amber-500/20 text-amber-400 border border-[rgba(245,166,35,0.3)]'
-                      : 'bg-cyan-500/20 text-[var(--color-amber)] border border-[var(--color-amber)] hover:bg-cyan-500/30'
+                      : 'bg-[var(--color-amber)]/20 text-[var(--color-amber)] border border-[var(--color-amber)] hover:bg-[var(--color-amber)]/30'
                   }`}
                   title={isPlayingTrajectory ? 'Pause Pursuit' : 'Play Pursuit Simulation'}
                 >
@@ -1086,19 +1086,19 @@ export const TrafficMap = () => {
                   Velocity & Status Legend
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_6px_#10b981]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-sm" />
                   <span>🟢 Free Flow (&gt; 50 km/h) — CAM-01, CAM-12</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-[0_0_6px_#f59e0b]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shadow-sm" />
                   <span>🟡 Moderate Delay (25–50 km/h) — CAM-07</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-2.5 h-2.5 rounded-full bg-red-500 shadow-[0_0_6px_#ef4444]" />
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-500 shadow-sm" />
                   <span>🔴 Heavy Congestion / Choke (&lt; 20 km/h) — CAM-04</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <span className="w-4 h-0.5 bg-cyan-400 rounded-full" />
+                  <span className="w-4 h-0.5 bg-[var(--color-amber)] rounded-full" />
                   <span>Active Vehicle Trajectory Vector (HP01AB1234)</span>
                 </div>
               </div>
@@ -1117,7 +1117,7 @@ export const TrafficMap = () => {
                   onClick={() => centerOnNode(cam)}
                   className={`px-3 py-1.5 rounded-xl border font-mono font-medium transition-all shrink-0 flex items-center gap-1.5 ${
                     isSelected
-                      ? 'bg-cyan-500 text-slate-950 border-white shadow-[0_0_12px_#00d2ff] font-bold'
+                      ? 'bg-[var(--color-amber)] text-[var(--color-charcoal)] border-white shadow-sm font-bold'
                       : 'bg-[var(--color-card)] text-[var(--color-text-secondary)] border-[var(--color-border)] hover:border-[var(--color-border)] hover:bg-[var(--color-background)]'
                   }`}
                 >
@@ -1181,7 +1181,7 @@ export const TrafficMap = () => {
                   <div className="relative aspect-video rounded-xl bg-black border border-[var(--color-border)] overflow-hidden group">
                     {/* Simulated Camera Video Stream */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30 z-10" />
-                    <div className="absolute inset-0 bg-[radial-gradient(#00d2ff_1px,transparent_1px)] [background-size:24px_24px] opacity-20" />
+                    <div className="absolute inset-0 bg-[radial-gradient(#F5A623_1px,transparent_1px)] [background-size:24px_24px] opacity-20" />
 
                     {/* Simulated road scene with AI bounding boxes */}
                     <div className="absolute inset-0 flex items-center justify-center">
@@ -1189,7 +1189,7 @@ export const TrafficMap = () => {
                         <span>SEDAN 99%</span>
                         <span>{selectedItem.speed}</span>
                       </div>
-                      <div className="w-16 h-12 border-2 border-cyan-400/80 rounded bg-[rgba(245,166,35,0.06)] flex flex-col justify-between p-1 text-[9px] font-mono text-[var(--color-amber)] ml-4">
+                      <div className="w-16 h-12 border-2 border-[var(--color-amber)] rounded bg-[rgba(245,166,35,0.06)] flex flex-col justify-between p-1 text-[9px] font-mono text-[var(--color-amber)] ml-4">
                         <span>SUV 97%</span>
                         <span>42 km/h</span>
                       </div>

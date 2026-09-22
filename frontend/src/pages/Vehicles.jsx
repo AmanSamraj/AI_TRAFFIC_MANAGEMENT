@@ -273,7 +273,7 @@ export const Vehicles = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="e.g. HP01AB1234, DL05XY7788"
-                className="w-full bg-[#040810] border-2 border-[var(--color-border)] focus:border-cyan-400 rounded-xl px-4 py-3 font-mono text-lg font-bold text-[var(--color-text)] tracking-widest placeholder:text-[var(--color-text-muted)] uppercase transition-all outline-hidden shadow-inner"
+                className="w-full bg-[#040810] border-2 border-[var(--color-border)] focus:border-[var(--color-amber)] rounded-xl px-4 py-3 font-mono text-lg font-bold text-[var(--color-text)] tracking-widest placeholder:text-[var(--color-text-muted)] uppercase transition-all outline-hidden shadow-inner"
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-mono text-[var(--color-text-muted)] hidden sm:inline-block">
                 PRESS ENTER ↵
@@ -304,7 +304,7 @@ export const Vehicles = () => {
                 onClick={() => handleSelectQuickPlate(plate)}
                 className={`text-xs font-mono px-3 py-1 rounded-lg border transition-all cursor-pointer ${
                   activePlate === plate
-                    ? 'bg-cyan-500/20 text-[var(--color-amber)] border-[var(--color-amber)] shadow-[0_0_10px_rgba(0,210,255,0.3)] font-bold'
+                    ? 'bg-[var(--color-amber)]/20 text-[var(--color-amber)] border-[var(--color-amber)] shadow-sm font-bold'
                     : 'bg-[var(--color-card)] text-[var(--color-text-muted)] border-[var(--color-border)] hover:border-slate-500 hover:text-[var(--color-text)]'
                 }`}
               >
@@ -359,7 +359,7 @@ export const Vehicles = () => {
                 </div>
 
                 {/* License Plate String */}
-                <span className="font-mono text-2xl sm:text-3xl font-black tracking-widest text-slate-950">
+                <span className="font-mono text-2xl sm:text-3xl font-black tracking-widest text-[var(--color-charcoal)]">
                   {currentProfile.plate}
                 </span>
 
@@ -424,7 +424,7 @@ export const Vehicles = () => {
                   <span className="text-[var(--color-text-muted)] font-bold uppercase tracking-wider text-xs">
                     Total Detections:
                   </span>
-                  <span className="text-[var(--color-text)] font-black text-lg bg-cyan-950/80 border border-[var(--color-amber)]/50 px-3 py-0.5 rounded-lg text-[var(--color-amber)]">
+                  <span className="text-[var(--color-text)] font-black text-lg bg-[var(--color-charcoal-light)] border border-[var(--color-amber)]/50 px-3 py-0.5 rounded-lg text-[var(--color-amber)]">
                     {currentProfile.totalDetections}
                   </span>
                 </div>
@@ -468,7 +468,7 @@ export const Vehicles = () => {
             {currentProfile.detectionHistory.map((step, idx) => (
               <React.Fragment key={step.camera + step.time}>
                 <div className="flex items-center gap-2 bg-[var(--color-card)] border border-[var(--color-border)] px-3 py-1.5 rounded-xl shadow">
-                  <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                  <div className="w-2 h-2 rounded-full bg-[var(--color-amber)] animate-pulse" />
                   <span className="font-bold text-[var(--color-amber)]">{step.camera}</span>
                   <span className="text-[var(--color-text-muted)]">|</span>
                   <span className="text-[var(--color-text)]">{step.location}</span>

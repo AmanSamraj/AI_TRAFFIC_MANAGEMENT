@@ -327,7 +327,7 @@ export const Violations = () => {
           onClick={() => setActiveTab('All')}
           className={`p-3.5 rounded-xl border cursor-pointer transition-all ${
             activeTab === 'All'
-              ? 'bg-cyan-950/30 border-[var(--color-amber)]/50 shadow-[0_0_12px_rgba(0,210,255,0.2)]'
+              ? 'bg-[rgba(245,166,35,0.08)] border-[var(--color-amber)]/50 shadow-sm'
               : 'bg-[var(--color-card)] border-[var(--color-border)] hover:border-[var(--color-border)]'
           }`}
         >
@@ -346,7 +346,7 @@ export const Violations = () => {
           onClick={() => setActiveTab('Speed')}
           className={`p-3.5 rounded-xl border cursor-pointer transition-all ${
             activeTab === 'Speed'
-              ? 'bg-amber-950/30 border-amber-500/50 shadow-[0_0_12px_rgba(245,158,11,0.2)]'
+              ? 'bg-amber-950/30 border-amber-500/50 shadow-sm'
               : 'bg-[var(--color-card)] border-[var(--color-border)] hover:border-[var(--color-border)]'
           }`}
         >
@@ -365,7 +365,7 @@ export const Violations = () => {
           onClick={() => setActiveTab('Red Light')}
           className={`p-3.5 rounded-xl border cursor-pointer transition-all ${
             activeTab === 'Red Light'
-              ? 'bg-red-950/30 border-red-500/50 shadow-[0_0_12px_rgba(239,68,68,0.2)]'
+              ? 'bg-red-950/30 border-red-500/50 shadow-sm'
               : 'bg-[var(--color-card)] border-[var(--color-border)] hover:border-[var(--color-border)]'
           }`}
         >
@@ -384,7 +384,7 @@ export const Violations = () => {
           onClick={() => setActiveTab('Wrong Way')}
           className={`p-3.5 rounded-xl border cursor-pointer transition-all ${
             activeTab === 'Wrong Way'
-              ? 'bg-purple-950/30 border-purple-500/50 shadow-[0_0_12px_rgba(168,85,247,0.2)]'
+              ? 'bg-purple-950/30 border-purple-500/50 shadow-sm'
               : 'bg-[var(--color-card)] border-[var(--color-border)] hover:border-[var(--color-border)]'
           }`}
         >
@@ -419,7 +419,7 @@ export const Violations = () => {
                     }}
                     className={`px-4 py-2 rounded-xl text-xs font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                       isActive
-                        ? 'bg-cyan-500 text-slate-950 shadow-[0_0_12px_rgba(0,210,255,0.4)]'
+                        ? 'bg-[var(--color-amber)] text-[var(--color-charcoal)] shadow-sm'
                         : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-[var(--color-background)]'
                     }`}
                   >
@@ -536,7 +536,7 @@ export const Violations = () => {
 
             {/* High-Resolution Optical Evidence Frame Simulation */}
             <div className="relative aspect-video rounded-xl bg-black border border-[var(--color-border)] overflow-hidden flex items-center justify-center">
-              <div className="absolute inset-0 bg-[radial-gradient(#00d2ff_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-20" />
+              <div className="absolute inset-0 bg-[radial-gradient(#F5A623_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-20" />
 
               {/* Vehicle & Plate Target Box */}
               <div className="relative z-10 p-3 rounded-xl border-2 border-red-500 bg-red-500/10 text-center space-y-1">

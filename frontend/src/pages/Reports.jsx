@@ -420,7 +420,7 @@ export const Reports = () => {
                 onClick={() => setSelectedReportId(rep.id)}
                 className={`p-4 rounded-2xl border transition-all cursor-pointer flex flex-col justify-between group ${
                   isSelected
-                    ? 'bg-[rgba(91,103,112,0.06)] border-[var(--color-amber)]/60 shadow-[0_0_18px_rgba(0,210,255,0.25)] ring-1 ring-cyan-500/50'
+                    ? 'bg-[rgba(91,103,112,0.06)] border-[var(--color-amber)]/60 shadow-sm ring-1 ring-[var(--color-amber)]/50'
                     : 'bg-[var(--color-card)] border-[var(--color-border)] hover:border-[var(--color-border)] hover:bg-[var(--color-background)]'
                 }`}
               >

@@ -309,7 +309,7 @@ export const AdminRoles = () => {
                 >
                   <td className="p-4 font-semibold text-[var(--color-text)]">
                     <div className="flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-cyan-400" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-amber)]" />
                       <span>{perm.label}</span>
                     </div>
                   </td>
@@ -327,7 +327,7 @@ export const AdminRoles = () => {
                           onClick={() => handleTogglePermission(role.id, perm.id)}
                           className={`inline-flex items-center justify-center w-8 h-8 rounded-xl border transition-all cursor-pointer ${
                             isGranted
-                              ? 'bg-emerald-500/20 text-emerald-400 border-[rgba(25,135,84,0.3)] hover:bg-emerald-500/30 shadow-[0_0_8px_rgba(16,185,129,0.25)]'
+                              ? 'bg-emerald-500/20 text-emerald-400 border-[rgba(25,135,84,0.3)] hover:bg-emerald-500/30 shadow-sm'
                               : 'bg-[var(--color-charcoal)] text-[var(--color-text-muted)] border-[var(--color-border)] hover:text-[var(--color-text-muted)] hover:border-[var(--color-border)]'
                           }`}
                           title={`${isGranted ? 'Revoke' : 'Grant'} ${perm.label} for ${role.name}`}

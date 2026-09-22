@@ -325,7 +325,7 @@ export const Users = () => {
               onClick={() => setRoleFilter(isSelected ? 'all' : r)}
               className={`p-3 rounded-xl border cursor-pointer transition-all ${
                 isSelected
-                  ? 'bg-[rgba(91,103,112,0.06)] border-[var(--color-amber)]/60 shadow-[0_0_12px_rgba(0,210,255,0.25)]'
+                  ? 'bg-[rgba(91,103,112,0.06)] border-[var(--color-amber)]/60 shadow-sm'
                   : 'bg-[var(--color-card)] border-[var(--color-border)] hover:border-[var(--color-border)]'
               }`}
             >
@@ -362,7 +362,7 @@ export const Users = () => {
                   onClick={() => setRoleFilter(r)}
                   className={`px-3 py-1.5 rounded-xl font-medium transition-all shrink-0 ${
                     roleFilter === r
-                      ? 'bg-cyan-500 text-slate-950 font-bold shadow-sm'
+                      ? 'bg-[var(--color-amber)] text-[var(--color-charcoal)] font-bold shadow-sm'
                       : 'bg-[var(--color-background)] text-[var(--color-text-muted)] hover:text-[var(--color-text)] hover:bg-slate-700'
                   }`}
                 >
@@ -458,7 +458,7 @@ export const Users = () => {
                 return (
                   <span
                     key={p.id}
-                    className="inline-flex items-center gap-1 text-[10px] bg-cyan-950/80 border border-[var(--color-amber)]/30 text-[var(--color-amber)] px-2 py-0.5 rounded"
+                    className="inline-flex items-center gap-1 text-[10px] bg-[var(--color-charcoal-light)] border border-[var(--color-amber)]/30 text-[var(--color-amber)] px-2 py-0.5 rounded"
                   >
                     <Check className="w-3 h-3 text-emerald-400" />
                     {p.label}

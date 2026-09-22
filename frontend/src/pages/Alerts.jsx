@@ -531,7 +531,7 @@ export const Alerts = () => {
           🔴 HIGH PRIORITY: Vehicle detected in restricted zone
           Plate: HP01AB1234 | Camera: CAM-07 | Time: 10:42 AM
       ------------------------------------------------------------- */}
-      <Card variant="alert" className="border-2 border-red-500/60 shadow-[0_0_25px_rgba(239,68,68,0.25)] relative overflow-hidden">
+      <Card variant="alert" className="border-2 border-red-500/60 shadow-sm relative overflow-hidden">
         {/* Background Glowing Watermark & Scanline */}
         <div className="absolute right-0 top-0 bottom-0 w-96 bg-gradient-to-l from-red-600/10 to-transparent pointer-events-none" />
 
@@ -540,7 +540,7 @@ export const Alerts = () => {
             {/* Left Column: Severity & Incident Header */}
             <div className="space-y-3">
               <div className="flex items-center gap-2.5">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-red-600 text-[var(--color-text)] text-xs font-black tracking-wider uppercase shadow-[0_0_12px_rgba(239,68,68,0.8)]">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-red-600 text-[var(--color-text)] text-xs font-black tracking-wider uppercase shadow-sm">
                   <span className="w-2 h-2 rounded-full bg-white animate-ping inline-block" />
                   🔴 HIGH PRIORITY
                 </span>
@@ -701,7 +701,7 @@ export const Alerts = () => {
                 onClick={() => setCategoryFilter(cat.id)}
                 className={`px-3 py-1.5 rounded-xl font-medium transition-all shrink-0 ${
                   categoryFilter === cat.id
-                    ? 'bg-cyan-500 text-slate-950 font-bold shadow-sm'
+                    ? 'bg-[var(--color-amber)] text-[var(--color-charcoal)] font-bold shadow-sm'
                     : 'bg-[var(--color-background)] text-[var(--color-text-secondary)] hover:text-[var(--color-text)] hover:bg-slate-700'
                 }`}
               >
@@ -716,7 +716,7 @@ export const Alerts = () => {
               onClick={() => setViewMode('cards')}
               className={`px-3 py-1 rounded-lg text-xs font-medium transition-all ${
                 viewMode === 'cards'
-                  ? 'bg-cyan-500/20 text-[var(--color-amber)] border border-[var(--color-amber)]/30 font-bold'
+                  ? 'bg-[var(--color-amber)]/20 text-[var(--color-amber)] border border-[var(--color-amber)]/30 font-bold'
                   : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)]'
               }`}
             >
@@ -726,7 +726,7 @@ export const Alerts = () => {
               onClick={() => setViewMode('table')}
               className={`px-3 py-1 rounded-lg text-xs font-medium transition-all ${
                 viewMode === 'table'
-                  ? 'bg-cyan-500/20 text-[var(--color-amber)] border border-[var(--color-amber)]/30 font-bold'
+                  ? 'bg-[var(--color-amber)]/20 text-[var(--color-amber)] border border-[var(--color-amber)]/30 font-bold'
                   : 'text-[var(--color-text-muted)] hover:text-[var(--color-text)]'
               }`}
             >
@@ -898,7 +898,7 @@ export const Alerts = () => {
 
             {/* AI Evidence View Snapshot Mockup */}
             <div className="relative aspect-video rounded-xl bg-black border border-[var(--color-border)] overflow-hidden flex items-center justify-center">
-              <div className="absolute inset-0 bg-[radial-gradient(#00d2ff_1px,transparent_1px)] [background-size:20px_20px] opacity-15" />
+              <div className="absolute inset-0 bg-[radial-gradient(#F5A623_1px,transparent_1px)] [background-size:20px_20px] opacity-15" />
 
               {/* Bounding box simulation */}
               <div className="relative z-10 p-3 rounded-lg border-2 border-red-500 bg-red-500/10 text-center space-y-1">

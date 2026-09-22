@@ -101,7 +101,7 @@ export const AdminSettings = () => {
                 max="98"
                 value={ocrConfidenceThreshold}
                 onChange={(e) => setOcrConfidenceThreshold(e.target.value)}
-                className="w-full accent-cyan-400 cursor-pointer"
+                className="w-full accent-[var(--color-amber)] cursor-pointer"
               />
               <p className="text-[11px] text-[var(--color-text-muted)] mt-1">
                 Plates detected with confidence below this threshold are routed to the manual operator audit queue.

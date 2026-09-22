@@ -72,7 +72,7 @@ export const Settings = () => {
                 max="99"
                 value={aiConfidence}
                 onChange={(e) => setAiConfidence(Number(e.target.value))}
-                className="w-full accent-cyan-400 cursor-pointer"
+                className="w-full accent-[var(--color-amber)] cursor-pointer"
               />
               <p className="text-[11px] text-[var(--color-text-muted)] mt-1">
                 Detections below this score require human officer manual verification.
@@ -90,7 +90,7 @@ export const Settings = () => {
                 max="15"
                 value={speedTolerance}
                 onChange={(e) => setSpeedTolerance(Number(e.target.value))}
-                className="w-full accent-cyan-400 cursor-pointer"
+                className="w-full accent-[var(--color-amber)] cursor-pointer"
               />
               <p className="text-[11px] text-[var(--color-text-muted)] mt-1">
                 Margin of error allowed before issuing statutory overspeeding citation.
@@ -120,7 +120,7 @@ export const Settings = () => {
                 type="checkbox"
                 checked={autoAlarm}
                 onChange={(e) => setAutoAlarm(e.target.checked)}
-                className="w-4 h-4 accent-cyan-500 cursor-pointer"
+                className="w-4 h-4 accent-[var(--color-amber)] cursor-pointer"
               />
             </div>
 
@@ -135,7 +135,7 @@ export const Settings = () => {
                 type="checkbox"
                 checked={autoChallan}
                 onChange={(e) => setAutoChallan(e.target.checked)}
-                className="w-4 h-4 accent-cyan-500 cursor-pointer"
+                className="w-4 h-4 accent-[var(--color-amber)] cursor-pointer"
               />
             </div>
           </CardContent>

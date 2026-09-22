@@ -144,7 +144,7 @@ export const TrackingDetails = () => {
                     <div className="p-3.5 rounded-xl border bg-[var(--color-card)] border-[var(--color-border)]">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2.5">
-                          <div className="w-7 h-7 rounded-lg bg-cyan-500 text-slate-950 flex items-center justify-center font-bold text-xs shadow-md">
+                          <div className="w-7 h-7 rounded-lg bg-[var(--color-amber)] text-[var(--color-charcoal)] flex items-center justify-center font-bold text-xs shadow-md">
                             <Camera className="w-4 h-4" />
                           </div>
                           <div>
@@ -158,7 +158,7 @@ export const TrackingDetails = () => {
                         </div>
 
                         <div className="text-right">
-                          <span className="text-xs font-bold text-[var(--color-amber)] bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800/60 block">
+                          <span className="text-xs font-bold text-[var(--color-text)] bg-[var(--color-surface)] px-2 py-0.5 rounded border border-[var(--color-border)] block">
                             {node.speed}
                           </span>
                           <span className="text-[10px] text-[var(--color-text-muted)] mt-0.5 block">
@@ -170,7 +170,7 @@ export const TrackingDetails = () => {
 
                     <div className="py-2.5 px-6 flex items-center gap-3 select-none">
                       <div className="flex flex-col items-center">
-                        <div className="w-0.5 h-6 bg-cyan-400 shadow-[0_0_8px_#00d2ff]" />
+                        <div className="w-0.5 h-6 bg-[var(--color-amber)] shadow-sm" />
                         <ArrowDown className="w-4 h-4 -my-0.5 text-[var(--color-amber)]" />
                       </div>
                       <div className="text-xs px-2.5 py-1 rounded-md border bg-[rgba(245,166,35,0.06)] border-[var(--color-amber)]/30 text-[var(--color-amber)] font-bold flex items-center gap-1.5">
@@ -185,7 +185,7 @@ export const TrackingDetails = () => {
                 ))}
 
                 {/* CURRENT LOCATION */}
-                <div className="p-4 rounded-xl border-2 bg-gradient-to-r from-red-950/40 via-amber-950/20 to-red-950/40 border-red-500 shadow-[0_0_20px_rgba(239,68,68,0.3)]">
+                <div className="p-4 rounded-xl border-2 bg-gradient-to-r from-red-950/40 via-amber-950/20 to-red-950/40 border-red-500 shadow-sm">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-3">
                       <span className="relative flex h-3.5 w-3.5">
@@ -236,7 +236,7 @@ export const TrackingDetails = () => {
             <div className="relative aspect-4/3 bg-[#040810] flex items-center justify-center overflow-hidden select-none p-4">
               <div className="absolute inset-0 bg-[radial-gradient(#0e2238_1.5px,transparent_1.5px)] [background-size:28px_28px] opacity-40" />
 
-              <svg viewBox="0 0 540 540" className="w-full h-full max-h-[460px] drop-shadow-[0_0_20px_rgba(0,210,255,0.25)]">
+              <svg viewBox="0 0 540 540" className="w-full h-full max-h-[460px] drop-shadow-sm">
                 <defs>
                   <filter id="detail-glow" x="-20%" y="-20%" width="140%" height="140%">
                     <feGaussianBlur stdDeviation="3" result="blur" />

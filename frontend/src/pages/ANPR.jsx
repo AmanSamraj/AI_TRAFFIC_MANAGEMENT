@@ -174,7 +174,7 @@ export const ANPR = () => {
       key: 'plate',
       label: 'PLATE',
       render: (val) => (
-        <span className="font-mono font-bold text-[var(--color-amber)] bg-cyan-950/60 px-2.5 py-1 rounded-md border border-[var(--color-amber)] tracking-wider inline-block">
+        <span className="font-mono font-bold text-[var(--color-amber)] bg-[var(--color-surface)] px-2.5 py-1 rounded-md border border-[var(--color-amber)] tracking-wider inline-block">
           {val}
         </span>
       )
@@ -435,8 +435,8 @@ export const ANPR = () => {
                 <div className="absolute w-2 h-full bg-yellow-500/20 left-1/3 rotate-12 pointer-events-none" />
 
                 {/* Simulated Vehicle Bounding Box */}
-                <div className="relative z-10 w-3/4 max-w-sm h-36 border-2 border-cyan-400 rounded-lg bg-cyan-950/20 p-2 flex flex-col justify-between shadow-[0_0_15px_rgba(0,210,255,0.3)] animate-pulse">
-                  <div className="flex items-center justify-between text-[10px] font-mono bg-cyan-950/90 text-cyan-200 px-1.5 py-0.5 rounded border border-[var(--color-amber)]">
+                <div className="relative z-10 w-3/4 max-w-sm h-36 border-2 border-[var(--color-amber)] rounded-lg bg-[var(--color-surface)] p-2 flex flex-col justify-between shadow-sm animate-pulse">
+                  <div className="flex items-center justify-between text-[10px] font-mono bg-[var(--color-charcoal)] text-[var(--color-amber-light)] px-1.5 py-0.5 rounded border border-[var(--color-amber)]">
                     <span>{selectedDetection.vehicleModel}</span>
                     <span className="text-emerald-400 font-bold">{selectedDetection.confidence}</span>
                   </div>
@@ -482,7 +482,7 @@ export const ANPR = () => {
                   </div>
 
                   {/* Embossed Registration Characters */}
-                  <span className="font-mono text-2xl font-black tracking-widest text-slate-950 select-all">
+                  <span className="font-mono text-2xl font-black tracking-widest text-[var(--color-charcoal)] select-all">
                     {selectedDetection.plate}
                   </span>
                 </div>

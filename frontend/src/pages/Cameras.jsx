@@ -237,8 +237,8 @@ export const Cameras = () => {
                   </div>
 
                   {/* Simulated Bounding Boxes */}
-                  <div className="absolute top-1/4 left-1/3 w-20 h-12 border-2 border-cyan-400/80 rounded bg-[rgba(245,166,35,0.06)] flex items-start justify-start p-0.5 animate-pulse">
-                    <span className="text-[8px] font-mono bg-cyan-900/90 text-cyan-200 px-1 rounded">
+                  <div className="absolute top-1/4 left-1/3 w-20 h-12 border-2 border-[var(--color-amber)] rounded bg-[rgba(245,166,35,0.06)] flex items-start justify-start p-0.5 animate-pulse">
+                    <span className="text-[8px] font-mono bg-[var(--color-charcoal)] text-[var(--color-amber-light)] px-1 rounded">
                       Car 98%
                     </span>
                   </div>
@@ -368,9 +368,9 @@ export const Cameras = () => {
                 <div className="absolute inset-0 bg-[radial-gradient(#162b4c_1px,transparent_1px)] [background-size:20px_20px] opacity-30" />
 
                 {/* Bounding boxes — larger scale */}
-                <div className="absolute top-1/4 left-1/3 w-40 h-24 border-2 border-cyan-400/80 rounded bg-[rgba(245,166,35,0.06)] flex items-start justify-start p-1"
+                <div className="absolute top-1/4 left-1/3 w-40 h-24 border-2 border-[var(--color-amber)] rounded bg-[rgba(245,166,35,0.06)] flex items-start justify-start p-1"
                   style={{ boxShadow: '0 0 12px rgba(0,210,255,0.3)' }}>
-                  <span className="text-[10px] font-mono bg-cyan-900/90 text-cyan-200 px-1.5 py-0.5 rounded">
+                  <span className="text-[10px] font-mono bg-[var(--color-charcoal)] text-[var(--color-amber-light)] px-1.5 py-0.5 rounded">
                     Car · 98.4% · 54 km/h
                   </span>
                 </div>
@@ -404,8 +404,8 @@ export const Cameras = () => {
                 {/* Crosshair */}
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <div className="w-6 h-6 border border-[var(--color-amber)]/30 rounded-full" />
-                  <div className="absolute w-12 h-px bg-cyan-500/20" />
-                  <div className="absolute h-12 w-px bg-cyan-500/20" />
+                  <div className="absolute w-12 h-px bg-[var(--color-amber)]/20" />
+                  <div className="absolute h-12 w-px bg-[var(--color-amber)]/20" />
                 </div>
 
                 {/* Zoom indicator */}

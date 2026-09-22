@@ -207,7 +207,7 @@ export const Analytics = () => {
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={volumeData} margin={{ top: 10, right: 15, left: -20, bottom: 0 }}>
                 <defs>
-                  <linearGradient id="cyanVolumeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <linearGradient id="amberVolumeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
                     <stop offset="5%" stopColor="#F5A623" stopOpacity={0.45} />
                     <stop offset="95%" stopColor="#F5A623" stopOpacity={0.0} />
                   </linearGradient>
@@ -232,7 +232,7 @@ export const Analytics = () => {
                   stroke="#F5A623"
                   strokeWidth={2.5}
                   fillOpacity={1}
-                  fill="url(#cyanVolumeGradient)"
+                  fill="url(#amberVolumeGradient)"
                 />
               </AreaChart>
             </ResponsiveContainer>

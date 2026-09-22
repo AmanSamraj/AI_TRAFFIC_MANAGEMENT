@@ -218,19 +218,19 @@ export const LiveANPR = () => {
 
               {/* Live Laser Scanning Line Beam */}
               {isPlaying && (
-                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent shadow-[0_0_15px_#00d2ff] opacity-80 animate-pulse" />
+                <div className="absolute inset-x-0 top-1/2 -translate-y-1/2 h-1 bg-gradient-to-r from-transparent via-[var(--color-amber)] to-transparent shadow-sm opacity-80" />
               )}
 
               {/* Vehicle Graphical Sprite with YOLO Bounding Box */}
-              <div className="relative z-10 flex flex-col items-center justify-center p-4 border-2 border-cyan-400 rounded-xl bg-cyan-950/20 backdrop-blur-xs shadow-[0_0_20px_rgba(0,210,255,0.35)] transition-all duration-300">
+              <div className="relative z-10 flex flex-col items-center justify-center p-4 border-2 border-[var(--color-amber)] rounded-xl bg-[var(--color-surface)]  shadow-sm transition-all duration-300">
                 {/* Bounding Box Label */}
-                <div className="absolute -top-3.5 left-2 bg-cyan-500 text-slate-950 text-[10px] font-mono font-black px-2 py-0.5 rounded shadow">
+                <div className="absolute -top-3.5 left-2 bg-[var(--color-amber)] text-[var(--color-charcoal)] text-[10px] font-mono font-black px-2 py-0.5 rounded shadow">
                   {currentVehicle.vehicle} {currentVehicle.confidence}%
                 </div>
 
                 {/* Vehicle SVG / Emoji Graphic */}
                 <div className="my-2 p-3 text-[var(--color-amber)]">
-                  <Car className="w-20 h-20 text-[var(--color-amber)] stroke-[1.3] filter drop-shadow-[0_0_12px_rgba(0,210,255,0.5)]" />
+                  <Car className="w-20 h-20 text-[var(--color-amber)] stroke-[1.3] filter drop-shadow-sm" />
                 </div>
 
                 {/* Sub-label under vehicle */}
@@ -265,7 +265,7 @@ export const LiveANPR = () => {
                     onClick={() => setActiveCam(c)}
                     className={`px-2.5 py-1 rounded-lg text-xs font-mono font-bold cursor-pointer transition-all ${
                       activeCam === c
-                        ? 'bg-cyan-500 text-slate-950 shadow-md shadow-[rgba(245,166,35,0.15)]'
+                        ? 'bg-[var(--color-amber)] text-[var(--color-charcoal)] shadow-md shadow-[rgba(245,166,35,0.15)]'
                         : 'bg-[var(--color-background)] text-[var(--color-text-secondary)] hover:bg-slate-700'
                     }`}
                   >
@@ -304,7 +304,7 @@ export const LiveANPR = () => {
                   </div>
 
                   {/* License Plate String */}
-                  <span className="font-mono text-2xl sm:text-3xl font-black tracking-widest text-slate-950 select-all">
+                  <span className="font-mono text-2xl sm:text-3xl font-black tracking-widest text-[var(--color-charcoal)] select-all">
                     {currentVehicle.plate}
                   </span>
 
@@ -335,7 +335,7 @@ export const LiveANPR = () => {
               {/* Smooth Animated Visual Gradient Bar */}
               <div className="w-full h-2.5 rounded-full bg-[var(--color-charcoal)] border border-[var(--color-border)] overflow-hidden p-0.5">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-[var(--color-amber)] to-emerald-400 transition-all duration-500 shadow-[0_0_8px_rgba(0,210,255,0.6)]"
+                  className="h-full rounded-full bg-gradient-to-r from-[var(--color-amber)] to-emerald-400 transition-all duration-500 shadow-sm"
                   style={{ width: `${currentVehicle.confidence}%` }}
                 />
               </div>
@@ -422,7 +422,7 @@ export const LiveANPR = () => {
             </span>
             <ArrowRight className="w-3.5 h-3.5 text-[var(--color-amber)]" />
 
-            <span className="px-3 py-1 rounded-lg bg-cyan-950/80 border border-[var(--color-amber)]/50 text-[var(--color-amber)] shadow">
+            <span className="px-3 py-1 rounded-lg bg-[var(--color-charcoal-light)] border border-[var(--color-amber)]/50 text-[var(--color-amber)] shadow">
               AI Model (YOLOv8)
             </span>
             <ArrowRight className="w-3.5 h-3.5 text-[var(--color-amber)]" />
@@ -433,7 +433,7 @@ export const LiveANPR = () => {
             </span>
             <ArrowRight className="w-3.5 h-3.5 text-[var(--color-amber)]" />
 
-            <span className="px-3 py-1 rounded-lg bg-gradient-to-r from-[var(--color-amber)] to-[var(--color-amber-dark)] text-slate-950 shadow-md">
+            <span className="px-3 py-1 rounded-lg bg-gradient-to-r from-[var(--color-amber)] to-[var(--color-amber-dark)] text-[var(--color-charcoal)] shadow-md">
               React UI
             </span>
           </div>

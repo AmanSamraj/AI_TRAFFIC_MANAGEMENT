@@ -279,7 +279,7 @@ export const Tracking = () => {
                 value={searchPlate}
                 onChange={(e) => setSearchPlate(e.target.value)}
                 placeholder="Enter Plate (e.g. HP01AB1234)"
-                className="w-full bg-[#040810] border-2 border-[var(--color-border)] focus:border-cyan-400 rounded-xl px-3 py-2 font-mono text-sm font-bold text-[var(--color-text)] uppercase placeholder:text-[var(--color-text-muted)] outline-hidden"
+                className="w-full bg-[#040810] border-2 border-[var(--color-border)] focus:border-[var(--color-amber)] rounded-xl px-3 py-2 font-mono text-sm font-bold text-[var(--color-text)] uppercase placeholder:text-[var(--color-text-muted)] outline-hidden"
               />
             </div>
             <Button type="submit" variant="primary" size="sm" leftIcon={<Search className="w-4 h-4" />}>
@@ -300,7 +300,7 @@ export const Tracking = () => {
                 onClick={() => handleQuickSelect(plate)}
                 className={`text-xs font-mono px-3 py-1 rounded-lg border transition-all cursor-pointer ${
                   selectedPlate === plate
-                    ? 'bg-cyan-500/20 text-[var(--color-amber)] border-[var(--color-amber)] font-bold shadow-[0_0_10px_rgba(0,210,255,0.3)]'
+                    ? 'bg-[var(--color-amber)]/20 text-[var(--color-amber)] border-[var(--color-amber)] font-bold shadow-sm'
                     : 'bg-[var(--color-card)] text-[var(--color-text-muted)] border-[var(--color-border)] hover:text-[var(--color-text)]'
                 }`}
               >
@@ -387,7 +387,7 @@ export const Tracking = () => {
                       <div
                         className={`p-3.5 rounded-xl border transition-all duration-300 ${
                           isCurrentStep
-                            ? 'bg-[rgba(91,103,112,0.06)] border-cyan-400 shadow-[0_0_15px_rgba(0,210,255,0.3)] ring-1 ring-cyan-400'
+                            ? 'bg-[rgba(91,103,112,0.06)] border-[var(--color-amber)] shadow-sm ring-1 ring-[var(--color-amber)]'
                             : isNodeActive
                             ? 'bg-[var(--color-card)] border-[var(--color-border)]'
                             : 'bg-[var(--color-charcoal)]/50 border-[var(--color-border)]/80 opacity-60'
@@ -398,7 +398,7 @@ export const Tracking = () => {
                             <div
                               className={`w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs ${
                                 isNodeActive
-                                  ? 'bg-cyan-500 text-slate-950 shadow-md'
+                                  ? 'bg-[var(--color-amber)] text-[var(--color-charcoal)] shadow-md'
                                   : 'bg-[var(--color-background)] text-[var(--color-text-muted)]'
                               }`}
                             >
@@ -415,7 +415,7 @@ export const Tracking = () => {
                           </div>
 
                           <div className="text-right">
-                            <span className="text-xs font-bold text-[var(--color-amber)] bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800/60 block">
+                            <span className="text-xs font-bold text-[var(--color-text)] bg-[var(--color-surface)] px-2 py-0.5 rounded border border-[var(--color-border)] block">
                               {node.speed}
                             </span>
                             <span className="text-[10px] text-[var(--color-text-muted)] mt-0.5 block">
@@ -430,7 +430,7 @@ export const Tracking = () => {
                         <div className="flex flex-col items-center">
                           <div
                             className={`w-0.5 h-6 transition-all duration-300 ${
-                              index < activeStep ? 'bg-cyan-400 shadow-[0_0_8px_#00d2ff]' : 'bg-slate-700'
+                              index < activeStep ? 'bg-[var(--color-amber)] shadow-sm' : 'bg-slate-700'
                             }`}
                           />
                           <ArrowDown
@@ -463,7 +463,7 @@ export const Tracking = () => {
                 <div
                   className={`p-4 rounded-xl border-2 transition-all duration-300 ${
                     activeStep >= currentTarget.nodes.length
-                      ? 'bg-gradient-to-r from-red-950/40 via-amber-950/20 to-red-950/40 border-red-500 shadow-[0_0_20px_rgba(239,68,68,0.3)]'
+                      ? 'bg-gradient-to-r from-red-950/40 via-amber-950/20 to-red-950/40 border-red-500 shadow-sm'
                       : 'bg-[var(--color-background)] border-[var(--color-border)] opacity-70'
                   }`}
                 >
@@ -551,7 +551,7 @@ export const Tracking = () => {
               {/* Dynamic SVG Trajectory Network Overlay */}
               <svg
                 viewBox="0 0 540 540"
-                className="w-full h-full max-h-[460px] drop-shadow-[0_0_20px_rgba(0,210,255,0.25)]"
+                className="w-full h-full max-h-[460px] drop-shadow-sm"
               >
                 <defs>
                   {/* Neon Glow Filter */}

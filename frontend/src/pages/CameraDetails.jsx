@@ -124,11 +124,11 @@ export const CameraDetails = () => {
 
               {/* Crosshair Center */}
               <div className="relative flex items-center justify-center pointer-events-none">
-                <div className="w-24 h-24 border border-cyan-400/40 rounded-full flex items-center justify-center">
-                  <div className="w-3 h-3 bg-cyan-400/70 rounded-full" />
+                <div className="w-24 h-24 border border-[var(--color-border-dark)] rounded-full flex items-center justify-center">
+                  <div className="w-3 h-3 bg-[var(--color-amber)]/70 rounded-full" />
                 </div>
-                <div className="absolute w-36 h-[1px] bg-cyan-400/30" />
-                <div className="absolute h-36 w-[1px] bg-cyan-400/30" />
+                <div className="absolute w-36 h-[1px] bg-[var(--color-amber)]/30" />
+                <div className="absolute h-36 w-[1px] bg-[var(--color-amber)]/30" />
               </div>
 
               {/* Status overlays */}

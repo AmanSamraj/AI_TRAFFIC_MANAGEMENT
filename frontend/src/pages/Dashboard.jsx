@@ -344,7 +344,7 @@ export const Dashboard = () => {
                 onClick={() => setChartType(t)}
                 className={`px-2.5 py-1 text-xs rounded-md font-medium capitalize cursor-pointer transition-colors ${
                   chartType === t
-                    ? 'bg-cyan-500 text-slate-950 font-bold'
+                    ? 'bg-[var(--color-amber)] text-[var(--color-charcoal)] font-bold'
                     : 'bg-[var(--color-background)] text-[var(--color-text-secondary)] hover:bg-slate-700'
                 }`}
               >
@@ -499,7 +499,7 @@ export const Dashboard = () => {
               </div>
             </div>
 
-            <div className="p-3 rounded-lg bg-cyan-950/20 border border-[var(--color-amber)]/20 text-xs text-[var(--color-amber)] flex items-center gap-2">
+            <div className="p-3 rounded-lg bg-[var(--color-surface)] border border-[var(--color-amber)]/20 text-xs text-[var(--color-amber)] flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 shrink-0 text-[var(--color-amber)]" />
               <span>
                 AI Confidence Score: <strong>99.4%</strong> (YOLOv8 + OCR Alignment)

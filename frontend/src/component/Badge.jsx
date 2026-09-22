@@ -26,6 +26,7 @@ export const Badge = ({
       case 'danger':
         return { background: 'rgba(220,53,69,0.1)', color: 'var(--color-danger)', border: '1px solid rgba(220,53,69,0.2)' };
       case 'info':
+      case 'purple':
         return { background: 'rgba(91,103,112,0.1)', color: 'var(--color-info)', border: '1px solid rgba(91,103,112,0.2)' };
       case 'amber':
         return { background: 'rgba(245,166,35,0.12)', color: 'var(--color-amber-dark)', border: '1px solid rgba(245,166,35,0.25)' };
@@ -40,7 +41,8 @@ export const Badge = ({
       case 'success': return 'var(--color-success)';
       case 'warning': return 'var(--color-amber)';
       case 'danger':  return 'var(--color-danger)';
-      case 'info':    return 'var(--color-info)';
+      case 'info':
+      case 'purple':  return 'var(--color-info)';
       case 'amber':   return 'var(--color-amber)';
       default:        return 'var(--color-text-muted)';
     }

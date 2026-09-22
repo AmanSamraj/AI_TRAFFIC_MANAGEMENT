@@ -73,9 +73,12 @@ export default function App() {
           <Route path="admin/roles" element={<AdminRoles />} />
           <Route path="admin/settings" element={<AdminSettings />} />
 
-          {/* Fallback wildcard */}
+          {/* Fallback inside dashboard */}
           <Route path="*" element={<Navigate to="/dashboard" replace />} />
         </Route>
+
+        {/* Global Fallback for unknown top-level paths */}
+        <Route path="*" element={<Navigate to="/dashboard" replace />} />
       </Routes>
     </BrowserRouter>
   );

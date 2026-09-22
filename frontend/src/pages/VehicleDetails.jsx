@@ -271,7 +271,7 @@ export const VehicleDetails = () => {
                   </div>
                   <span className="text-[9px] font-black font-sans leading-none mt-0.5">IND</span>
                 </div>
-                <span className="font-mono text-2xl sm:text-3xl font-black tracking-widest text-slate-950">
+                <span className="font-mono text-2xl sm:text-3xl font-black tracking-widest text-[var(--color-charcoal)]">
                   {currentProfile.plate}
                 </span>
                 <div className="w-4 h-4 rounded-full border border-blue-800/40 bg-blue-100 flex items-center justify-center text-[7px] text-blue-900 opacity-80">
@@ -322,7 +322,7 @@ export const VehicleDetails = () => {
 
                 <div className="flex items-center justify-between">
                   <span className="text-[var(--color-text-muted)] font-bold uppercase tracking-wider text-xs">Total Detections:</span>
-                  <span className="text-[var(--color-text)] font-black text-lg bg-cyan-950/80 border border-[var(--color-amber)]/50 px-3 py-0.5 rounded-lg text-[var(--color-amber)]">
+                  <span className="text-[var(--color-text)] font-black text-lg bg-[var(--color-charcoal-light)] border border-[var(--color-amber)]/50 px-3 py-0.5 rounded-lg text-[var(--color-amber)]">
                     {currentProfile.totalDetections}
                   </span>
                 </div>
@@ -366,7 +366,7 @@ export const VehicleDetails = () => {
             {currentProfile.detectionHistory.map((step, idx) => (
               <React.Fragment key={step.camera + step.time}>
                 <div className="flex items-center gap-2 bg-[var(--color-card)] border border-[var(--color-border)] px-3 py-1.5 rounded-xl shadow">
-                  <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+                  <div className="w-2 h-2 rounded-full bg-[var(--color-amber)] animate-pulse" />
                   <span className="font-bold text-[var(--color-amber)]">{step.camera}</span>
                   <span className="text-[var(--color-text-muted)]">|</span>
                   <span className="text-[var(--color-text)]">{step.location}</span>

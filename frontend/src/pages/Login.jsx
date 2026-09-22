@@ -20,7 +20,7 @@ export const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-text)] flex items-center justify-center p-4 selection:bg-cyan-500/30 selection:text-cyan-200 relative overflow-hidden font-sans">
+    <div className="min-h-screen bg-[var(--color-background)] text-[var(--color-text)] flex items-center justify-center p-4 selection:bg-[var(--color-amber)]/30 selection:text-[var(--color-amber-light)] relative overflow-hidden font-sans">
       {/* Background Decorative Ambient Grid */}
       <div className="absolute inset-0 bg-[radial-gradient(#162b4c_1px,transparent_1px)] [background-size:24px_24px] opacity-25" />
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-[rgba(245,166,35,0.06)] rounded-full blur-3xl pointer-events-none" />
@@ -93,7 +93,7 @@ export const Login = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-[var(--color-amber)] to-[var(--color-amber-dark)] hover:from-cyan-400 hover:to-blue-500 active:scale-[0.98] text-slate-950 font-bold text-sm tracking-widest uppercase flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/25 border border-cyan-400/40 transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full py-3.5 px-4 rounded-xl bg-gradient-to-r from-[var(--color-amber)] to-[var(--color-amber-dark)] hover:brightness-95 active:scale-[0.98] text-[var(--color-charcoal)] font-bold text-sm tracking-widest uppercase flex items-center justify-center gap-2 shadow-lg shadow-sm border border-[var(--color-border-dark)] transition-all cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {isLoading ? (
                 <>
