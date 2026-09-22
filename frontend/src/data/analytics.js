@@ -20,11 +20,11 @@ export const hourlyVolume = [
 ];
 
 export const vehicleDistribution = [
-  { name: 'Sedans & Hatchbacks', value: 48, count: 23150, color: '#00d2ff' },
-  { name: 'SUVs & MUVs', value: 24, count: 11570, color: '#3b82f6' },
-  { name: 'Two-Wheelers (Bikes)', value: 16, count: 7720, color: '#10b981' },
-  { name: 'Commercial Freight Trucks', value: 8, count: 3860, color: '#f59e0b' },
-  { name: 'Public Transit Buses', value: 4, count: 1930, color: '#a855f7' }
+  { name: 'Sedans & Hatchbacks', value: 48, count: 23150, color: '#F5A623' },
+  { name: 'SUVs & MUVs', value: 24, count: 11570, color: '#292825' },
+  { name: 'Two-Wheelers (Bikes)', value: 16, count: 7720, color: '#198754' },
+  { name: 'Commercial Freight Trucks', value: 8, count: 3860, color: '#C77A00' },
+  { name: 'Public Transit Buses', value: 4, count: 1930, color: '#5B6770' }
 ];
 
 export const cameraThroughput = [

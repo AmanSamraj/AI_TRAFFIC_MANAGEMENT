@@ -1,31 +1,45 @@
 import React from 'react';
-import LoadingSpinner from './LoadingSpinner';
+import { LoadingSpinner } from './LoadingSpinner';
 
 export const Loading = ({
   fullScreen = false,
-  message = 'Loading traffic telemetry...',
-  size = 'lg',
+  label = 'Processing Telemetry...',
   className = ''
 }) => {
   if (fullScreen) {
     return (
-      <div className="fixed inset-0 z-50 flex flex-col items-center justify-center bg-slate-950/80 backdrop-blur-md">
-        <LoadingSpinner size={size} variant="primary" />
-        {message && (
-          <p className="mt-4 text-sm font-medium tracking-wider text-cyan-400/90 uppercase animate-pulse">
-            {message}
+      <div
+        className="fixed inset-0 z-50 flex flex-col items-center justify-center"
+        style={{ background: 'rgba(28,28,26,0.6)' }}
+        role="status"
+        aria-label={label}
+      >
+        <div
+          className="p-8 rounded-xl flex flex-col items-center max-w-sm w-full mx-4"
+          style={{
+            background: 'var(--color-card)',
+            border: '1px solid var(--color-border)',
+            boxShadow: '0 8px 30px rgba(0,0,0,0.15)',
+          }}
+        >
+          <LoadingSpinner size="xl" variant="primary" />
+          <p className="mt-4 text-xs font-semibold tracking-wider uppercase" style={{ color: 'var(--color-amber-dark)' }}>
+            {label}
           </p>
-        )}
+          <span className="mt-1 text-[11px]" style={{ color: 'var(--color-text-muted)' }}>
+            Traffic AI Control System
+          </span>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className={`flex flex-col items-center justify-center py-10 px-4 w-full ${className}`}>
-      <LoadingSpinner size={size} variant="primary" />
-      {message && (
-        <p className="mt-3 text-xs font-medium tracking-wide text-slate-400 uppercase">
-          {message}
+    <div className={`flex flex-col items-center justify-center p-12 w-full ${className}`}>
+      <LoadingSpinner size="lg" variant="primary" />
+      {label && (
+        <p className="mt-3 text-xs font-medium" style={{ color: 'var(--color-text-secondary)' }}>
+          {label}
         </p>
       )}
     </div>
