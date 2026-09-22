@@ -279,7 +279,7 @@ export const Tracking = () => {
                 value={searchPlate}
                 onChange={(e) => setSearchPlate(e.target.value)}
                 placeholder="Enter Plate (e.g. HP01AB1234)"
-                className="w-full bg-[#040810] border-2 border-[var(--color-border)] focus:border-[var(--color-amber)] rounded-xl px-3 py-2 font-mono text-sm font-bold text-[var(--color-text)] uppercase placeholder:text-[var(--color-text-muted)] outline-hidden"
+                className="w-full bg-white border-2 border-[var(--color-border)] focus:border-[var(--color-amber)] rounded-xl px-3 py-2 font-mono text-sm font-bold text-black uppercase placeholder:text-gray-400 outline-hidden"
               />
             </div>
             <Button type="submit" variant="primary" size="sm" leftIcon={<Search className="w-4 h-4" />}>

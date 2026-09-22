@@ -273,7 +273,7 @@ export const Vehicles = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="e.g. HP01AB1234, DL05XY7788"
-                className="w-full bg-[#040810] border-2 border-[var(--color-border)] focus:border-[var(--color-amber)] rounded-xl px-4 py-3 font-mono text-lg font-bold text-[var(--color-text)] tracking-widest placeholder:text-[var(--color-text-muted)] uppercase transition-all outline-hidden shadow-inner"
+                className="w-full bg-white border-2 border-[var(--color-border)] focus:border-[var(--color-amber)] rounded-xl px-4 py-3 font-mono text-lg font-bold text-black tracking-widest placeholder:text-gray-400 uppercase transition-all outline-hidden shadow-inner"
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-mono text-[var(--color-text-muted)] hidden sm:inline-block">
                 PRESS ENTER ↵

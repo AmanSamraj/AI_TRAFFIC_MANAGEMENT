@@ -290,7 +290,7 @@ export const ANPR = () => {
               onChange={(e) => setSearchPlate(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSearchClick()}
               placeholder="Search Plate (e.g. HP01, DL05)..."
-              className="w-full bg-[var(--color-card)] text-[var(--color-text)] placeholder-[var(--color-text-muted)] border border-[var(--color-border)] rounded-xl pl-9 pr-3 py-2 text-xs font-mono focus:outline-none focus:border-[var(--color-amber)] focus:ring-1 focus:ring-[var(--color-amber)] transition-all"
+              className="w-full bg-white text-black placeholder-gray-400 border border-[var(--color-border)] rounded-xl pl-9 pr-3 py-2 text-xs font-mono focus:outline-none focus:border-[var(--color-amber)] focus:ring-1 focus:ring-[var(--color-amber)] transition-all"
             />
           </div>
 
