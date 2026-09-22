@@ -205,20 +205,20 @@ export const Tracking = () => {
       {/* ────────────────────────────────────────────
           PAGE HEADER: MULTI-CAMERA TRACKING
       ──────────────────────────────────────────── */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[var(--color-border)]">
         <div>
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
+            <div className="p-2 rounded-xl bg-[rgba(245,166,35,0.06)] border border-[var(--color-amber)]/30 text-[var(--color-amber)]">
               <Navigation className="w-6 h-6 stroke-[2.2]" />
             </div>
             <div>
-              <h1 className="text-xl sm:text-2xl font-black tracking-wider text-white uppercase flex items-center gap-2">
+              <h1 className="text-xl sm:text-2xl font-black tracking-wider text-[var(--color-text)] uppercase flex items-center gap-2">
                 MULTI-CAMERA TRACKING
                 <Badge variant="danger" size="sm" dot={true} pulse={true}>
                   AI TRAJECTORY ENGINE
                 </Badge>
               </h1>
-              <p className="text-xs text-slate-400 mt-0.5">
+              <p className="text-xs text-[var(--color-text-muted)] mt-0.5">
                 Automated camera-to-camera optical handoff, velocity vectoring, and spatial trajectory map
               </p>
             </div>
@@ -269,7 +269,7 @@ export const Tracking = () => {
       {/* ────────────────────────────────────────────
           TARGET SELECTOR & TELEMETRY STRIP
       ──────────────────────────────────────────── */}
-      <Card variant="glow" className="bg-[#070e1c] border-slate-700/80 p-4 shadow-xl">
+      <Card variant="glow" className="bg-[#070e1c] border-[var(--color-border)] p-4 shadow-xl">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           {/* Search / Target Input */}
           <form onSubmit={handleSearch} className="flex items-center gap-2 flex-1 max-w-md">
@@ -279,7 +279,7 @@ export const Tracking = () => {
                 value={searchPlate}
                 onChange={(e) => setSearchPlate(e.target.value)}
                 placeholder="Enter Plate (e.g. HP01AB1234)"
-                className="w-full bg-[#040810] border-2 border-slate-700 focus:border-cyan-400 rounded-xl px-3 py-2 font-mono text-sm font-bold text-white uppercase placeholder:text-slate-600 outline-hidden"
+                className="w-full bg-[#040810] border-2 border-[var(--color-border)] focus:border-cyan-400 rounded-xl px-3 py-2 font-mono text-sm font-bold text-[var(--color-text)] uppercase placeholder:text-[var(--color-text-muted)] outline-hidden"
               />
             </div>
             <Button type="submit" variant="primary" size="sm" leftIcon={<Search className="w-4 h-4" />}>
@@ -289,8 +289,8 @@ export const Tracking = () => {
 
           {/* Quick Demo Target Buttons */}
           <div className="flex items-center gap-2">
-            <span className="text-xs text-slate-400 font-medium flex items-center gap-1">
-              <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+            <span className="text-xs text-[var(--color-text-muted)] font-medium flex items-center gap-1">
+              <Sparkles className="w-3.5 h-3.5 text-[var(--color-amber)]" />
               Targets:
             </span>
             {['HP01AB1234', 'DL05XY7788'].map((plate) => (
@@ -300,30 +300,30 @@ export const Tracking = () => {
                 onClick={() => handleQuickSelect(plate)}
                 className={`text-xs font-mono px-3 py-1 rounded-lg border transition-all cursor-pointer ${
                   selectedPlate === plate
-                    ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500 font-bold shadow-[0_0_10px_rgba(0,210,255,0.3)]'
-                    : 'bg-slate-900 text-slate-400 border-slate-700 hover:text-white'
+                    ? 'bg-cyan-500/20 text-[var(--color-amber)] border-[var(--color-amber)] font-bold shadow-[0_0_10px_rgba(0,210,255,0.3)]'
+                    : 'bg-[var(--color-card)] text-[var(--color-text-muted)] border-[var(--color-border)] hover:text-[var(--color-text)]'
                 }`}
               >
                 {plate}
                 {plate === 'HP01AB1234' && (
-                  <span className="ml-1 text-[10px] text-cyan-400 font-sans font-normal">(Wireframe)</span>
+                  <span className="ml-1 text-[10px] text-[var(--color-amber)] font-sans font-normal">(Wireframe)</span>
                 )}
               </button>
             ))}
           </div>
 
           {/* Quick Metrics */}
-          <div className="flex items-center gap-4 text-xs font-mono border-t md:border-t-0 md:border-l border-slate-800 pt-2 md:pt-0 md:pl-4">
+          <div className="flex items-center gap-4 text-xs font-mono border-t md:border-t-0 md:border-l border-[var(--color-border)] pt-2 md:pt-0 md:pl-4">
             <div>
-              <span className="text-slate-500 block text-[10px]">AVG SPEED</span>
-              <span className="text-white font-bold">{currentTarget.speedAvg}</span>
+              <span className="text-[var(--color-text-muted)] block text-[10px]">AVG SPEED</span>
+              <span className="text-[var(--color-text)] font-bold">{currentTarget.speedAvg}</span>
             </div>
             <div>
-              <span className="text-slate-500 block text-[10px]">DISTANCE</span>
-              <span className="text-cyan-400 font-bold">{currentTarget.totalDistance}</span>
+              <span className="text-[var(--color-text-muted)] block text-[10px]">DISTANCE</span>
+              <span className="text-[var(--color-amber)] font-bold">{currentTarget.totalDistance}</span>
             </div>
             <div>
-              <span className="text-slate-500 block text-[10px]">STATUS</span>
+              <span className="text-[var(--color-text-muted)] block text-[10px]">STATUS</span>
               <span className="text-emerald-400 font-bold">{currentTarget.status.split(' ')[0]}</span>
             </div>
           </div>
@@ -356,16 +356,16 @@ export const Tracking = () => {
             CURRENT LOCATION
         ============================================================ */}
         <div className="lg:col-span-5 space-y-4">
-          <Card variant="glow" className="bg-[#0c182b] border-slate-700/80 p-5 shadow-2xl">
-            <CardHeader className="p-0 pb-4 border-b border-slate-800">
+          <Card variant="glow" className="bg-[#0c182b] border-[var(--color-border)] p-5 shadow-2xl">
+            <CardHeader className="p-0 pb-4 border-b border-[var(--color-border)]">
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-sm uppercase tracking-wider text-cyan-400 flex items-center gap-2">
+                  <CardTitle className="text-sm uppercase tracking-wider text-[var(--color-amber)] flex items-center gap-2">
                     <Layers className="w-4 h-4" />
                     CAMERA DETECTION CHAIN
                   </CardTitle>
                   <CardDescription className="text-xs">
-                    Optical handoff timeline for <span className="font-mono text-white font-bold">{currentTarget.plate}</span>
+                    Optical handoff timeline for <span className="font-mono text-[var(--color-text)] font-bold">{currentTarget.plate}</span>
                   </CardDescription>
                 </div>
                 <Badge variant="info" size="sm">
@@ -387,10 +387,10 @@ export const Tracking = () => {
                       <div
                         className={`p-3.5 rounded-xl border transition-all duration-300 ${
                           isCurrentStep
-                            ? 'bg-cyan-950/40 border-cyan-400 shadow-[0_0_15px_rgba(0,210,255,0.3)] ring-1 ring-cyan-400'
+                            ? 'bg-[rgba(91,103,112,0.06)] border-cyan-400 shadow-[0_0_15px_rgba(0,210,255,0.3)] ring-1 ring-cyan-400'
                             : isNodeActive
-                            ? 'bg-slate-900/90 border-slate-700'
-                            : 'bg-slate-950/50 border-slate-800/80 opacity-60'
+                            ? 'bg-[var(--color-card)] border-[var(--color-border)]'
+                            : 'bg-[var(--color-charcoal)]/50 border-[var(--color-border)]/80 opacity-60'
                         }`}
                       >
                         <div className="flex items-center justify-between">
@@ -399,26 +399,26 @@ export const Tracking = () => {
                               className={`w-7 h-7 rounded-lg flex items-center justify-center font-bold text-xs ${
                                 isNodeActive
                                   ? 'bg-cyan-500 text-slate-950 shadow-md'
-                                  : 'bg-slate-800 text-slate-400'
+                                  : 'bg-[var(--color-background)] text-[var(--color-text-muted)]'
                               }`}
                             >
                               <Camera className="w-4 h-4" />
                             </div>
                             <div>
-                              <span className="font-black text-base text-white tracking-wider">
+                              <span className="font-black text-base text-[var(--color-text)] tracking-wider">
                                 {node.id}
                               </span>
-                              <span className="text-xs text-slate-400 block font-sans">
+                              <span className="text-xs text-[var(--color-text-muted)] block font-sans">
                                 {node.location}
                               </span>
                             </div>
                           </div>
 
                           <div className="text-right">
-                            <span className="text-xs font-bold text-cyan-300 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800/60 block">
+                            <span className="text-xs font-bold text-[var(--color-amber)] bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800/60 block">
                               {node.speed}
                             </span>
-                            <span className="text-[10px] text-slate-400 mt-0.5 block">
+                            <span className="text-[10px] text-[var(--color-text-muted)] mt-0.5 block">
                               OCR {node.confidence}
                             </span>
                           </div>
@@ -435,7 +435,7 @@ export const Tracking = () => {
                           />
                           <ArrowDown
                             className={`w-4 h-4 -my-0.5 transition-all duration-300 ${
-                              index < activeStep ? 'text-cyan-400 animate-bounce' : 'text-slate-600'
+                              index < activeStep ? 'text-[var(--color-amber)] animate-bounce' : 'text-[var(--color-text-muted)]'
                             }`}
                           />
                         </div>
@@ -444,13 +444,13 @@ export const Tracking = () => {
                         <div
                           className={`text-xs px-2.5 py-1 rounded-md border flex items-center gap-1.5 transition-all ${
                             index < activeStep
-                              ? 'bg-cyan-500/10 border-cyan-500/30 text-cyan-300 font-bold'
-                              : 'bg-slate-900 border-slate-800 text-slate-500'
+                              ? 'bg-[rgba(245,166,35,0.06)] border-[var(--color-amber)]/30 text-[var(--color-amber)] font-bold'
+                              : 'bg-[var(--color-card)] border-[var(--color-border)] text-[var(--color-text-muted)]'
                           }`}
                         >
-                          <Clock className="w-3.5 h-3.5 text-slate-400" />
+                          <Clock className="w-3.5 h-3.5 text-[var(--color-text-muted)]" />
                           <span>{node.time}</span>
-                          <span className="text-[10px] text-slate-400 font-sans">
+                          <span className="text-[10px] text-[var(--color-text-muted)] font-sans">
                             ({node.location})
                           </span>
                         </div>
@@ -464,7 +464,7 @@ export const Tracking = () => {
                   className={`p-4 rounded-xl border-2 transition-all duration-300 ${
                     activeStep >= currentTarget.nodes.length
                       ? 'bg-gradient-to-r from-red-950/40 via-amber-950/20 to-red-950/40 border-red-500 shadow-[0_0_20px_rgba(239,68,68,0.3)]'
-                      : 'bg-slate-950/60 border-slate-800 opacity-70'
+                      : 'bg-[var(--color-background)] border-[var(--color-border)] opacity-70'
                   }`}
                 >
                   <div className="flex items-center justify-between">
@@ -477,7 +477,7 @@ export const Tracking = () => {
                         <h4 className="font-black text-sm text-red-400 uppercase tracking-widest flex items-center gap-1.5">
                           CURRENT LOCATION
                         </h4>
-                        <p className="text-xs font-mono text-slate-300 mt-0.5">
+                        <p className="text-xs font-mono text-[var(--color-text-secondary)] mt-0.5">
                           {currentTarget.currentLocation.location}
                         </p>
                       </div>
@@ -487,7 +487,7 @@ export const Tracking = () => {
                       <Badge variant="danger" size="sm" pulse={true}>
                         LIVE NOW
                       </Badge>
-                      <span className="text-[10px] text-slate-400 block mt-1">
+                      <span className="text-[10px] text-[var(--color-text-muted)] block mt-1">
                         Est: {currentTarget.currentLocation.speed}
                       </span>
                     </div>
@@ -520,18 +520,18 @@ export const Tracking = () => {
                    [🚗 CURRENT LOCATION]
         ============================================================ */}
         <div className="lg:col-span-7 space-y-4">
-          <Card variant="glow" className="bg-[#070e1c] border-slate-700/80 overflow-hidden shadow-2xl">
+          <Card variant="glow" className="bg-[#070e1c] border-[var(--color-border)] overflow-hidden shadow-2xl">
             {/* Map Header */}
-            <CardHeader className="p-4 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
+            <CardHeader className="p-4 bg-[var(--color-card)] border-b border-[var(--color-border)] flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Compass className="w-4 h-4 text-cyan-400 animate-spin" style={{ animationDuration: '12s' }} />
-                <span className="font-bold text-xs text-white uppercase tracking-wider">
+                <Compass className="w-4 h-4 text-[var(--color-amber)] animate-spin" style={{ animationDuration: '12s' }} />
+                <span className="font-bold text-xs text-[var(--color-text)] uppercase tracking-wider">
                   GIS SPATIAL CORRIDOR MAP — MULTI-CAMERA VECTOR
                 </span>
               </div>
               <div className="flex items-center gap-2 text-[11px] font-mono">
-                <span className="text-slate-400">COORDINATE GRID:</span>
-                <span className="text-cyan-400">NH-44 SPATIAL REEF</span>
+                <span className="text-[var(--color-text-muted)]">COORDINATE GRID:</span>
+                <span className="text-[var(--color-amber)]">NH-44 SPATIAL REEF</span>
               </div>
             </CardHeader>
 
@@ -542,10 +542,10 @@ export const Tracking = () => {
 
               {/* Concentric Radar Rings */}
               <svg className="absolute inset-0 w-full h-full pointer-events-none opacity-20">
-                <circle cx="50%" cy="50%" r="30%" stroke="#00d2ff" strokeWidth="1" fill="none" strokeDasharray="4 4" />
-                <circle cx="50%" cy="50%" r="48%" stroke="#00d2ff" strokeWidth="1" fill="none" />
-                <line x1="50%" y1="0" x2="50%" y2="100%" stroke="#00d2ff" strokeWidth="0.5" strokeDasharray="3 3" />
-                <line x1="0" y1="50%" x2="100%" y2="50%" stroke="#00d2ff" strokeWidth="0.5" strokeDasharray="3 3" />
+                <circle cx="50%" cy="50%" r="30%" stroke="#F5A623" strokeWidth="1" fill="none" strokeDasharray="4 4" />
+                <circle cx="50%" cy="50%" r="48%" stroke="#F5A623" strokeWidth="1" fill="none" />
+                <line x1="50%" y1="0" x2="50%" y2="100%" stroke="#F5A623" strokeWidth="0.5" strokeDasharray="3 3" />
+                <line x1="0" y1="50%" x2="100%" y2="50%" stroke="#F5A623" strokeWidth="0.5" strokeDasharray="3 3" />
               </svg>
 
               {/* Dynamic SVG Trajectory Network Overlay */}
@@ -565,8 +565,8 @@ export const Tracking = () => {
 
                   {/* Gradient for trajectory path */}
                   <linearGradient id="pathGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#00d2ff" stopOpacity="0.4" />
-                    <stop offset="50%" stopColor="#00d2ff" stopOpacity="0.9" />
+                    <stop offset="0%" stopColor="#F5A623" stopOpacity="0.4" />
+                    <stop offset="50%" stopColor="#F5A623" stopOpacity="0.9" />
                     <stop offset="100%" stopColor="#ef4444" stopOpacity="1" />
                   </linearGradient>
                 </defs>
@@ -614,7 +614,7 @@ export const Tracking = () => {
                           y1={node.y}
                           x2={nextNode.x}
                           y2={nextNode.y}
-                          stroke="#00d2ff"
+                          stroke="#F5A623"
                           strokeWidth="3.5"
                           filter="url(#glow)"
                           strokeDasharray="8 4"
@@ -638,7 +638,7 @@ export const Tracking = () => {
                           cy={node.y}
                           r="18"
                           fill="none"
-                          stroke="#00d2ff"
+                          stroke="#F5A623"
                           strokeWidth="1.5"
                           className="animate-ping"
                           opacity="0.75"
@@ -650,8 +650,8 @@ export const Tracking = () => {
                         cx={node.x}
                         cy={node.y}
                         r="10"
-                        fill={isNodeActive ? '#00d2ff' : '#1e293b'}
-                        stroke={isCurrent ? '#ffffff' : '#00d2ff'}
+                        fill={isNodeActive ? '#F5A623' : '#1e293b'}
+                        stroke={isCurrent ? '#ffffff' : '#F5A623'}
                         strokeWidth="2.5"
                         filter={isNodeActive ? 'url(#glow)' : undefined}
                       />
@@ -673,7 +673,7 @@ export const Tracking = () => {
                           height="28"
                           rx="6"
                           fill="#091424"
-                          stroke={isNodeActive ? '#00d2ff' : '#334155'}
+                          stroke={isNodeActive ? '#F5A623' : '#334155'}
                           strokeWidth="1"
                           opacity="0.9"
                         />
@@ -690,7 +690,7 @@ export const Tracking = () => {
                         <text
                           x="60"
                           y="13"
-                          fill="#00d2ff"
+                          fill="#F5A623"
                           fontSize="9"
                           fontFamily="monospace"
                           fontWeight="bold"
@@ -700,7 +700,7 @@ export const Tracking = () => {
                         <text
                           x="8"
                           y="23"
-                          fill="#94a3b8"
+                          fill="#918B80"
                           fontSize="8"
                           fontFamily="sans-serif"
                         >
@@ -757,30 +757,30 @@ export const Tracking = () => {
               </svg>
 
               {/* HUD OVERLAYS */}
-              <div className="absolute top-3 left-3 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-mono border border-slate-700 space-y-0.5">
-                <div className="text-slate-400 text-[10px]">CORRIDOR TRAJECTORY</div>
-                <div className="text-white font-bold flex items-center gap-1.5">
+              <div className="absolute top-3 left-3 bg-black/80  px-3 py-1.5 rounded-lg text-xs font-mono border border-[var(--color-border)] space-y-0.5">
+                <div className="text-[var(--color-text-muted)] text-[10px]">CORRIDOR TRAJECTORY</div>
+                <div className="text-[var(--color-text)] font-bold flex items-center gap-1.5">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   {currentTarget.nodes[0].id} → {currentTarget.nodes[currentTarget.nodes.length - 1].id}
                 </div>
               </div>
 
-              <div className="absolute bottom-3 right-3 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-mono border border-slate-700">
-                <span className="text-slate-400">TARGET: </span>
-                <span className="text-cyan-300 font-bold">{currentTarget.plate}</span>
-                <span className="text-slate-500 mx-1.5">|</span>
+              <div className="absolute bottom-3 right-3 bg-black/80  px-3 py-1.5 rounded-lg text-xs font-mono border border-[var(--color-border)]">
+                <span className="text-[var(--color-text-muted)]">TARGET: </span>
+                <span className="text-[var(--color-amber)] font-bold">{currentTarget.plate}</span>
+                <span className="text-[var(--color-text-muted)] mx-1.5">|</span>
                 <span className="text-emerald-400">TRACKING LOCKED</span>
               </div>
             </div>
 
             {/* Trajectory Navigation Footer */}
-            <CardContent className="p-4 bg-slate-900/60 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs">
+            <CardContent className="p-4 bg-[var(--color-card)]/60 border-t border-[var(--color-border)] flex flex-wrap items-center justify-between gap-3 text-xs">
               <div className="flex items-center gap-2">
-                <span className="text-slate-400 font-medium">Trajectory Actions:</span>
+                <span className="text-[var(--color-text-muted)] font-medium">Trajectory Actions:</span>
                 <Button
                   variant="outline"
                   size="sm"
-                  leftIcon={<Car className="w-3.5 h-3.5 text-cyan-400" />}
+                  leftIcon={<Car className="w-3.5 h-3.5 text-[var(--color-amber)]" />}
                   onClick={() => navigate(`/vehicles/${currentTarget.plate}`)}
                 >
                   View Vehicle Dossier
@@ -795,7 +795,7 @@ export const Tracking = () => {
                 </Button>
               </div>
 
-              <div className="flex items-center gap-1.5 text-slate-400 font-mono text-[11px]">
+              <div className="flex items-center gap-1.5 text-[var(--color-text-muted)] font-mono text-[11px]">
                 <span>Corridor: NH-44 Northward Intercept Trajectory</span>
               </div>
             </CardContent>

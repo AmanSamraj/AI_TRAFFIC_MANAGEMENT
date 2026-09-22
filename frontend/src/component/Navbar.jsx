@@ -29,15 +29,10 @@ export const Navbar = ({
   const profileRef = useRef(null);
   const notificationRef = useRef(null);
 
-  // Close dropdowns on outside click
   useEffect(() => {
     const handleClickOutside = (e) => {
-      if (profileRef.current && !profileRef.current.contains(e.target)) {
-        setIsProfileOpen(false);
-      }
-      if (notificationRef.current && !notificationRef.current.contains(e.target)) {
-        setIsNotificationsOpen(false);
-      }
+      if (profileRef.current && !profileRef.current.contains(e.target)) setIsProfileOpen(false);
+      if (notificationRef.current && !notificationRef.current.contains(e.target)) setIsNotificationsOpen(false);
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
@@ -45,232 +40,255 @@ export const Navbar = ({
 
   const notifications = [
     {
-      id: 1,
-      type: 'danger',
+      id: 1, type: 'danger',
       title: 'Overspeeding Alert',
       desc: 'Vehicle DL 01 AB 1234 reached 82 km/h on Ring Road',
       time: '2m ago',
-      icon: <AlertTriangle className="w-4 h-4 text-red-400" />
+      icon: <AlertTriangle className="w-4 h-4" style={{ color: 'var(--color-danger)' }} />
     },
     {
-      id: 2,
-      type: 'warning',
+      id: 2, type: 'warning',
       title: 'Signal Violation Detected',
       desc: 'MH 12 CD 5678 jumped red light at Junction 4',
       time: '8m ago',
-      icon: <Car className="w-4 h-4 text-amber-400" />
+      icon: <Car className="w-4 h-4" style={{ color: 'var(--color-amber)' }} />
     },
     {
-      id: 3,
-      type: 'info',
+      id: 3, type: 'info',
       title: 'CAM-04 Reconnected',
       desc: 'CCTV Node 04 4K stream synchronized at 60 FPS',
       time: '15m ago',
-      icon: <Camera className="w-4 h-4 text-cyan-400" />
+      icon: <Camera className="w-4 h-4" style={{ color: 'var(--color-info)' }} />
     }
   ];
 
+  /* ── shared style objects ── */
+  const navbarStyle = {
+    background: 'var(--color-card)',
+    borderBottom: '1px solid var(--color-border)',
+  };
+
+  const dropdownStyle = {
+    background: 'var(--color-card)',
+    border: '1px solid var(--color-border-dark)',
+    boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+    borderRadius: '8px',
+  };
+
   return (
-    <header className="sticky top-0 z-40 w-full h-16 bg-[#070e1c]/90 backdrop-blur-md border-b border-slate-800/80 px-4 sm:px-6 flex items-center justify-between gap-4">
-      {/* LEFT SECTION: Hamburger Toggle + Logo */}
+    <header
+      className="sticky top-0 z-40 w-full h-14 px-4 sm:px-6 flex items-center justify-between gap-4"
+      style={navbarStyle}
+    >
+      {/* LEFT: Hamburger + Logo */}
       <div className="flex items-center gap-3 sm:gap-4 shrink-0">
         <button
           type="button"
           onClick={onToggleSidebar}
-          className="p-2 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800/70 transition-colors cursor-pointer lg:hidden"
+          className="p-2 rounded-md transition-colors cursor-pointer lg:hidden"
+          style={{ color: 'var(--color-text-secondary)' }}
+          onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-background)'}
+          onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
           aria-label="Toggle navigation menu"
         >
           {isSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
         </button>
 
-        <div className="flex items-center gap-2.5 cursor-pointer select-none">
-          <div className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 text-slate-950 font-black shadow-lg shadow-cyan-500/20 border border-cyan-400/40">
-            <Activity className="w-5 h-5 stroke-[2.5]" />
-            <span className="absolute -top-1 -right-1 flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
-            </span>
+        {/* Logo */}
+        <div className="flex items-center gap-2.5 select-none">
+          <div
+            className="flex items-center justify-center w-8 h-8 rounded-md font-black text-xs"
+            style={{
+              background: 'var(--color-amber)',
+              color: 'var(--color-charcoal)',
+            }}
+          >
+            <Activity className="w-4 h-4 stroke-[2.5]" />
           </div>
 
           <div className="hidden sm:flex flex-col">
             <div className="flex items-center gap-1.5">
-              <span className="text-sm font-black tracking-wider text-white uppercase">
-                TRAFFIC<span className="text-cyan-400">AI</span>
+              <span className="text-sm font-bold tracking-tight" style={{ color: 'var(--color-text)' }}>
+                Traffic<span style={{ color: 'var(--color-amber)' }}>AI</span>
               </span>
-              <span className="px-1.5 py-0.2 text-[9px] font-bold tracking-widest text-cyan-300 bg-cyan-950/70 border border-cyan-500/40 rounded">
+              <span
+                className="px-1.5 py-0.5 text-[9px] font-bold tracking-widest rounded"
+                style={{
+                  color: 'var(--color-amber-dark)',
+                  background: 'rgba(245,166,35,0.12)',
+                  border: '1px solid rgba(245,166,35,0.3)'
+                }}
+              >
                 SIH
               </span>
             </div>
-            <span className="text-[10px] font-medium text-slate-400 tracking-tight">
+            <span className="text-[10px]" style={{ color: 'var(--color-text-muted)' }}>
               Intelligent Command Center
             </span>
           </div>
         </div>
       </div>
 
-      {/* CENTER SECTION: Global Search */}
+      {/* CENTER: Search */}
       <div className="flex-1 max-w-md mx-2 sm:mx-6 hidden md:block">
         <SearchBar
           onSearch={onSearch}
-          placeholder="Search plates, cameras, violations, road nodes..."
+          placeholder="Search plates, cameras, violations..."
           shortcut="⌘K"
           size="sm"
         />
       </div>
 
-      {/* RIGHT SECTION: Telemetry status + Notification Bell + Admin Profile */}
+      {/* RIGHT: Status + Bell + Profile */}
       <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-        {/* Live Status Pill */}
-        <div className="hidden lg:flex items-center gap-2 px-2.5 py-1 rounded-full bg-slate-900 border border-slate-700/80 text-[11px] text-slate-300 font-medium select-none">
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
-          </span>
-          <span className="tracking-wide">AI Engine Online</span>
+        {/* AI Online status */}
+        <div
+          className="hidden lg:flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium select-none"
+          style={{
+            background: 'rgba(25,135,84,0.08)',
+            border: '1px solid rgba(25,135,84,0.2)',
+            color: 'var(--color-success)'
+          }}
+        >
+          <span
+            className="w-1.5 h-1.5 rounded-full inline-block"
+            style={{ background: 'var(--color-success)', animation: 'pulse-dot 2s infinite' }}
+          />
+          AI Engine Online
         </div>
 
-        {/* NOTIFICATIONS DROPDOWN */}
+        {/* NOTIFICATIONS */}
         <div className="relative" ref={notificationRef}>
           <button
             type="button"
-            onClick={() => {
-              setIsNotificationsOpen(!isNotificationsOpen);
-              setIsProfileOpen(false);
-            }}
-            className="relative p-2 text-slate-300 hover:text-white rounded-xl hover:bg-slate-800/80 transition-colors cursor-pointer border border-transparent hover:border-slate-700"
+            onClick={() => { setIsNotificationsOpen(!isNotificationsOpen); setIsProfileOpen(false); }}
+            className="relative p-2 rounded-md transition-colors cursor-pointer"
+            style={{ color: 'var(--color-text-secondary)' }}
+            onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-background)'; e.currentTarget.style.color = 'var(--color-text)'; }}
+            onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--color-text-secondary)'; }}
             aria-label="View notifications"
           >
-            <Bell className="w-5 h-5" />
-            <span className="absolute top-1.5 right-1.5 flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
-            </span>
+            <Bell className="w-4.5 h-4.5" style={{ width: '18px', height: '18px' }} />
+            <span
+              className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full"
+              style={{ background: 'var(--color-danger)', border: '2px solid var(--color-card)' }}
+            />
           </button>
 
           {isNotificationsOpen && (
-            <div className="absolute right-0 mt-2 w-80 sm:w-96 rounded-2xl bg-slate-900/95 backdrop-blur-xl border border-slate-700 shadow-2xl shadow-black/60 p-4 text-xs z-50 animate-in fade-in-50 zoom-in-95 duration-150">
-              <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+            <div className="absolute right-0 mt-2 w-80 sm:w-96 z-50 p-0 overflow-hidden" style={dropdownStyle}>
+              <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: '1px solid var(--color-border)' }}>
                 <div className="flex items-center gap-2">
-                  <h4 className="font-bold text-slate-100 text-sm">Notifications</h4>
-                  <Badge variant="danger" size="sm" pill={true}>
-                    3 New
-                  </Badge>
+                  <h4 className="font-semibold text-sm" style={{ color: 'var(--color-text)' }}>Notifications</h4>
+                  <Badge variant="danger" size="sm">3 New</Badge>
                 </div>
-                <button
-                  type="button"
-                  className="text-[11px] text-cyan-400 hover:text-cyan-300 cursor-pointer"
-                >
+                <button type="button" className="text-xs font-medium cursor-pointer" style={{ color: 'var(--color-amber-dark)' }}>
                   Mark all read
                 </button>
               </div>
 
-              <div className="divide-y divide-slate-800/60 max-h-72 overflow-y-auto my-2">
+              <div className="max-h-72 overflow-y-auto">
                 {notifications.map((item) => (
                   <div
                     key={item.id}
-                    className="py-2.5 px-1.5 flex items-start gap-3 hover:bg-slate-800/40 rounded-lg transition-colors cursor-pointer"
+                    className="px-4 py-3 flex items-start gap-3 cursor-pointer transition-colors"
+                    style={{ borderBottom: '1px solid var(--color-border)' }}
+                    onMouseEnter={(e) => e.currentTarget.style.background = 'var(--color-background)'}
+                    onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                   >
-                    <div className="shrink-0 p-1.5 rounded-lg bg-slate-800/80 mt-0.5">
+                    <div className="shrink-0 mt-0.5 p-1.5 rounded-md" style={{ background: 'var(--color-background)' }}>
                       {item.icon}
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center justify-between gap-1">
-                        <span className="font-semibold text-slate-200 truncate">{item.title}</span>
-                        <span className="text-[10px] text-slate-500 whitespace-nowrap">{item.time}</span>
+                        <span className="text-xs font-semibold truncate" style={{ color: 'var(--color-text)' }}>{item.title}</span>
+                        <span className="text-[10px] whitespace-nowrap" style={{ color: 'var(--color-text-muted)' }}>{item.time}</span>
                       </div>
-                      <p className="text-[11px] text-slate-400 mt-0.5 line-clamp-2">{item.desc}</p>
+                      <p className="text-[11px] mt-0.5 line-clamp-2" style={{ color: 'var(--color-text-secondary)' }}>{item.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="pt-2 border-t border-slate-800 text-center">
-                <a
-                  href="/alerts"
-                  className="text-xs font-semibold text-cyan-400 hover:text-cyan-300 inline-block"
-                >
-                  View All Telemetry Alerts →
+              <div className="px-4 py-2.5 text-center" style={{ borderTop: '1px solid var(--color-border)' }}>
+                <a href="/alerts" className="text-xs font-semibold" style={{ color: 'var(--color-amber-dark)' }}>
+                  View All Alerts →
                 </a>
               </div>
             </div>
           )}
         </div>
 
-        {/* ADMIN PROFILE DROPDOWN */}
+        {/* PROFILE */}
         <div className="relative" ref={profileRef}>
           <button
             type="button"
-            onClick={() => {
-              setIsProfileOpen(!isProfileOpen);
-              setIsNotificationsOpen(false);
+            onClick={() => { setIsProfileOpen(!isProfileOpen); setIsNotificationsOpen(false); }}
+            className="flex items-center gap-2 px-2.5 py-1.5 rounded-md transition-all cursor-pointer"
+            style={{
+              border: '1px solid var(--color-border)',
+              background: 'var(--color-background)'
             }}
-            className="flex items-center gap-2.5 pl-2 pr-1 sm:pr-2.5 py-1 rounded-xl bg-slate-900/80 hover:bg-slate-850 border border-slate-700/80 transition-all cursor-pointer"
             aria-haspopup="true"
             aria-expanded={isProfileOpen}
           >
             {/* Avatar */}
-            <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-cyan-600 to-blue-600 flex items-center justify-center text-slate-950 font-extrabold text-xs shadow-md">
+            <div
+              className="w-6 h-6 rounded flex items-center justify-center font-bold text-[10px]"
+              style={{ background: 'var(--color-amber)', color: 'var(--color-charcoal)' }}
+            >
               AS
             </div>
-
-            {/* Name & Role */}
             <div className="hidden sm:flex flex-col text-left">
-              <span className="text-xs font-semibold text-slate-200 leading-tight">
-                {userName}
-              </span>
-              <span className="text-[10px] text-slate-400 font-medium leading-tight">
-                Admin
-              </span>
+              <span className="text-xs font-semibold leading-tight" style={{ color: 'var(--color-text)' }}>{userName}</span>
+              <span className="text-[10px] leading-tight" style={{ color: 'var(--color-text-muted)' }}>Admin</span>
             </div>
-
             <ChevronDown
-              className={`w-3.5 h-3.5 text-slate-400 transition-transform duration-200 ${
-                isProfileOpen ? 'rotate-180 text-cyan-400' : ''
-              }`}
+              className="w-3.5 h-3.5 transition-transform duration-200"
+              style={{ color: 'var(--color-text-muted)', transform: isProfileOpen ? 'rotate(180deg)' : 'none' }}
             />
           </button>
 
           {isProfileOpen && (
-            <div className="absolute right-0 mt-2 w-56 rounded-2xl bg-slate-900/95 backdrop-blur-xl border border-slate-700 shadow-2xl shadow-black/60 p-2 text-xs z-50 animate-in fade-in-50 zoom-in-95 duration-150">
-              <div className="px-3 py-2 border-b border-slate-800">
-                <p className="font-semibold text-slate-200">{userName}</p>
-                <p className="text-[11px] text-cyan-400 flex items-center gap-1 mt-0.5">
+            <div className="absolute right-0 mt-2 w-52 z-50 overflow-hidden" style={dropdownStyle}>
+              <div className="px-3 py-3" style={{ borderBottom: '1px solid var(--color-border)' }}>
+                <p className="text-xs font-semibold" style={{ color: 'var(--color-text)' }}>{userName}</p>
+                <p className="text-[11px] mt-0.5 flex items-center gap-1" style={{ color: 'var(--color-amber-dark)' }}>
                   <Shield className="w-3 h-3" />
                   {userRole}
                 </p>
               </div>
 
               <div className="py-1">
-                <button
-                  type="button"
-                  className="w-full px-3 py-2 flex items-center gap-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer text-left"
-                >
-                  <User className="w-3.5 h-3.5 text-slate-400" />
-                  <span>Operator Profile</span>
-                </button>
-                <button
-                  type="button"
-                  className="w-full px-3 py-2 flex items-center gap-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer text-left"
-                >
-                  <Activity className="w-3.5 h-3.5 text-slate-400" />
-                  <span>Activity Logs</span>
-                </button>
-                <button
-                  type="button"
-                  className="w-full px-3 py-2 flex items-center gap-2.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-800 transition-colors cursor-pointer text-left"
-                >
-                  <Settings className="w-3.5 h-3.5 text-slate-400" />
-                  <span>System Preferences</span>
-                </button>
+                {[
+                  { icon: <User className="w-3.5 h-3.5" />, label: 'Operator Profile' },
+                  { icon: <Activity className="w-3.5 h-3.5" />, label: 'Activity Logs' },
+                  { icon: <Settings className="w-3.5 h-3.5" />, label: 'System Preferences' }
+                ].map(({ icon, label }) => (
+                  <button
+                    key={label}
+                    type="button"
+                    className="w-full px-3 py-2 flex items-center gap-2.5 text-xs transition-colors cursor-pointer text-left"
+                    style={{ color: 'var(--color-text-secondary)' }}
+                    onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-background)'; e.currentTarget.style.color = 'var(--color-text)'; }}
+                    onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--color-text-secondary)'; }}
+                  >
+                    <span style={{ color: 'var(--color-text-muted)' }}>{icon}</span>
+                    {label}
+                  </button>
+                ))}
               </div>
 
-              <div className="pt-1 border-t border-slate-800">
+              <div className="py-1" style={{ borderTop: '1px solid var(--color-border)' }}>
                 <button
                   type="button"
-                  className="w-full px-3 py-2 flex items-center gap-2.5 rounded-lg text-red-400 hover:text-red-300 hover:bg-red-950/30 transition-colors cursor-pointer text-left font-medium"
+                  className="w-full px-3 py-2 flex items-center gap-2.5 text-xs transition-colors cursor-pointer text-left font-medium"
+                  style={{ color: 'var(--color-danger)' }}
+                  onMouseEnter={(e) => e.currentTarget.style.background = 'rgba(220,53,69,0.06)'}
+                  onMouseLeave={(e) => e.currentTarget.style.background = 'transparent'}
                 >
                   <LogOut className="w-3.5 h-3.5" />
-                  <span>Sign Out</span>
+                  Sign Out
                 </button>
               </div>
             </div>

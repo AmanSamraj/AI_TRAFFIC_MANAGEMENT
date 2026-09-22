@@ -138,7 +138,7 @@ export const Dashboard = () => {
       label: 'License Plate (ANPR)',
       sortable: true,
       render: (val) => (
-        <span className="font-mono font-bold text-cyan-300 bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-500/30">
+        <span className="font-mono font-bold text-[var(--color-amber)] bg-[rgba(91,103,112,0.06)] px-2 py-0.5 rounded border border-[var(--color-amber)]/30">
           {val}
         </span>
       )
@@ -146,14 +146,14 @@ export const Dashboard = () => {
     {
       key: 'vehicleType',
       label: 'Classification',
-      render: (val) => <span className="text-slate-300">{val}</span>
+      render: (val) => <span className="text-[var(--color-text-secondary)]">{val}</span>
     },
     {
       key: 'speed',
       label: 'Speed / Limit',
       render: (_, row) => (
-        <span className="font-medium text-slate-200">
-          {row.speed} <span className="text-slate-500 text-[10px]">({row.limit})</span>
+        <span className="font-medium text-[var(--color-text)]">
+          {row.speed} <span className="text-[var(--color-text-muted)] text-[10px]">({row.limit})</span>
         </span>
       )
     },
@@ -163,7 +163,7 @@ export const Dashboard = () => {
       render: (val, row) => (
         <div className="flex items-center gap-2">
           <StatusIndicator status={row.status} size="sm" pulse={row.status !== 'offline'} />
-          <span className="text-slate-300 truncate max-w-[160px]">{val}</span>
+          <span className="text-[var(--color-text-secondary)] truncate max-w-[160px]">{val}</span>
         </div>
       )
     },
@@ -184,7 +184,7 @@ export const Dashboard = () => {
       key: 'time',
       label: 'Timestamp',
       align: 'right',
-      render: (val) => <span className="font-mono text-slate-400">{val}</span>
+      render: (val) => <span className="font-mono text-[var(--color-text-muted)]">{val}</span>
     }
   ];
 
@@ -204,13 +204,13 @@ export const Dashboard = () => {
       {/* Page Title Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold tracking-tight text-white flex items-center gap-2">
+          <h2 className="text-xl font-bold tracking-tight text-[var(--color-text)] flex items-center gap-2">
             Central Traffic Telemetry Dashboard
             <Badge variant="info" size="sm" dot={true} pulse={true}>
               Real-Time
             </Badge>
           </h2>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-xs text-[var(--color-text-muted)] mt-0.5">
             Autonomous AI surveillance, ANPR tracking, and signal violation detection
           </p>
         </div>
@@ -263,13 +263,13 @@ export const Dashboard = () => {
         <Card variant="glow">
           <CardContent className="p-5 flex items-center justify-between">
             <div>
-              <p className="text-xs text-slate-400 font-medium">Total Monitored Vehicles</p>
-              <h3 className="text-2xl font-extrabold text-white mt-1">18,492</h3>
+              <p className="text-xs text-[var(--color-text-muted)] font-medium">Total Monitored Vehicles</p>
+              <h3 className="text-2xl font-extrabold text-[var(--color-text)] mt-1">18,492</h3>
               <span className="text-[11px] text-emerald-400 flex items-center gap-1 mt-1 font-medium">
                 <TrendingUp className="w-3.5 h-3.5" /> +12.4% vs peak hour
               </span>
             </div>
-            <div className="p-3 rounded-xl bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+            <div className="p-3 rounded-xl bg-[rgba(245,166,35,0.06)] text-[var(--color-amber)] border border-[var(--color-amber)]/20">
               <Car className="w-6 h-6" />
             </div>
           </CardContent>
@@ -278,7 +278,7 @@ export const Dashboard = () => {
         <Card variant="alert">
           <CardContent className="p-5 flex items-center justify-between">
             <div>
-              <p className="text-xs text-slate-400 font-medium">Active Violations</p>
+              <p className="text-xs text-[var(--color-text-muted)] font-medium">Active Violations</p>
               <h3 className="text-2xl font-extrabold text-red-400 mt-1">142</h3>
               <span className="text-[11px] text-red-400 flex items-center gap-1 mt-1 font-medium">
                 <span className="w-1.5 h-1.5 rounded-full bg-red-400 animate-ping inline-block" />
@@ -294,11 +294,11 @@ export const Dashboard = () => {
         <Card variant="metric">
           <CardContent className="p-5 flex items-center justify-between">
             <div>
-              <p className="text-xs text-slate-400 font-medium">Online CCTV Streams</p>
-              <h3 className="text-2xl font-extrabold text-white mt-1">48 / 50</h3>
+              <p className="text-xs text-[var(--color-text-muted)] font-medium">Online CCTV Streams</p>
+              <h3 className="text-2xl font-extrabold text-[var(--color-text)] mt-1">48 / 50</h3>
               <div className="mt-1 flex items-center gap-1.5">
                 <StatusIndicator status="online" size="sm" />
-                <span className="text-[11px] text-slate-400">96% network health</span>
+                <span className="text-[11px] text-[var(--color-text-muted)]">96% network health</span>
               </div>
             </div>
             <div className="p-3 rounded-xl bg-blue-500/10 text-blue-400 border border-blue-500/20">
@@ -310,7 +310,7 @@ export const Dashboard = () => {
         <Card variant="default">
           <CardContent className="p-5 flex items-center justify-between">
             <div>
-              <p className="text-xs text-slate-400 font-medium">Corridor Congestion Index</p>
+              <p className="text-xs text-[var(--color-text-muted)] font-medium">Corridor Congestion Index</p>
               <h3 className="text-2xl font-extrabold text-amber-400 mt-1">64%</h3>
               <span className="text-[11px] text-amber-400/90 flex items-center gap-1 mt-1 font-medium">
                 Moderate congestion detected
@@ -328,7 +328,7 @@ export const Dashboard = () => {
         <CardHeader>
           <div>
             <CardTitle>
-              <Radio className="w-4 h-4 text-cyan-400" />
+              <Radio className="w-4 h-4 text-[var(--color-amber)]" />
               Traffic Volume vs Violation Rate
             </CardTitle>
             <CardDescription>
@@ -336,7 +336,7 @@ export const Dashboard = () => {
             </CardDescription>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-xs text-slate-400">View:</span>
+            <span className="text-xs text-[var(--color-text-muted)]">View:</span>
             {['area', 'bar', 'line'].map((t) => (
               <button
                 key={t}
@@ -345,7 +345,7 @@ export const Dashboard = () => {
                 className={`px-2.5 py-1 text-xs rounded-md font-medium capitalize cursor-pointer transition-colors ${
                   chartType === t
                     ? 'bg-cyan-500 text-slate-950 font-bold'
-                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                    : 'bg-[var(--color-background)] text-[var(--color-text-secondary)] hover:bg-slate-700'
                 }`}
               >
                 {t}
@@ -360,7 +360,7 @@ export const Dashboard = () => {
             xAxisKey="time"
             height={260}
             series={[
-              { key: 'vehicles', name: 'Vehicle Count', color: '#00d2ff', strokeWidth: 2 },
+              { key: 'vehicles', name: 'Vehicle Count', color: '#F5A623', strokeWidth: 2 },
               { key: 'violations', name: 'Violations Detected', color: '#ef4444', strokeWidth: 2 }
             ]}
           />
@@ -457,12 +457,12 @@ export const Dashboard = () => {
       >
         {selectedVehicle && (
           <div className="space-y-4">
-            <div className="flex items-center justify-between p-3.5 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div className="flex items-center justify-between p-3.5 rounded-xl bg-[var(--color-background)] border border-[var(--color-border)]">
               <div>
-                <span className="text-[11px] text-slate-400 uppercase tracking-wider font-medium">
+                <span className="text-[11px] text-[var(--color-text-muted)] uppercase tracking-wider font-medium">
                   Identified Plate
                 </span>
-                <p className="text-xl font-mono font-bold text-cyan-300">
+                <p className="text-xl font-mono font-bold text-[var(--color-amber)]">
                   {selectedVehicle.plate}
                 </p>
               </div>
@@ -476,31 +476,31 @@ export const Dashboard = () => {
             </div>
 
             <div className="grid grid-cols-2 gap-3 text-xs">
-              <div className="p-3 rounded-lg bg-slate-850/60 border border-slate-800">
-                <span className="text-slate-400">Classification:</span>
-                <p className="font-semibold text-slate-200 mt-0.5">{selectedVehicle.vehicleType}</p>
+              <div className="p-3 rounded-lg bg-[var(--color-background)]/60 border border-[var(--color-border)]">
+                <span className="text-[var(--color-text-muted)]">Classification:</span>
+                <p className="font-semibold text-[var(--color-text)] mt-0.5">{selectedVehicle.vehicleType}</p>
               </div>
-              <div className="p-3 rounded-lg bg-slate-850/60 border border-slate-800">
-                <span className="text-slate-400">Captured Speed:</span>
-                <p className="font-semibold text-white mt-0.5">
+              <div className="p-3 rounded-lg bg-[var(--color-background)]/60 border border-[var(--color-border)]">
+                <span className="text-[var(--color-text-muted)]">Captured Speed:</span>
+                <p className="font-semibold text-[var(--color-text)] mt-0.5">
                   {selectedVehicle.speed}{' '}
-                  <span className="text-slate-400 font-normal">
+                  <span className="text-[var(--color-text-muted)] font-normal">
                     (Limit: {selectedVehicle.limit})
                   </span>
                 </p>
               </div>
-              <div className="p-3 rounded-lg bg-slate-850/60 border border-slate-800">
-                <span className="text-slate-400">Location Node:</span>
-                <p className="font-semibold text-slate-200 mt-0.5">{selectedVehicle.camera}</p>
+              <div className="p-3 rounded-lg bg-[var(--color-background)]/60 border border-[var(--color-border)]">
+                <span className="text-[var(--color-text-muted)]">Location Node:</span>
+                <p className="font-semibold text-[var(--color-text)] mt-0.5">{selectedVehicle.camera}</p>
               </div>
-              <div className="p-3 rounded-lg bg-slate-850/60 border border-slate-800">
-                <span className="text-slate-400">Capture Timestamp:</span>
-                <p className="font-mono text-slate-200 mt-0.5">{selectedVehicle.time}</p>
+              <div className="p-3 rounded-lg bg-[var(--color-background)]/60 border border-[var(--color-border)]">
+                <span className="text-[var(--color-text-muted)]">Capture Timestamp:</span>
+                <p className="font-mono text-[var(--color-text)] mt-0.5">{selectedVehicle.time}</p>
               </div>
             </div>
 
-            <div className="p-3 rounded-lg bg-cyan-950/20 border border-cyan-500/20 text-xs text-cyan-300 flex items-center gap-2">
-              <CheckCircle2 className="w-4 h-4 shrink-0 text-cyan-400" />
+            <div className="p-3 rounded-lg bg-cyan-950/20 border border-[var(--color-amber)]/20 text-xs text-[var(--color-amber)] flex items-center gap-2">
+              <CheckCircle2 className="w-4 h-4 shrink-0 text-[var(--color-amber)]" />
               <span>
                 AI Confidence Score: <strong>99.4%</strong> (YOLOv8 + OCR Alignment)
               </span>

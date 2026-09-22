@@ -25,6 +25,7 @@ import { Reports } from './pages/Reports';
 // Admin Subsystem Pages
 import { Users as AdminUsers } from './pages/admin/Users';
 import { AdminCameras } from './pages/admin/AdminCameras';
+import { AdminRoles } from './pages/admin/AdminRoles';
 import { AdminSettings } from './pages/admin/AdminSettings';
 
 export default function App() {
@@ -69,6 +70,7 @@ export default function App() {
           {/* Admin Management Routes */}
           <Route path="admin/users" element={<AdminUsers />} />
           <Route path="admin/cameras" element={<AdminCameras />} />
+          <Route path="admin/roles" element={<AdminRoles />} />
           <Route path="admin/settings" element={<AdminSettings />} />
 
           {/* Fallback wildcard */}

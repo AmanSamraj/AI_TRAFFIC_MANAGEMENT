@@ -63,7 +63,7 @@ export const TrackingDetails = () => {
   return (
     <div className="space-y-6 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[var(--color-border)]">
         <div className="flex items-center gap-3">
           <Button
             variant="ghost"
@@ -75,14 +75,14 @@ export const TrackingDetails = () => {
           </Button>
 
           <div>
-            <h1 className="text-xl font-bold text-white flex items-center gap-2">
-              <Navigation className="w-5 h-5 text-cyan-400" />
+            <h1 className="text-xl font-bold text-[var(--color-text)] flex items-center gap-2">
+              <Navigation className="w-5 h-5 text-[var(--color-amber)]" />
               Target Trajectory: {target.plate}
               <Badge variant="danger" size="sm" dot={true} pulse={true}>
                 ACTIVE PURSUIT
               </Badge>
             </h1>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-xs text-[var(--color-text-muted)] mt-0.5">
               Continuous multi-camera optical checkpoint vectoring and spatial triangulation
             </p>
           </div>
@@ -92,7 +92,7 @@ export const TrackingDetails = () => {
           <Button
             variant="outline"
             size="sm"
-            leftIcon={<Car className="w-4 h-4 text-cyan-400" />}
+            leftIcon={<Car className="w-4 h-4 text-[var(--color-amber)]" />}
             onClick={() => navigate(`/vehicles/${target.plate}`)}
           >
             Vehicle Dossier
@@ -119,16 +119,16 @@ export const TrackingDetails = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* LEFT COLUMN: Vertical Timeline */}
         <div className="lg:col-span-5 space-y-4">
-          <Card variant="glow" className="bg-[#0c182b] border-slate-700/80 p-5 shadow-2xl">
-            <CardHeader className="p-0 pb-4 border-b border-slate-800">
+          <Card variant="glow" className="bg-[#0c182b] border-[var(--color-border)] p-5 shadow-2xl">
+            <CardHeader className="p-0 pb-4 border-b border-[var(--color-border)]">
               <div className="flex items-center justify-between">
                 <div>
-                  <CardTitle className="text-sm uppercase tracking-wider text-cyan-400 flex items-center gap-2">
+                  <CardTitle className="text-sm uppercase tracking-wider text-[var(--color-amber)] flex items-center gap-2">
                     <Layers className="w-4 h-4" />
                     CAMERA DETECTION CHAIN
                   </CardTitle>
                   <CardDescription className="text-xs">
-                    Optical handoff timeline for <span className="font-mono text-white font-bold">{target.plate}</span>
+                    Optical handoff timeline for <span className="font-mono text-[var(--color-text)] font-bold">{target.plate}</span>
                   </CardDescription>
                 </div>
                 <Badge variant="info" size="sm">
@@ -141,27 +141,27 @@ export const TrackingDetails = () => {
               <div className="relative font-mono text-sm space-y-1">
                 {target.nodes.map((node) => (
                   <div key={node.id} className="relative">
-                    <div className="p-3.5 rounded-xl border bg-slate-900/90 border-slate-700">
+                    <div className="p-3.5 rounded-xl border bg-[var(--color-card)] border-[var(--color-border)]">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2.5">
                           <div className="w-7 h-7 rounded-lg bg-cyan-500 text-slate-950 flex items-center justify-center font-bold text-xs shadow-md">
                             <Camera className="w-4 h-4" />
                           </div>
                           <div>
-                            <span className="font-black text-base text-white tracking-wider">
+                            <span className="font-black text-base text-[var(--color-text)] tracking-wider">
                               {node.id}
                             </span>
-                            <span className="text-xs text-slate-400 block font-sans">
+                            <span className="text-xs text-[var(--color-text-muted)] block font-sans">
                               {node.location}
                             </span>
                           </div>
                         </div>
 
                         <div className="text-right">
-                          <span className="text-xs font-bold text-cyan-300 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800/60 block">
+                          <span className="text-xs font-bold text-[var(--color-amber)] bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800/60 block">
                             {node.speed}
                           </span>
-                          <span className="text-[10px] text-slate-400 mt-0.5 block">
+                          <span className="text-[10px] text-[var(--color-text-muted)] mt-0.5 block">
                             OCR {node.confidence}
                           </span>
                         </div>
@@ -171,12 +171,12 @@ export const TrackingDetails = () => {
                     <div className="py-2.5 px-6 flex items-center gap-3 select-none">
                       <div className="flex flex-col items-center">
                         <div className="w-0.5 h-6 bg-cyan-400 shadow-[0_0_8px_#00d2ff]" />
-                        <ArrowDown className="w-4 h-4 -my-0.5 text-cyan-400" />
+                        <ArrowDown className="w-4 h-4 -my-0.5 text-[var(--color-amber)]" />
                       </div>
-                      <div className="text-xs px-2.5 py-1 rounded-md border bg-cyan-500/10 border-cyan-500/30 text-cyan-300 font-bold flex items-center gap-1.5">
-                        <Clock className="w-3.5 h-3.5 text-slate-400" />
+                      <div className="text-xs px-2.5 py-1 rounded-md border bg-[rgba(245,166,35,0.06)] border-[var(--color-amber)]/30 text-[var(--color-amber)] font-bold flex items-center gap-1.5">
+                        <Clock className="w-3.5 h-3.5 text-[var(--color-text-muted)]" />
                         <span>{node.time}</span>
-                        <span className="text-[10px] text-slate-400 font-sans">
+                        <span className="text-[10px] text-[var(--color-text-muted)] font-sans">
                           ({node.location})
                         </span>
                       </div>
@@ -196,7 +196,7 @@ export const TrackingDetails = () => {
                         <h4 className="font-black text-sm text-red-400 uppercase tracking-widest flex items-center gap-1.5">
                           CURRENT LOCATION
                         </h4>
-                        <p className="text-xs font-mono text-slate-300 mt-0.5">
+                        <p className="text-xs font-mono text-[var(--color-text-secondary)] mt-0.5">
                           {target.currentLocation.location}
                         </p>
                       </div>
@@ -206,7 +206,7 @@ export const TrackingDetails = () => {
                       <Badge variant="danger" size="sm" pulse={true}>
                         LIVE NOW
                       </Badge>
-                      <span className="text-[10px] text-slate-400 block mt-1">
+                      <span className="text-[10px] text-[var(--color-text-muted)] block mt-1">
                         Est: {target.currentLocation.speed}
                       </span>
                     </div>
@@ -219,17 +219,17 @@ export const TrackingDetails = () => {
 
         {/* RIGHT COLUMN: Interactive GIS Vector Map */}
         <div className="lg:col-span-7 space-y-4">
-          <Card variant="glow" className="bg-[#070e1c] border-slate-700/80 overflow-hidden shadow-2xl">
-            <CardHeader className="p-4 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
+          <Card variant="glow" className="bg-[#070e1c] border-[var(--color-border)] overflow-hidden shadow-2xl">
+            <CardHeader className="p-4 bg-[var(--color-card)] border-b border-[var(--color-border)] flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <Compass className="w-4 h-4 text-cyan-400 animate-spin" style={{ animationDuration: '12s' }} />
-                <span className="font-bold text-xs text-white uppercase tracking-wider">
+                <Compass className="w-4 h-4 text-[var(--color-amber)] animate-spin" style={{ animationDuration: '12s' }} />
+                <span className="font-bold text-xs text-[var(--color-text)] uppercase tracking-wider">
                   GIS SPATIAL CORRIDOR MAP — MULTI-CAMERA VECTOR
                 </span>
               </div>
               <div className="flex items-center gap-2 text-[11px] font-mono">
-                <span className="text-slate-400">COORDINATE GRID:</span>
-                <span className="text-cyan-400">NH-44 SPATIAL REEF</span>
+                <span className="text-[var(--color-text-muted)]">COORDINATE GRID:</span>
+                <span className="text-[var(--color-amber)]">NH-44 SPATIAL REEF</span>
               </div>
             </CardHeader>
 
@@ -274,7 +274,7 @@ export const TrackingDetails = () => {
                       y1={node.y}
                       x2={nextNode.x}
                       y2={nextNode.y}
-                      stroke="#00d2ff"
+                      stroke="#F5A623"
                       strokeWidth="3.5"
                       filter="url(#detail-glow)"
                       strokeDasharray="8 4"
@@ -285,17 +285,17 @@ export const TrackingDetails = () => {
                 {/* Nodes */}
                 {target.nodes.map((node) => (
                   <g key={`map-detail-node-${node.id}`}>
-                    <circle cx={node.x} cy={node.y} r="10" fill="#00d2ff" stroke="#ffffff" strokeWidth="2.5" filter="url(#detail-glow)" />
+                    <circle cx={node.x} cy={node.y} r="10" fill="#F5A623" stroke="#ffffff" strokeWidth="2.5" filter="url(#detail-glow)" />
                     <circle cx={node.x} cy={node.y} r="3.5" fill="#050c18" />
                     <g transform={`translate(${node.x + 16}, ${node.y - 12})`}>
-                      <rect x="0" y="0" width="120" height="28" rx="6" fill="#091424" stroke="#00d2ff" strokeWidth="1" opacity="0.9" />
+                      <rect x="0" y="0" width="120" height="28" rx="6" fill="#091424" stroke="#F5A623" strokeWidth="1" opacity="0.9" />
                       <text x="8" y="13" fill="#ffffff" fontSize="10" fontFamily="monospace" fontWeight="bold">
                         {node.id}
                       </text>
-                      <text x="60" y="13" fill="#00d2ff" fontSize="9" fontFamily="monospace" fontWeight="bold">
+                      <text x="60" y="13" fill="#F5A623" fontSize="9" fontFamily="monospace" fontWeight="bold">
                         {node.time}
                       </text>
-                      <text x="8" y="23" fill="#94a3b8" fontSize="8" fontFamily="sans-serif">
+                      <text x="8" y="23" fill="#918B80" fontSize="8" fontFamily="sans-serif">
                         {node.location}
                       </text>
                     </g>
@@ -318,15 +318,15 @@ export const TrackingDetails = () => {
                 </g>
               </svg>
 
-              <div className="absolute bottom-3 right-3 bg-black/80 backdrop-blur-md px-3 py-1.5 rounded-lg text-xs font-mono border border-slate-700">
-                <span className="text-slate-400">TARGET: </span>
-                <span className="text-cyan-300 font-bold">{target.plate}</span>
-                <span className="text-slate-500 mx-1.5">|</span>
+              <div className="absolute bottom-3 right-3 bg-black/80  px-3 py-1.5 rounded-lg text-xs font-mono border border-[var(--color-border)]">
+                <span className="text-[var(--color-text-muted)]">TARGET: </span>
+                <span className="text-[var(--color-amber)] font-bold">{target.plate}</span>
+                <span className="text-[var(--color-text-muted)] mx-1.5">|</span>
                 <span className="text-emerald-400">VECTOR LOCKED</span>
               </div>
             </div>
 
-            <CardContent className="p-4 bg-slate-900/60 border-t border-slate-800 flex flex-wrap items-center justify-between gap-3 text-xs">
+            <CardContent className="p-4 bg-[var(--color-card)]/60 border-t border-[var(--color-border)] flex flex-wrap items-center justify-between gap-3 text-xs">
               <Button
                 variant="primary"
                 size="sm"
@@ -335,7 +335,7 @@ export const TrackingDetails = () => {
               >
                 Switch to Live ANPR View
               </Button>
-              <span className="text-slate-400 font-mono text-[11px]">Corridor: NH-44 Northward Trajectory</span>
+              <span className="text-[var(--color-text-muted)] font-mono text-[11px]">Corridor: NH-44 Northward Trajectory</span>
             </CardContent>
           </Card>
         </div>

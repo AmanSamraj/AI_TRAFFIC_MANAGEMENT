@@ -31,11 +31,11 @@ export const Settings = () => {
     <div className="space-y-6 max-w-5xl">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold text-white flex items-center gap-2">
-            <SettingsIcon className="w-5 h-5 text-cyan-400" />
+          <h2 className="text-xl font-bold text-[var(--color-text)] flex items-center gap-2">
+            <SettingsIcon className="w-5 h-5 text-[var(--color-amber)]" />
             System & AI Engine Configuration
           </h2>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-xs text-[var(--color-text-muted)] mt-0.5">
             Configure computer vision parameters, enforcement rules, and national registry hooks
           </p>
         </div>
@@ -55,7 +55,7 @@ export const Settings = () => {
         <Card variant="default">
           <CardHeader>
             <CardTitle>
-              <Cpu className="w-4 h-4 text-cyan-400" />
+              <Cpu className="w-4 h-4 text-[var(--color-amber)]" />
               AI Vision & Neural Detection
             </CardTitle>
             <CardDescription>Configure YOLOv8 and plate OCR inference parameters</CardDescription>
@@ -63,8 +63,8 @@ export const Settings = () => {
           <CardContent className="space-y-4">
             <div>
               <div className="flex items-center justify-between text-xs mb-1.5">
-                <span className="text-slate-300 font-medium">Confidence Score Threshold</span>
-                <span className="font-mono font-bold text-cyan-400">{aiConfidence}%</span>
+                <span className="text-[var(--color-text-secondary)] font-medium">Confidence Score Threshold</span>
+                <span className="font-mono font-bold text-[var(--color-amber)]">{aiConfidence}%</span>
               </div>
               <input
                 type="range"
@@ -74,15 +74,15 @@ export const Settings = () => {
                 onChange={(e) => setAiConfidence(Number(e.target.value))}
                 className="w-full accent-cyan-400 cursor-pointer"
               />
-              <p className="text-[11px] text-slate-500 mt-1">
+              <p className="text-[11px] text-[var(--color-text-muted)] mt-1">
                 Detections below this score require human officer manual verification.
               </p>
             </div>
 
-            <div className="pt-3 border-t border-slate-800">
+            <div className="pt-3 border-t border-[var(--color-border)]">
               <div className="flex items-center justify-between text-xs mb-1.5">
-                <span className="text-slate-300 font-medium">Radar Velocity Tolerance</span>
-                <span className="font-mono font-bold text-cyan-400">+{speedTolerance} km/h</span>
+                <span className="text-[var(--color-text-secondary)] font-medium">Radar Velocity Tolerance</span>
+                <span className="font-mono font-bold text-[var(--color-amber)]">+{speedTolerance} km/h</span>
               </div>
               <input
                 type="range"
@@ -92,7 +92,7 @@ export const Settings = () => {
                 onChange={(e) => setSpeedTolerance(Number(e.target.value))}
                 className="w-full accent-cyan-400 cursor-pointer"
               />
-              <p className="text-[11px] text-slate-500 mt-1">
+              <p className="text-[11px] text-[var(--color-text-muted)] mt-1">
                 Margin of error allowed before issuing statutory overspeeding citation.
               </p>
             </div>
@@ -109,10 +109,10 @@ export const Settings = () => {
             <CardDescription>Control emergency broadcast behavior</CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="flex items-center justify-between p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div className="flex items-center justify-between p-3 rounded-xl bg-[var(--color-background)] border border-[var(--color-border)]">
               <div>
-                <p className="text-xs font-semibold text-slate-200">Critical Alarm Sound</p>
-                <p className="text-[11px] text-slate-400">
+                <p className="text-xs font-semibold text-[var(--color-text)]">Critical Alarm Sound</p>
+                <p className="text-[11px] text-[var(--color-text-muted)]">
                   Play audible console siren on red light violations
                 </p>
               </div>
@@ -124,10 +124,10 @@ export const Settings = () => {
               />
             </div>
 
-            <div className="flex items-center justify-between p-3 rounded-xl bg-slate-950/60 border border-slate-800">
+            <div className="flex items-center justify-between p-3 rounded-xl bg-[var(--color-background)] border border-[var(--color-border)]">
               <div>
-                <p className="text-xs font-semibold text-slate-200">Autonomous E-Challan Issuance</p>
-                <p className="text-[11px] text-slate-400">
+                <p className="text-xs font-semibold text-[var(--color-text)]">Autonomous E-Challan Issuance</p>
+                <p className="text-[11px] text-[var(--color-text-muted)]">
                   Auto-dispatch SMS / DigiLocker notice to violators
                 </p>
               </div>
@@ -152,14 +152,14 @@ export const Settings = () => {
           </CardHeader>
           <CardContent className="space-y-3">
             <div>
-              <label className="block text-xs font-medium text-slate-300 mb-1.5">
+              <label className="block text-xs font-medium text-[var(--color-text-secondary)] mb-1.5">
                 Vahan Vehicle Registry API Endpoint
               </label>
               <input
                 type="text"
                 value={vahanEndpoint}
                 onChange={(e) => setVahanEndpoint(e.target.value)}
-                className="w-full bg-slate-950 border border-slate-700/80 rounded-xl px-3.5 py-2 text-xs text-slate-200 font-mono focus:outline-none focus:border-cyan-500"
+                className="w-full bg-[var(--color-charcoal)] border border-[var(--color-border)] rounded-xl px-3.5 py-2 text-xs text-[var(--color-text)] font-mono focus:outline-none focus:border-[var(--color-amber)]"
               />
             </div>
             <div className="flex items-center gap-2 text-xs text-emerald-400 font-medium">

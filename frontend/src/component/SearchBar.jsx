@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Search, X } from 'lucide-react';
 
 export const SearchBar = ({
@@ -11,13 +11,11 @@ export const SearchBar = ({
   className = '',
   size = 'md'
 }) => {
-  const [internalValue, setInternalValue] = useState(value);
+  const [internalValue, setInternalValue] = React.useState(value);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (onSearch) {
-      const timer = setTimeout(() => {
-        onSearch(internalValue);
-      }, debounceMs);
+      const timer = setTimeout(() => onSearch(internalValue), debounceMs);
       return () => clearTimeout(timer);
     }
   }, [internalValue, debounceMs, onSearch]);
@@ -43,13 +41,14 @@ export const SearchBar = ({
   const iconSizes = {
     sm: 'w-3.5 h-3.5 left-2.5',
     md: 'w-4 h-4 left-3',
-    lg: 'w-4.5 h-4.5 left-3.5'
+    lg: 'left-3.5'
   };
 
   return (
     <div className={`relative flex items-center w-full ${className}`}>
       <Search
-        className={`absolute text-slate-400 pointer-events-none transition-colors ${iconSizes[size] || iconSizes.md}`}
+        className={`absolute pointer-events-none ${iconSizes[size] || iconSizes.md}`}
+        style={{ color: 'var(--color-text-muted)', width: size === 'lg' ? 18 : undefined, height: size === 'lg' ? 18 : undefined }}
       />
 
       <input
@@ -57,7 +56,21 @@ export const SearchBar = ({
         value={internalValue}
         onChange={handleChange}
         placeholder={placeholder}
-        className={`w-full bg-slate-900/90 text-slate-100 placeholder-slate-500 border border-slate-700/80 rounded-xl focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 focus:outline-none transition-all duration-150 ${sizeStyles[size] || sizeStyles.md}`}
+        className={`w-full rounded-lg focus:outline-none transition-all duration-150 ${sizeStyles[size] || sizeStyles.md}`}
+        style={{
+          background: 'var(--color-background)',
+          color: 'var(--color-text)',
+          border: '1px solid var(--color-border)',
+          caretColor: 'var(--color-amber)',
+        }}
+        onFocus={(e) => {
+          e.currentTarget.style.borderColor = 'var(--color-amber)';
+          e.currentTarget.style.boxShadow = '0 0 0 2px rgba(245,166,35,0.15)';
+        }}
+        onBlur={(e) => {
+          e.currentTarget.style.borderColor = 'var(--color-border)';
+          e.currentTarget.style.boxShadow = 'none';
+        }}
       />
 
       <div className="absolute right-2.5 flex items-center gap-1.5">
@@ -65,14 +78,24 @@ export const SearchBar = ({
           <button
             type="button"
             onClick={handleClear}
-            className="p-1 text-slate-400 hover:text-white rounded-md hover:bg-slate-850 transition-colors cursor-pointer"
+            className="p-1 rounded-md transition-colors cursor-pointer"
+            style={{ color: 'var(--color-text-muted)' }}
+            onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-text)'}
+            onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-muted)'}
             aria-label="Clear search"
           >
             <X className="w-3.5 h-3.5" />
           </button>
         ) : (
           shortcut && (
-            <kbd className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono text-slate-400 bg-slate-800/90 border border-slate-700/80 rounded select-none">
+            <kbd
+              className="hidden sm:inline-block px-1.5 py-0.5 text-[10px] font-mono rounded select-none"
+              style={{
+                color: 'var(--color-text-muted)',
+                background: 'var(--color-card)',
+                border: '1px solid var(--color-border)'
+              }}
+            >
               {shortcut}
             </kbd>
           )

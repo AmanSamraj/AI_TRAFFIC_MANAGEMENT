@@ -78,7 +78,7 @@ export const ANPRHistory = () => {
       key: 'plate',
       label: 'License Plate',
       render: (val) => (
-        <span className="font-mono font-bold text-cyan-300 bg-cyan-950/40 px-2 py-0.5 rounded border border-cyan-500/30">
+        <span className="font-mono font-bold text-[var(--color-amber)] bg-[rgba(91,103,112,0.06)] px-2 py-0.5 rounded border border-[var(--color-amber)]/30">
           {val}
         </span>
       )
@@ -89,8 +89,8 @@ export const ANPRHistory = () => {
       key: 'speed',
       label: 'Speed / Limit',
       render: (_, r) => (
-        <span className="font-medium text-slate-200">
-          {r.speed} <span className="text-slate-500 text-[10px]">({r.limit})</span>
+        <span className="font-medium text-[var(--color-text)]">
+          {r.speed} <span className="text-[var(--color-text-muted)] text-[10px]">({r.limit})</span>
         </span>
       )
     },
@@ -110,7 +110,7 @@ export const ANPRHistory = () => {
       key: 'date',
       label: 'Date & Time',
       align: 'right',
-      render: (val) => <span className="font-mono text-slate-400">{val}</span>
+      render: (val) => <span className="font-mono text-[var(--color-text-muted)]">{val}</span>
     }
   ];
 
@@ -129,11 +129,11 @@ export const ANPRHistory = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold text-white flex items-center gap-2">
-            <History className="w-5 h-5 text-cyan-400" />
+          <h2 className="text-xl font-bold text-[var(--color-text)] flex items-center gap-2">
+            <History className="w-5 h-5 text-[var(--color-amber)]" />
             Historical ANPR Detections & Plate Archive
           </h2>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-xs text-[var(--color-text-muted)] mt-0.5">
             Query across historical optical recognition logs with multi-parameter filtering
           </p>
         </div>

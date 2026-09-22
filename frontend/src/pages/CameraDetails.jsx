@@ -59,14 +59,14 @@ export const CameraDetails = () => {
           </Button>
 
           <div>
-            <h2 className="text-xl font-bold text-white flex items-center gap-2">
-              <Video className="w-5 h-5 text-cyan-400" />
+            <h2 className="text-xl font-bold text-[var(--color-text)] flex items-center gap-2">
+              <Video className="w-5 h-5 text-[var(--color-amber)]" />
               Camera Node Diagnostics: {id}
               <Badge variant="success" size="sm" dot={true}>
                 ONLINE
               </Badge>
             </h2>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-xs text-[var(--color-text-muted)] mt-0.5">
               Live RTSP/H.265 Stream & High-Precision PTZ Actuator
             </p>
           </div>
@@ -111,14 +111,14 @@ export const CameraDetails = () => {
             <CardHeader className="p-3.5">
               <div className="flex items-center gap-2">
                 <StatusIndicator status="online" size="sm" />
-                <span className="font-bold text-xs text-slate-200">
+                <span className="font-bold text-xs text-[var(--color-text)]">
                   RTSP://192.168.10.104/live/4k_stream
                 </span>
               </div>
-              <span className="text-xs font-mono text-cyan-400">FPS: 60.0 | 4K UHD</span>
+              <span className="text-xs font-mono text-[var(--color-amber)]">FPS: 60.0 | 4K UHD</span>
             </CardHeader>
 
-            <div className="relative aspect-video bg-slate-950 flex items-center justify-center border-y border-slate-800 overflow-hidden select-none">
+            <div className="relative aspect-video bg-[var(--color-charcoal)] flex items-center justify-center border-y border-[var(--color-border)] overflow-hidden select-none">
               {/* Grid overlay */}
               <div className="absolute inset-0 bg-[radial-gradient(#162b4c_1px,transparent_1px)] [background-size:24px_24px] opacity-40" />
 
@@ -132,26 +132,26 @@ export const CameraDetails = () => {
               </div>
 
               {/* Status overlays */}
-              <div className="absolute top-3 left-3 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded text-xs font-mono text-cyan-300">
+              <div className="absolute top-3 left-3 bg-black/70  px-2.5 py-1 rounded text-xs font-mono text-[var(--color-amber)]">
                 PTZ Zoom: {zoomLevel.toFixed(1)}x
               </div>
-              <div className="absolute bottom-3 right-3 bg-black/70 backdrop-blur-md px-2.5 py-1 rounded text-xs font-mono text-slate-300">
-                Actuator: <strong className="text-cyan-400">{ptzStatus}</strong>
+              <div className="absolute bottom-3 right-3 bg-black/70  px-2.5 py-1 rounded text-xs font-mono text-[var(--color-text-secondary)]">
+                Actuator: <strong className="text-[var(--color-amber)]">{ptzStatus}</strong>
               </div>
             </div>
 
             <CardContent className="p-4 grid grid-cols-3 gap-3 text-xs">
-              <div className="p-3 rounded-lg bg-slate-950/60 border border-slate-800">
-                <span className="text-slate-500">Optical Bitrate:</span>
-                <p className="font-mono font-semibold text-slate-200 mt-0.5">8.94 Mbps</p>
+              <div className="p-3 rounded-lg bg-[var(--color-background)] border border-[var(--color-border)]">
+                <span className="text-[var(--color-text-muted)]">Optical Bitrate:</span>
+                <p className="font-mono font-semibold text-[var(--color-text)] mt-0.5">8.94 Mbps</p>
               </div>
-              <div className="p-3 rounded-lg bg-slate-950/60 border border-slate-800">
-                <span className="text-slate-500">Network Latency:</span>
+              <div className="p-3 rounded-lg bg-[var(--color-background)] border border-[var(--color-border)]">
+                <span className="text-[var(--color-text-muted)]">Network Latency:</span>
                 <p className="font-mono font-semibold text-emerald-400 mt-0.5">14.2 ms</p>
               </div>
-              <div className="p-3 rounded-lg bg-slate-950/60 border border-slate-800">
-                <span className="text-slate-500">Dropped Frames:</span>
-                <p className="font-mono font-semibold text-slate-200 mt-0.5">0.02% (Healthy)</p>
+              <div className="p-3 rounded-lg bg-[var(--color-background)] border border-[var(--color-border)]">
+                <span className="text-[var(--color-text-muted)]">Dropped Frames:</span>
+                <p className="font-mono font-semibold text-[var(--color-text)] mt-0.5">0.02% (Healthy)</p>
               </div>
             </CardContent>
           </Card>
@@ -214,7 +214,7 @@ export const CameraDetails = () => {
                 <div />
               </div>
 
-              <div className="flex items-center gap-3 w-full pt-3 border-t border-slate-800 justify-center">
+              <div className="flex items-center gap-3 w-full pt-3 border-t border-[var(--color-border)] justify-center">
                 <Button
                   variant="secondary"
                   size="xs"
@@ -242,21 +242,21 @@ export const CameraDetails = () => {
             </CardHeader>
             <CardContent className="p-4 pt-0 space-y-2.5 text-xs">
               <div className="flex items-center justify-between">
-                <span className="text-slate-400 flex items-center gap-1.5">
+                <span className="text-[var(--color-text-muted)] flex items-center gap-1.5">
                   <Thermometer className="w-3.5 h-3.5 text-amber-400" />
                   Sensor Temperature:
                 </span>
-                <span className="font-mono text-slate-200">44.2°C (Optimal)</span>
+                <span className="font-mono text-[var(--color-text)]">44.2°C (Optimal)</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-400 flex items-center gap-1.5">
-                  <Cpu className="w-3.5 h-3.5 text-cyan-400" />
+                <span className="text-[var(--color-text-muted)] flex items-center gap-1.5">
+                  <Cpu className="w-3.5 h-3.5 text-[var(--color-amber)]" />
                   Edge NPU Load:
                 </span>
-                <span className="font-mono text-slate-200">38%</span>
+                <span className="font-mono text-[var(--color-text)]">38%</span>
               </div>
               <div className="flex items-center justify-between">
-                <span className="text-slate-400 flex items-center gap-1.5">
+                <span className="text-[var(--color-text-muted)] flex items-center gap-1.5">
                   <Wifi className="w-3.5 h-3.5 text-emerald-400" />
                   PoE Signal Strength:
                 </span>

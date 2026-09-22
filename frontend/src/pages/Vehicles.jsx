@@ -171,8 +171,8 @@ export const Vehicles = () => {
       key: 'camera',
       label: 'Camera',
       render: (val) => (
-        <span className="font-mono font-bold text-cyan-400 flex items-center gap-1.5">
-          <Camera className="w-3.5 h-3.5 text-slate-400" />
+        <span className="font-mono font-bold text-[var(--color-amber)] flex items-center gap-1.5">
+          <Camera className="w-3.5 h-3.5 text-[var(--color-text-muted)]" />
           {val}
         </span>
       )
@@ -181,8 +181,8 @@ export const Vehicles = () => {
       key: 'time',
       label: 'Time',
       render: (val) => (
-        <span className="font-mono text-slate-200 flex items-center gap-1.5">
-          <Clock className="w-3.5 h-3.5 text-slate-400" />
+        <span className="font-mono text-[var(--color-text)] flex items-center gap-1.5">
+          <Clock className="w-3.5 h-3.5 text-[var(--color-text-muted)]" />
           {val}
         </span>
       )
@@ -191,7 +191,7 @@ export const Vehicles = () => {
       key: 'location',
       label: 'Location',
       render: (val) => (
-        <span className="text-white font-medium flex items-center gap-1.5">
+        <span className="text-[var(--color-text)] font-medium flex items-center gap-1.5">
           <MapPin className="w-3.5 h-3.5 text-rose-400" />
           {val}
         </span>
@@ -200,7 +200,7 @@ export const Vehicles = () => {
     {
       key: 'speed',
       label: 'Recorded Speed',
-      render: (val) => <span className="font-mono text-xs text-slate-300">{val}</span>
+      render: (val) => <span className="font-mono text-xs text-[var(--color-text-secondary)]">{val}</span>
     },
     {
       key: 'confidence',
@@ -218,13 +218,13 @@ export const Vehicles = () => {
       {/* ────────────────────────────────────────────
           PAGE HEADER
       ──────────────────────────────────────────── */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-[var(--color-border)]">
         <div>
-          <h1 className="text-xl sm:text-2xl font-black tracking-wider text-white uppercase flex items-center gap-2">
-            <Car className="w-6 h-6 text-cyan-400" />
+          <h1 className="text-xl sm:text-2xl font-black tracking-wider text-[var(--color-text)] uppercase flex items-center gap-2">
+            <Car className="w-6 h-6 text-[var(--color-amber)]" />
             VEHICLE SEARCH & PROFILE
           </h1>
-          <p className="text-xs text-slate-400 mt-0.5">
+          <p className="text-xs text-[var(--color-text-muted)] mt-0.5">
             Real-time multi-camera plate intelligence, checkpoint timeline, and Vahan 4.0 cross-reference
           </p>
         </div>
@@ -259,10 +259,10 @@ export const Vehicles = () => {
       {/* ────────────────────────────────────────────
           USER ENTERS: SEARCH INPUT BAR
       ──────────────────────────────────────────── */}
-      <Card variant="glow" className="bg-[#070e1c] border-slate-700/80 p-5 shadow-xl">
+      <Card variant="glow" className="bg-[#070e1c] border-[var(--color-border)] p-5 shadow-xl">
         <form onSubmit={handleSearch} className="space-y-3">
-          <label className="block text-xs font-bold text-slate-300 uppercase tracking-wider flex items-center gap-2">
-            <Search className="w-4 h-4 text-cyan-400" />
+          <label className="block text-xs font-bold text-[var(--color-text-secondary)] uppercase tracking-wider flex items-center gap-2">
+            <Search className="w-4 h-4 text-[var(--color-amber)]" />
             Enter License Plate Number:
           </label>
 
@@ -273,9 +273,9 @@ export const Vehicles = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="e.g. HP01AB1234, DL05XY7788"
-                className="w-full bg-[#040810] border-2 border-slate-700 focus:border-cyan-400 rounded-xl px-4 py-3 font-mono text-lg font-bold text-white tracking-widest placeholder:text-slate-600 uppercase transition-all outline-hidden shadow-inner"
+                className="w-full bg-[#040810] border-2 border-[var(--color-border)] focus:border-cyan-400 rounded-xl px-4 py-3 font-mono text-lg font-bold text-[var(--color-text)] tracking-widest placeholder:text-[var(--color-text-muted)] uppercase transition-all outline-hidden shadow-inner"
               />
-              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-mono text-slate-500 hidden sm:inline-block">
+              <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs font-mono text-[var(--color-text-muted)] hidden sm:inline-block">
                 PRESS ENTER ↵
               </span>
             </div>
@@ -293,8 +293,8 @@ export const Vehicles = () => {
 
           {/* Demo Quick Select Pills */}
           <div className="flex flex-wrap items-center gap-2 pt-1">
-            <span className="text-xs text-slate-400 font-medium flex items-center gap-1">
-              <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
+            <span className="text-xs text-[var(--color-text-muted)] font-medium flex items-center gap-1">
+              <Sparkles className="w-3.5 h-3.5 text-[var(--color-amber)]" />
               Quick Demo Plates:
             </span>
             {['HP01AB1234', 'DL05XY7788', 'MH12CD5678', 'KA03EF9012'].map((plate) => (
@@ -304,13 +304,13 @@ export const Vehicles = () => {
                 onClick={() => handleSelectQuickPlate(plate)}
                 className={`text-xs font-mono px-3 py-1 rounded-lg border transition-all cursor-pointer ${
                   activePlate === plate
-                    ? 'bg-cyan-500/20 text-cyan-300 border-cyan-500 shadow-[0_0_10px_rgba(0,210,255,0.3)] font-bold'
-                    : 'bg-slate-900/80 text-slate-400 border-slate-700 hover:border-slate-500 hover:text-white'
+                    ? 'bg-cyan-500/20 text-[var(--color-amber)] border-[var(--color-amber)] shadow-[0_0_10px_rgba(0,210,255,0.3)] font-bold'
+                    : 'bg-[var(--color-card)] text-[var(--color-text-muted)] border-[var(--color-border)] hover:border-slate-500 hover:text-[var(--color-text)]'
                 }`}
               >
                 {plate}
                 {plate === 'HP01AB1234' && (
-                  <span className="ml-1 text-[10px] text-cyan-400 font-sans font-normal">(Wireframe)</span>
+                  <span className="ml-1 text-[10px] text-[var(--color-amber)] font-sans font-normal">(Wireframe)</span>
                 )}
               </button>
             ))}
@@ -330,7 +330,7 @@ export const Vehicles = () => {
       ──────────────────────────────────────────── */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <h2 className="text-sm font-black text-cyan-400 uppercase tracking-widest flex items-center gap-2">
+          <h2 className="text-sm font-black text-[var(--color-amber)] uppercase tracking-widest flex items-center gap-2">
             <Layers className="w-4 h-4" />
             VEHICLE PROFILE
           </h2>
@@ -342,11 +342,11 @@ export const Vehicles = () => {
           </Badge>
         </div>
 
-        <Card variant="glow" className="bg-[#0c182b] border-2 border-cyan-500/40 p-6 shadow-2xl rounded-2xl">
+        <Card variant="glow" className="bg-[#0c182b] border-2 border-[var(--color-amber)] p-6 shadow-2xl rounded-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             {/* Left: Embossed Indian High Security Registration Plate Visualization */}
-            <div className="lg:col-span-4 flex flex-col items-center justify-center p-4 bg-[#050b14] rounded-xl border border-slate-800 shadow-inner">
-              <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2.5">
+            <div className="lg:col-span-4 flex flex-col items-center justify-center p-4 bg-[#050b14] rounded-xl border border-[var(--color-border)] shadow-inner">
+              <div className="text-[11px] font-bold text-[var(--color-text-muted)] uppercase tracking-wider mb-2.5">
                 Official Registration Plate
               </div>
               <div className="relative w-full max-w-xs px-4 py-2.5 bg-gradient-to-r from-slate-100 via-white to-slate-200 border-3 border-slate-950 rounded-lg shadow-2xl flex items-center justify-between gap-3 select-all">
@@ -369,7 +369,7 @@ export const Vehicles = () => {
                 </div>
               </div>
 
-              <div className="text-[11px] font-mono text-slate-400 mt-3 text-center">
+              <div className="text-[11px] font-mono text-[var(--color-text-muted)] mt-3 text-center">
                 {currentProfile.vehicleDetail}
               </div>
             </div>
@@ -377,31 +377,31 @@ export const Vehicles = () => {
             {/* Right: Exact Wireframe Key-Value Specification Grid */}
             <div className="lg:col-span-8">
               {/* Styled Wireframe Box Representation */}
-              <div className="p-5 rounded-xl bg-slate-950/80 border border-slate-800 font-mono space-y-3.5 text-sm">
-                <div className="flex items-center justify-between pb-2.5 border-b border-slate-800/80">
-                  <span className="text-slate-400 font-bold uppercase tracking-wider text-xs">
+              <div className="p-5 rounded-xl bg-[var(--color-charcoal)]/80 border border-[var(--color-border)] font-mono space-y-3.5 text-sm">
+                <div className="flex items-center justify-between pb-2.5 border-b border-[var(--color-border)]/80">
+                  <span className="text-[var(--color-text-muted)] font-bold uppercase tracking-wider text-xs">
                     Vehicle:
                   </span>
-                  <span className="text-white font-bold text-base flex items-center gap-2">
-                    {currentProfile.vehicle === 'Car' && <Car className="w-4 h-4 text-cyan-400" />}
-                    {currentProfile.vehicle === 'SUV' && <Car className="w-4 h-4 text-cyan-400" />}
+                  <span className="text-[var(--color-text)] font-bold text-base flex items-center gap-2">
+                    {currentProfile.vehicle === 'Car' && <Car className="w-4 h-4 text-[var(--color-amber)]" />}
+                    {currentProfile.vehicle === 'SUV' && <Car className="w-4 h-4 text-[var(--color-amber)]" />}
                     {currentProfile.vehicle === 'Truck' && <Truck className="w-4 h-4 text-amber-400" />}
                     {currentProfile.vehicle === 'Motorcycle' && <Bike className="w-4 h-4 text-blue-400" />}
                     {currentProfile.vehicle}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between pb-2.5 border-b border-slate-800/80">
-                  <span className="text-slate-400 font-bold uppercase tracking-wider text-xs">
+                <div className="flex items-center justify-between pb-2.5 border-b border-[var(--color-border)]/80">
+                  <span className="text-[var(--color-text-muted)] font-bold uppercase tracking-wider text-xs">
                     Plate:
                   </span>
-                  <span className="text-cyan-300 font-black text-lg tracking-widest">
+                  <span className="text-[var(--color-amber)] font-black text-lg tracking-widest">
                     {currentProfile.plate}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between pb-2.5 border-b border-slate-800/80">
-                  <span className="text-slate-400 font-bold uppercase tracking-wider text-xs">
+                <div className="flex items-center justify-between pb-2.5 border-b border-[var(--color-border)]/80">
+                  <span className="text-[var(--color-text-muted)] font-bold uppercase tracking-wider text-xs">
                     First Seen:
                   </span>
                   <span className="text-emerald-400 font-bold flex items-center gap-1.5">
@@ -410,8 +410,8 @@ export const Vehicles = () => {
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between pb-2.5 border-b border-slate-800/80">
-                  <span className="text-slate-400 font-bold uppercase tracking-wider text-xs">
+                <div className="flex items-center justify-between pb-2.5 border-b border-[var(--color-border)]/80">
+                  <span className="text-[var(--color-text-muted)] font-bold uppercase tracking-wider text-xs">
                     Last Seen:
                   </span>
                   <span className="text-amber-400 font-bold flex items-center gap-1.5">
@@ -421,10 +421,10 @@ export const Vehicles = () => {
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-400 font-bold uppercase tracking-wider text-xs">
+                  <span className="text-[var(--color-text-muted)] font-bold uppercase tracking-wider text-xs">
                     Total Detections:
                   </span>
-                  <span className="text-white font-black text-lg bg-cyan-950/80 border border-cyan-500/50 px-3 py-0.5 rounded-lg text-cyan-300">
+                  <span className="text-[var(--color-text)] font-black text-lg bg-cyan-950/80 border border-[var(--color-amber)]/50 px-3 py-0.5 rounded-lg text-[var(--color-amber)]">
                     {currentProfile.totalDetections}
                   </span>
                 </div>
@@ -445,11 +445,11 @@ export const Vehicles = () => {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-lg font-bold text-white uppercase tracking-wider flex items-center gap-2">
-              <Clock className="w-5 h-5 text-cyan-400" />
+            <h2 className="text-lg font-bold text-[var(--color-text)] uppercase tracking-wider flex items-center gap-2">
+              <Clock className="w-5 h-5 text-[var(--color-amber)]" />
               Detection History
             </h2>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-xs text-[var(--color-text-muted)] mt-0.5">
               Chronological surveillance logs and checkpoint captures for {currentProfile.plate}
             </p>
           </div>
@@ -460,23 +460,23 @@ export const Vehicles = () => {
         </div>
 
         {/* Visual Route Corridor Progression Bar */}
-        <Card variant="default" className="bg-[#070e1c] border-slate-800 p-4">
-          <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
+        <Card variant="default" className="bg-[#070e1c] border-[var(--color-border)] p-4">
+          <div className="text-xs font-bold text-[var(--color-text-muted)] uppercase tracking-wider mb-3">
             Corridor Movement Progression:
           </div>
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 font-mono text-xs">
             {currentProfile.detectionHistory.map((step, idx) => (
               <React.Fragment key={step.camera + step.time}>
-                <div className="flex items-center gap-2 bg-slate-900 border border-slate-700/80 px-3 py-1.5 rounded-xl shadow">
+                <div className="flex items-center gap-2 bg-[var(--color-card)] border border-[var(--color-border)] px-3 py-1.5 rounded-xl shadow">
                   <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                  <span className="font-bold text-cyan-300">{step.camera}</span>
-                  <span className="text-slate-500">|</span>
-                  <span className="text-slate-200">{step.location}</span>
+                  <span className="font-bold text-[var(--color-amber)]">{step.camera}</span>
+                  <span className="text-[var(--color-text-muted)]">|</span>
+                  <span className="text-[var(--color-text)]">{step.location}</span>
                   <span className="text-[11px] text-emerald-400 font-semibold">({step.time})</span>
                 </div>
 
                 {idx < currentProfile.detectionHistory.length - 1 && (
-                  <ArrowRight className="w-4 h-4 text-slate-500 shrink-0" />
+                  <ArrowRight className="w-4 h-4 text-[var(--color-text-muted)] shrink-0" />
                 )}
               </React.Fragment>
             ))}
@@ -484,7 +484,7 @@ export const Vehicles = () => {
         </Card>
 
         {/* Detection History Table */}
-        <Card variant="default" className="bg-[#070e1c] border-slate-800">
+        <Card variant="default" className="bg-[#070e1c] border-[var(--color-border)]">
           <CardContent className="p-0">
             <Table columns={detectionColumns} data={currentProfile.detectionHistory} />
           </CardContent>

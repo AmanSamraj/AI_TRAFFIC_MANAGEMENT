@@ -12,28 +12,24 @@ export const Toast = ({
 }) => {
   const typeConfig = {
     success: {
-      icon: <CheckCircle2 className="w-4 h-4 text-emerald-400" />,
-      border: 'border-emerald-500/40',
-      bg: 'bg-emerald-950/40',
-      shadow: 'shadow-emerald-950/30'
+      icon: <CheckCircle2 className="w-4 h-4" style={{ color: 'var(--color-success)' }} />,
+      borderColor: 'rgba(25,135,84,0.3)',
+      bgTint: 'rgba(25,135,84,0.04)',
     },
     warning: {
-      icon: <AlertTriangle className="w-4 h-4 text-amber-400" />,
-      border: 'border-amber-500/40',
-      bg: 'bg-amber-950/40',
-      shadow: 'shadow-amber-950/30'
+      icon: <AlertTriangle className="w-4 h-4" style={{ color: 'var(--color-amber)' }} />,
+      borderColor: 'rgba(245,166,35,0.3)',
+      bgTint: 'rgba(245,166,35,0.04)',
     },
     danger: {
-      icon: <AlertOctagon className="w-4 h-4 text-red-400" />,
-      border: 'border-red-500/40',
-      bg: 'bg-red-950/40',
-      shadow: 'shadow-red-950/30'
+      icon: <AlertOctagon className="w-4 h-4" style={{ color: 'var(--color-danger)' }} />,
+      borderColor: 'rgba(220,53,69,0.3)',
+      bgTint: 'rgba(220,53,69,0.04)',
     },
     info: {
-      icon: <Info className="w-4 h-4 text-cyan-400" />,
-      border: 'border-cyan-500/40',
-      bg: 'bg-cyan-950/40',
-      shadow: 'shadow-cyan-950/30'
+      icon: <Info className="w-4 h-4" style={{ color: 'var(--color-info)' }} />,
+      borderColor: 'rgba(91,103,112,0.3)',
+      bgTint: 'rgba(91,103,112,0.04)',
     }
   };
 
@@ -41,19 +37,26 @@ export const Toast = ({
 
   return (
     <div
-      className={`relative w-80 max-w-sm rounded-xl border p-3.5 shadow-xl backdrop-blur-md bg-slate-900/95 flex items-start gap-3 transition-all duration-200 animate-in slide-in-from-top-2 fade-in ${config.border} ${config.shadow}`}
+      className="relative w-80 max-w-sm rounded-lg p-3.5 flex items-start gap-3 transition-all duration-200"
+      style={{
+        background: 'var(--color-card)',
+        border: `1px solid ${config.borderColor}`,
+        boxShadow: '0 4px 20px rgba(0,0,0,0.12)',
+      }}
       role="alert"
     >
-      <div className="shrink-0 mt-0.5">{config.icon}</div>
+      <div className="shrink-0 mt-0.5 p-1 rounded" style={{ background: config.bgTint }}>
+        {config.icon}
+      </div>
 
       <div className="flex-1 min-w-0">
         {title && (
-          <h4 className="text-xs font-semibold text-slate-100 tracking-wide truncate">
+          <h4 className="text-xs font-semibold tracking-wide truncate" style={{ color: 'var(--color-text)' }}>
             {title}
           </h4>
         )}
         {message && (
-          <p className="text-xs text-slate-300 mt-0.5 leading-relaxed break-words">
+          <p className="text-xs mt-0.5 leading-relaxed break-words" style={{ color: 'var(--color-text-secondary)' }}>
             {message}
           </p>
         )}
@@ -62,7 +65,10 @@ export const Toast = ({
       <button
         type="button"
         onClick={() => onClose(id)}
-        className="shrink-0 p-1 text-slate-400 hover:text-white rounded-md hover:bg-slate-800 transition-colors cursor-pointer"
+        className="shrink-0 p-1 rounded-md transition-colors cursor-pointer"
+        style={{ color: 'var(--color-text-muted)' }}
+        onMouseEnter={(e) => e.currentTarget.style.color = 'var(--color-text)'}
+        onMouseLeave={(e) => e.currentTarget.style.color = 'var(--color-text-muted)'}
         aria-label="Dismiss alert"
       >
         <X className="w-3.5 h-3.5" />
@@ -76,13 +82,9 @@ export const ToastProvider = ({ children }) => {
 
   const addToast = useCallback(({ type = 'info', title, message, duration = 4000 }) => {
     const id = Date.now().toString() + Math.random().toString(36).substring(2, 5);
-
     setToasts((prev) => [...prev, { id, type, title, message }]);
-
     if (duration > 0) {
-      setTimeout(() => {
-        setToasts((prev) => prev.filter((t) => t.id !== id));
-      }, duration);
+      setTimeout(() => setToasts((prev) => prev.filter((t) => t.id !== id)), duration);
     }
     return id;
   }, []);
@@ -94,7 +96,6 @@ export const ToastProvider = ({ children }) => {
   return (
     <ToastContext.Provider value={{ addToast, removeToast }}>
       {children}
-      {/* Toast Container */}
       <div className="fixed top-5 right-5 z-50 flex flex-col gap-2.5 pointer-events-auto">
         {toasts.map((toast) => (
           <Toast key={toast.id} {...toast} onClose={removeToast} />
@@ -106,9 +107,7 @@ export const ToastProvider = ({ children }) => {
 
 export const useToast = () => {
   const context = useContext(ToastContext);
-  if (!context) {
-    throw new Error('useToast must be used within a ToastProvider');
-  }
+  if (!context) throw new Error('useToast must be used within a ToastProvider');
   return context;
 };
 

@@ -40,18 +40,18 @@ import {
 const CustomDarkTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-slate-900/95 border border-slate-700/80 backdrop-blur-md rounded-xl p-3 shadow-2xl text-xs font-mono">
-        <p className="font-bold text-white border-b border-slate-800 pb-1 mb-1.5 flex items-center justify-between gap-4">
+      <div className="bg-[var(--color-card)] border border-[var(--color-border)]  rounded-xl p-3 shadow-2xl text-xs font-mono">
+        <p className="font-bold text-[var(--color-text)] border-b border-[var(--color-border)] pb-1 mb-1.5 flex items-center justify-between gap-4">
           <span>Interval: {label}</span>
-          <span className="text-cyan-400">ANPR Aggregated</span>
+          <span className="text-[var(--color-amber)]">ANPR Aggregated</span>
         </p>
         {payload.map((entry, index) => (
           <div key={`tooltip-item-${index}`} className="flex items-center justify-between gap-4 py-0.5">
-            <span className="flex items-center gap-1.5 text-slate-300">
+            <span className="flex items-center gap-1.5 text-[var(--color-text-secondary)]">
               <span className="w-2 h-2 rounded-full inline-block" style={{ backgroundColor: entry.color }} />
               {entry.name || 'Count'}:
             </span>
-            <span className="font-bold text-cyan-300">
+            <span className="font-bold text-[var(--color-amber)]">
               {typeof entry.value === 'number' ? entry.value.toLocaleString() : entry.value}
             </span>
           </div>
@@ -94,7 +94,7 @@ export const Analytics = () => {
   // 2. Vehicle Types (Exact Modal Split from User Request)
   // Cars: 52%, Bikes: 28%, Buses: 10%, Trucks: 10%
   const vehicleTypeData = [
-    { name: 'Cars', percent: 52, count: '13,240', color: '#00d2ff', icon: Car },
+    { name: 'Cars', percent: 52, count: '13,240', color: '#F5A623', icon: Car },
     { name: 'Bikes', percent: 28, count: '7,130', color: '#10b981', icon: Bike },
     { name: 'Buses', percent: 10, count: '2,550', color: '#f59e0b', icon: Bus },
     { name: 'Trucks', percent: 10, count: '2,550', color: '#f43f5e', icon: Truck }
@@ -133,20 +133,20 @@ export const Analytics = () => {
       {/* ────────────────────────────────────────────
           PAGE HEADER: TRAFFIC ANALYTICS
       ──────────────────────────────────────────── */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-3 border-b border-[var(--color-border)]">
         <div>
           <div className="flex items-center gap-2.5">
-            <div className="p-2 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
+            <div className="p-2 rounded-xl bg-[rgba(245,166,35,0.06)] border border-[var(--color-amber)]/30 text-[var(--color-amber)]">
               <BarChart3 className="w-6 h-6 stroke-[2.2]" />
             </div>
             <div>
-              <h1 className="text-xl sm:text-2xl font-black tracking-wider text-white uppercase flex items-center gap-2">
+              <h1 className="text-xl sm:text-2xl font-black tracking-wider text-[var(--color-text)] uppercase flex items-center gap-2">
                 TRAFFIC ANALYTICS
                 <Badge variant="info" size="sm" dot={true} pulse={true}>
                   RECHARTS TELEMETRY
                 </Badge>
               </h1>
-              <p className="text-xs text-slate-400 mt-0.5">
+              <p className="text-xs text-[var(--color-text-muted)] mt-0.5">
                 Volumetric traffic flow, vehicle modal composition, CCTV corridor load & peak temporal analysis
               </p>
             </div>
@@ -175,28 +175,28 @@ export const Analytics = () => {
       {/* ────────────────────────────────────────────
           SECTION 1: TRAFFIC VOLUME (VEHICLES / HOUR) 📈
       ──────────────────────────────────────────── */}
-      <Card variant="glow" className="bg-[#070e1c] border-slate-700/80 shadow-2xl p-5">
-        <CardHeader className="p-0 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-slate-800">
+      <Card variant="glow" className="bg-[#070e1c] border-[var(--color-border)] shadow-2xl p-5">
+        <CardHeader className="p-0 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-[var(--color-border)]">
           <div>
             <div className="flex items-center gap-2">
               <span className="text-xl">📈</span>
-              <CardTitle className="text-base uppercase tracking-wider text-white">
+              <CardTitle className="text-base uppercase tracking-wider text-[var(--color-text)]">
                 Traffic Volume — Vehicles / Hour
               </CardTitle>
             </div>
-            <CardDescription className="text-xs text-slate-400 mt-0.5">
+            <CardDescription className="text-xs text-[var(--color-text-muted)] mt-0.5">
               Continuous 24-hour ANPR detection count across all highway sensors
             </CardDescription>
           </div>
 
           <div className="flex items-center gap-3 font-mono text-xs">
-            <div className="bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-lg">
-              <span className="text-slate-400 text-[10px] block">PEAK RATE</span>
+            <div className="bg-[var(--color-card)] border border-[var(--color-border)] px-3 py-1.5 rounded-lg">
+              <span className="text-[var(--color-text-muted)] text-[10px] block">PEAK RATE</span>
               <span className="text-rose-400 font-bold">2,150 veh/hr (18:00)</span>
             </div>
-            <div className="bg-slate-900/90 border border-slate-700 px-3 py-1.5 rounded-lg">
-              <span className="text-slate-400 text-[10px] block">TOTAL 24H FLOW</span>
-              <span className="text-cyan-300 font-bold">25,460 Vehicles</span>
+            <div className="bg-[var(--color-card)] border border-[var(--color-border)] px-3 py-1.5 rounded-lg">
+              <span className="text-[var(--color-text-muted)] text-[10px] block">TOTAL 24H FLOW</span>
+              <span className="text-[var(--color-amber)] font-bold">25,460 Vehicles</span>
             </div>
           </div>
         </CardHeader>
@@ -208,8 +208,8 @@ export const Analytics = () => {
               <AreaChart data={volumeData} margin={{ top: 10, right: 15, left: -20, bottom: 0 }}>
                 <defs>
                   <linearGradient id="cyanVolumeGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="5%" stopColor="#00d2ff" stopOpacity={0.45} />
-                    <stop offset="95%" stopColor="#00d2ff" stopOpacity={0.0} />
+                    <stop offset="5%" stopColor="#F5A623" stopOpacity={0.45} />
+                    <stop offset="95%" stopColor="#F5A623" stopOpacity={0.0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.06)" vertical={false} />
@@ -217,19 +217,19 @@ export const Analytics = () => {
                   dataKey="hour"
                   tickLine={false}
                   axisLine={{ stroke: 'rgba(255, 255, 255, 0.12)' }}
-                  tick={{ fill: '#94a3b8', fontSize: 11, fontFamily: 'monospace' }}
+                  tick={{ fill: '#918B80', fontSize: 11, fontFamily: 'monospace' }}
                 />
                 <YAxis
                   tickLine={false}
                   axisLine={{ stroke: 'rgba(255, 255, 255, 0.12)' }}
-                  tick={{ fill: '#94a3b8', fontSize: 11, fontFamily: 'monospace' }}
+                  tick={{ fill: '#918B80', fontSize: 11, fontFamily: 'monospace' }}
                 />
                 <Tooltip content={<CustomDarkTooltip />} />
                 <Area
                   type="monotone"
                   dataKey="vehicles"
                   name="Vehicles / Hour"
-                  stroke="#00d2ff"
+                  stroke="#F5A623"
                   strokeWidth={2.5}
                   fillOpacity={1}
                   fill="url(#cyanVolumeGradient)"
@@ -244,14 +244,14 @@ export const Analytics = () => {
           SECTION 2: VEHICLE TYPES MODAL SPLIT
           Cars: 52%, Bikes: 28%, Buses: 10%, Trucks: 10%
       ──────────────────────────────────────────── */}
-      <Card variant="glow" className="bg-[#070e1c] border-slate-700/80 shadow-2xl p-5">
-        <CardHeader className="p-0 pb-4 border-b border-slate-800 flex items-center justify-between">
+      <Card variant="glow" className="bg-[#070e1c] border-[var(--color-border)] shadow-2xl p-5">
+        <CardHeader className="p-0 pb-4 border-b border-[var(--color-border)] flex items-center justify-between">
           <div>
-            <CardTitle className="text-base uppercase tracking-wider text-white flex items-center gap-2">
-              <Car className="w-5 h-5 text-cyan-400" />
+            <CardTitle className="text-base uppercase tracking-wider text-[var(--color-text)] flex items-center gap-2">
+              <Car className="w-5 h-5 text-[var(--color-amber)]" />
               Vehicle Types Modal Split
             </CardTitle>
-            <CardDescription className="text-xs text-slate-400 mt-0.5">
+            <CardDescription className="text-xs text-[var(--color-text-muted)] mt-0.5">
               YOLOv8 automated classification proportions across city cordon
             </CardDescription>
           </div>
@@ -286,8 +286,8 @@ export const Analytics = () => {
 
               {/* Center Donut Label */}
               <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none text-center">
-                <span className="text-2xl font-black text-white font-mono">100%</span>
-                <span className="text-[10px] text-slate-400 uppercase tracking-widest">Modal Split</span>
+                <span className="text-2xl font-black text-[var(--color-text)] font-mono">100%</span>
+                <span className="text-[10px] text-[var(--color-text-muted)] uppercase tracking-widest">Modal Split</span>
               </div>
             </div>
 
@@ -298,10 +298,10 @@ export const Analytics = () => {
                 return (
                   <div
                     key={item.name}
-                    className="p-3.5 rounded-xl bg-slate-950/80 border border-slate-800 space-y-1.5"
+                    className="p-3.5 rounded-xl bg-[var(--color-charcoal)]/80 border border-[var(--color-border)] space-y-1.5"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-bold text-slate-300 flex items-center gap-1.5 font-sans">
+                      <span className="text-xs font-bold text-[var(--color-text-secondary)] flex items-center gap-1.5 font-sans">
                         <IconComponent className="w-4 h-4" style={{ color: item.color }} />
                         {item.name}
                       </span>
@@ -311,16 +311,16 @@ export const Analytics = () => {
                     </div>
 
                     {/* Visual Bar */}
-                    <div className="w-full h-2 rounded-full bg-slate-900 overflow-hidden">
+                    <div className="w-full h-2 rounded-full bg-[var(--color-card)] overflow-hidden">
                       <div
                         className="h-full rounded-full transition-all duration-500 shadow-sm"
                         style={{ width: `${item.percent}%`, backgroundColor: item.color }}
                       />
                     </div>
 
-                    <div className="text-[10px] text-slate-400 flex items-center justify-between pt-0.5">
+                    <div className="text-[10px] text-[var(--color-text-muted)] flex items-center justify-between pt-0.5">
                       <span>Total Classified:</span>
-                      <span className="text-slate-200 font-bold">{item.count}</span>
+                      <span className="text-[var(--color-text)] font-bold">{item.count}</span>
                     </div>
                   </div>
                 );
@@ -343,14 +343,14 @@ export const Analytics = () => {
             CAM-03 █████████████████
             CAM-04 ██████
         ============================================================ */}
-        <Card variant="default" className="bg-[#070e1c] border-slate-800 p-5 shadow-2xl space-y-4">
-          <CardHeader className="p-0 pb-3 border-b border-slate-800 flex items-center justify-between">
+        <Card variant="default" className="bg-[#070e1c] border-[var(--color-border)] p-5 shadow-2xl space-y-4">
+          <CardHeader className="p-0 pb-3 border-b border-[var(--color-border)] flex items-center justify-between">
             <div>
-              <CardTitle className="text-sm uppercase tracking-wider text-white flex items-center gap-2">
-                <Camera className="w-4 h-4 text-cyan-400" />
+              <CardTitle className="text-sm uppercase tracking-wider text-[var(--color-text)] flex items-center gap-2">
+                <Camera className="w-4 h-4 text-[var(--color-amber)]" />
                 Traffic by Camera
               </CardTitle>
-              <CardDescription className="text-xs text-slate-400 mt-0.5">
+              <CardDescription className="text-xs text-[var(--color-text-muted)] mt-0.5">
                 Volumetric load per surveillance gateway node
               </CardDescription>
             </div>
@@ -360,14 +360,14 @@ export const Analytics = () => {
           </CardHeader>
 
           {/* Exact Wireframe ASCII Bars Box */}
-          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800/90 font-mono text-xs space-y-2.5">
+          <div className="p-3.5 rounded-xl bg-[var(--color-charcoal)] border border-[var(--color-border)]/90 font-mono text-xs space-y-2.5">
             {cameraTrafficData.map((cam) => (
               <div key={cam.camera} className="flex items-center justify-between gap-2">
-                <span className="font-bold text-cyan-300 shrink-0 w-16">{cam.camera}</span>
-                <span className="text-cyan-400 tracking-tight truncate select-none text-[13px]">
+                <span className="font-bold text-[var(--color-amber)] shrink-0 w-16">{cam.camera}</span>
+                <span className="text-[var(--color-amber)] tracking-tight truncate select-none text-[13px]">
                   {cam.ascii}
                 </span>
-                <span className="text-slate-400 text-[11px] shrink-0 font-sans">
+                <span className="text-[var(--color-text-muted)] text-[11px] shrink-0 font-sans">
                   {cam.volume.toLocaleString()} veh
                 </span>
               </div>
@@ -382,26 +382,26 @@ export const Analytics = () => {
                 layout="vertical"
                 margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
               >
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.05)" horizontal={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.06)" horizontal={false} />
                 <XAxis
                   type="number"
                   tickLine={false}
-                  axisLine={{ stroke: 'rgba(255, 255, 255, 0.1)' }}
-                  tick={{ fill: '#94a3b8', fontSize: 10, fontFamily: 'monospace' }}
+                  axisLine={{ stroke: 'rgba(0,0,0,0.1)' }}
+                  tick={{ fill: '#918B80', fontSize: 10, fontFamily: 'monospace' }}
                 />
                 <YAxis
                   dataKey="camera"
                   type="category"
                   tickLine={false}
-                  axisLine={{ stroke: 'rgba(255, 255, 255, 0.1)' }}
-                  tick={{ fill: '#00d2ff', fontSize: 11, fontFamily: 'monospace', fontWeight: 'bold' }}
+                  axisLine={{ stroke: 'rgba(0,0,0,0.1)' }}
+                  tick={{ fill: '#F5A623', fontSize: 11, fontFamily: 'monospace', fontWeight: 'bold' }}
                 />
                 <Tooltip content={<CustomDarkTooltip />} />
-                <Bar dataKey="volume" name="Vehicles" fill="#00d2ff" radius={[0, 4, 4, 0]}>
+                <Bar dataKey="volume" name="Vehicles" fill="#F5A623" radius={[0, 4, 4, 0]}>
                   {cameraTrafficData.map((entry, index) => (
                     <Cell
                       key={`cam-cell-${index}`}
-                      fill={entry.volume > 15000 ? '#00d2ff' : entry.volume > 10000 ? '#38bdf8' : '#0284c7'}
+                      fill={entry.volume > 15000 ? '#F5A623' : entry.volume > 10000 ? '#38bdf8' : '#0284c7'}
                     />
                   ))}
                 </Bar>
@@ -419,14 +419,14 @@ export const Analytics = () => {
             17:00 → █████████████████
             18:00 → ███████████████████
         ============================================================ */}
-        <Card variant="default" className="bg-[#070e1c] border-slate-800 p-5 shadow-2xl space-y-4">
-          <CardHeader className="p-0 pb-3 border-b border-slate-800 flex items-center justify-between">
+        <Card variant="default" className="bg-[#070e1c] border-[var(--color-border)] p-5 shadow-2xl space-y-4">
+          <CardHeader className="p-0 pb-3 border-b border-[var(--color-border)] flex items-center justify-between">
             <div>
-              <CardTitle className="text-sm uppercase tracking-wider text-white flex items-center gap-2">
+              <CardTitle className="text-sm uppercase tracking-wider text-[var(--color-text)] flex items-center gap-2">
                 <Clock className="w-4 h-4 text-rose-400" />
                 Peak Hours Rush Analysis
               </CardTitle>
-              <CardDescription className="text-xs text-slate-400 mt-0.5">
+              <CardDescription className="text-xs text-[var(--color-text-muted)] mt-0.5">
                 Temporal rush hours requiring automated green corridor balancing
               </CardDescription>
             </div>
@@ -436,22 +436,22 @@ export const Analytics = () => {
           </CardHeader>
 
           {/* Exact Wireframe ASCII Bars Box */}
-          <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800/90 font-mono text-xs space-y-2.5">
+          <div className="p-3.5 rounded-xl bg-[var(--color-charcoal)] border border-[var(--color-border)]/90 font-mono text-xs space-y-2.5">
             {peakHoursData.map((slot) => (
               <div key={slot.hour} className="flex items-center justify-between gap-2">
-                <span className="font-bold text-slate-300 shrink-0 w-20 flex items-center gap-1">
-                  {slot.hour} <span className="text-slate-500">→</span>
+                <span className="font-bold text-[var(--color-text-secondary)] shrink-0 w-20 flex items-center gap-1">
+                  {slot.hour} <span className="text-[var(--color-text-muted)]">→</span>
                 </span>
                 <span
                   className={`tracking-tight truncate select-none text-[13px] ${
-                    slot.isPeak ? 'text-rose-400' : 'text-cyan-400'
+                    slot.isPeak ? 'text-rose-400' : 'text-[var(--color-amber)]'
                   }`}
                 >
                   {slot.ascii}
                 </span>
                 <span
                   className={`text-[11px] shrink-0 font-bold font-sans ${
-                    slot.isPeak ? 'text-rose-400' : 'text-slate-400'
+                    slot.isPeak ? 'text-rose-400' : 'text-[var(--color-text-muted)]'
                   }`}
                 >
                   {slot.vehicles} veh
@@ -464,24 +464,24 @@ export const Analytics = () => {
           <div className="w-full h-48 pt-2">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={peakHoursData} margin={{ top: 5, right: 10, left: -20, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="rgba(255, 255, 255, 0.05)" vertical={false} />
+                <CartesianGrid strokeDasharray="3 3" stroke="rgba(0,0,0,0.06)" vertical={false} />
                 <XAxis
                   dataKey="hour"
                   tickLine={false}
-                  axisLine={{ stroke: 'rgba(255, 255, 255, 0.1)' }}
-                  tick={{ fill: '#94a3b8', fontSize: 10, fontFamily: 'monospace' }}
+                  axisLine={{ stroke: 'rgba(0,0,0,0.1)' }}
+                  tick={{ fill: '#918B80', fontSize: 10, fontFamily: 'monospace' }}
                 />
                 <YAxis
                   tickLine={false}
-                  axisLine={{ stroke: 'rgba(255, 255, 255, 0.1)' }}
-                  tick={{ fill: '#94a3b8', fontSize: 10, fontFamily: 'monospace' }}
+                  axisLine={{ stroke: 'rgba(0,0,0,0.1)' }}
+                  tick={{ fill: '#918B80', fontSize: 10, fontFamily: 'monospace' }}
                 />
                 <Tooltip content={<CustomDarkTooltip />} />
                 <Bar dataKey="vehicles" name="Vehicles" radius={[4, 4, 0, 0]}>
                   {peakHoursData.map((entry, index) => (
                     <Cell
                       key={`peak-cell-${index}`}
-                      fill={entry.isPeak ? '#f43f5e' : '#00d2ff'}
+                      fill={entry.isPeak ? '#f43f5e' : '#F5A623'}
                     />
                   ))}
                 </Bar>
@@ -494,12 +494,12 @@ export const Analytics = () => {
       {/* ────────────────────────────────────────────
           INTELLIGENT SIGNAL RECOMMENDATION CALLOUT
       ──────────────────────────────────────────── */}
-      <Card variant="glow" className="p-4 bg-[#070e1c] border-cyan-500/30">
+      <Card variant="glow" className="p-4 bg-[#070e1c] border-[var(--color-amber)]/30">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
-          <div className="flex items-center gap-2 text-slate-300">
+          <div className="flex items-center gap-2 text-[var(--color-text-secondary)]">
             <Zap className="w-4 h-4 text-amber-400 animate-pulse" />
-            <span className="font-bold text-white uppercase tracking-wider">AI Signal Optimization Recommendation:</span>
-            <span className="text-slate-400">Extend green wave cycle by +18s at CAM-03 between 17:30 - 18:30 to dissolve peak rush backlog.</span>
+            <span className="font-bold text-[var(--color-text)] uppercase tracking-wider">AI Signal Optimization Recommendation:</span>
+            <span className="text-[var(--color-text-muted)]">Extend green wave cycle by +18s at CAM-03 between 17:30 - 18:30 to dissolve peak rush backlog.</span>
           </div>
 
           <div className="flex items-center gap-2">

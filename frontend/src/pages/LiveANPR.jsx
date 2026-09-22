@@ -125,19 +125,19 @@ export const LiveANPR = () => {
           HEADER: LIVE ANPR
       ──────────────────────────────────────────── */}
       <div>
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-800">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[var(--color-border)]">
           <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
+            <div className="p-2.5 rounded-xl bg-[rgba(245,166,35,0.06)] border border-[var(--color-amber)]/30 text-[var(--color-amber)]">
               <ScanLine className="w-6 h-6 stroke-[2.2]" />
             </div>
             <div>
-              <h1 className="text-xl sm:text-2xl font-black tracking-wider text-white uppercase flex items-center gap-2">
+              <h1 className="text-xl sm:text-2xl font-black tracking-wider text-[var(--color-text)] uppercase flex items-center gap-2">
                 LIVE ANPR
                 <Badge variant="danger" size="sm" dot={true} pulse={true}>
                   60 FPS STREAM
                 </Badge>
               </h1>
-              <p className="text-xs text-slate-400 mt-0.5">
+              <p className="text-xs text-[var(--color-text-muted)] mt-0.5">
                 Real-Time Optical Character Recognition & Neural Plate Alignment (SIH Core)
               </p>
             </div>
@@ -185,27 +185,27 @@ export const LiveANPR = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
         {/* LEFT COLUMN (7 COLS): CAMERA VIDEO */}
         <div className="lg:col-span-7 space-y-4">
-          <Card variant="glow" className="overflow-hidden bg-[#070e1c] border-slate-700/80 shadow-2xl">
+          <Card variant="glow" className="overflow-hidden bg-[#070e1c] border-[var(--color-border)] shadow-2xl">
             {/* Camera Viewport Header */}
-            <CardHeader className="p-3.5 bg-slate-900/90 border-b border-slate-800 flex items-center justify-between">
+            <CardHeader className="p-3.5 bg-[var(--color-card)] border-b border-[var(--color-border)] flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <span className="relative flex h-2.5 w-2.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-500" />
                 </span>
-                <span className="font-bold text-xs text-white uppercase tracking-wider">
+                <span className="font-bold text-xs text-[var(--color-text)] uppercase tracking-wider">
                   CAMERA VIDEO — {currentVehicle.camera}
                 </span>
               </div>
               <div className="flex items-center gap-2 text-[11px] font-mono">
-                <span className="text-cyan-400">1080p 60 FPS</span>
-                <span className="text-slate-500">|</span>
+                <span className="text-[var(--color-amber)]">1080p 60 FPS</span>
+                <span className="text-[var(--color-text-muted)]">|</span>
                 <span className="text-emerald-400">LIVE</span>
               </div>
             </CardHeader>
 
             {/* VIDEO CANVAS / CAMERA VIEWPORT */}
-            <div className="relative aspect-video bg-[#040810] flex items-center justify-center overflow-hidden select-none border-b border-slate-800">
+            <div className="relative aspect-video bg-[#040810] flex items-center justify-center overflow-hidden select-none border-b border-[var(--color-border)]">
               {/* Traffic Highway Background Simulation */}
               <div className="absolute inset-0 bg-[radial-gradient(#132644_1.2px,transparent_1.2px)] [background-size:24px_24px] opacity-35" />
 
@@ -229,35 +229,35 @@ export const LiveANPR = () => {
                 </div>
 
                 {/* Vehicle SVG / Emoji Graphic */}
-                <div className="my-2 p-3 text-cyan-400">
-                  <Car className="w-20 h-20 text-cyan-300 stroke-[1.3] filter drop-shadow-[0_0_12px_rgba(0,210,255,0.5)]" />
+                <div className="my-2 p-3 text-[var(--color-amber)]">
+                  <Car className="w-20 h-20 text-[var(--color-amber)] stroke-[1.3] filter drop-shadow-[0_0_12px_rgba(0,210,255,0.5)]" />
                 </div>
 
                 {/* Sub-label under vehicle */}
-                <div className="text-[11px] font-mono text-slate-300 bg-black/70 px-2 py-0.5 rounded border border-slate-700">
+                <div className="text-[11px] font-mono text-[var(--color-text-secondary)] bg-black/70 px-2 py-0.5 rounded border border-[var(--color-border)]">
                   Speed: {currentVehicle.speed}
                 </div>
               </div>
 
               {/* HUD Overlays */}
-              <div className="absolute top-3 left-3 bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-md text-xs font-mono text-red-400 font-bold flex items-center gap-1.5 border border-red-500/30">
+              <div className="absolute top-3 left-3 bg-black/75  px-2.5 py-1 rounded-md text-xs font-mono text-red-400 font-bold flex items-center gap-1.5 border border-red-500/30">
                 <span className="w-2 h-2 rounded-full bg-red-500 animate-ping inline-block" />
                 REC ● {currentVehicle.camera}
               </div>
 
-              <div className="absolute top-3 right-3 bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-md text-xs font-mono text-cyan-300 border border-slate-700">
+              <div className="absolute top-3 right-3 bg-black/75  px-2.5 py-1 rounded-md text-xs font-mono text-[var(--color-amber)] border border-[var(--color-border)]">
                 {currentVehicle.time}
               </div>
 
-              <div className="absolute bottom-3 left-3 bg-black/75 backdrop-blur-md px-2.5 py-1 rounded-md text-xs font-mono text-slate-300 border border-slate-700">
+              <div className="absolute bottom-3 left-3 bg-black/75  px-2.5 py-1 rounded-md text-xs font-mono text-[var(--color-text-secondary)] border border-[var(--color-border)]">
                 AI Tracking: <span className="text-emerald-400 font-bold">LOCKED</span>
               </div>
             </div>
 
             {/* Video Controls & Camera Switcher */}
-            <CardContent className="p-3.5 bg-slate-900/60 flex flex-wrap items-center justify-between gap-3 text-xs">
+            <CardContent className="p-3.5 bg-[var(--color-card)]/60 flex flex-wrap items-center justify-between gap-3 text-xs">
               <div className="flex items-center gap-2">
-                <span className="text-slate-400 font-medium">Switch Active Node:</span>
+                <span className="text-[var(--color-text-muted)] font-medium">Switch Active Node:</span>
                 {['CAM-12', 'CAM-08', 'CAM-01', 'CAM-04'].map((c) => (
                   <button
                     key={c}
@@ -265,8 +265,8 @@ export const LiveANPR = () => {
                     onClick={() => setActiveCam(c)}
                     className={`px-2.5 py-1 rounded-lg text-xs font-mono font-bold cursor-pointer transition-all ${
                       activeCam === c
-                        ? 'bg-cyan-500 text-slate-950 shadow-md shadow-cyan-500/20'
-                        : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                        ? 'bg-cyan-500 text-slate-950 shadow-md shadow-[rgba(245,166,35,0.15)]'
+                        : 'bg-[var(--color-background)] text-[var(--color-text-secondary)] hover:bg-slate-700'
                     }`}
                   >
                     {c}
@@ -274,8 +274,8 @@ export const LiveANPR = () => {
                 ))}
               </div>
 
-              <div className="flex items-center gap-1.5 text-[11px] text-slate-400">
-                <Radio className="w-3.5 h-3.5 text-cyan-400" />
+              <div className="flex items-center gap-1.5 text-[11px] text-[var(--color-text-muted)]">
+                <Radio className="w-3.5 h-3.5 text-[var(--color-amber)]" />
                 <span>RTSP Low-Latency WebRTC Stream</span>
               </div>
             </CardContent>
@@ -284,16 +284,16 @@ export const LiveANPR = () => {
 
         {/* RIGHT COLUMN (5 COLS): TELEMETRY CARDS MATCHING EXACT WIREFRAME */}
         <div className="lg:col-span-5 space-y-4">
-          <Card variant="default" className="bg-[#0c182b] border-slate-700/80 shadow-2xl p-6 space-y-5">
+          <Card variant="default" className="bg-[#0c182b] border-[var(--color-border)] shadow-2xl p-6 space-y-5">
             {/* 1. DETECTED PLATE */}
             <div>
-              <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-2 flex items-center gap-1.5">
-                <ScanLine className="w-4 h-4 text-cyan-400" />
+              <label className="block text-xs font-bold text-[var(--color-text-muted)] uppercase tracking-widest mb-2 flex items-center gap-1.5">
+                <ScanLine className="w-4 h-4 text-[var(--color-amber)]" />
                 Detected Plate
               </label>
 
               {/* Embossed High-Security Indian License Plate Box */}
-              <div className="p-4 rounded-xl bg-[#040810] border border-slate-700 flex items-center justify-center shadow-inner">
+              <div className="p-4 rounded-xl bg-[#040810] border border-[var(--color-border)] flex items-center justify-center shadow-inner">
                 <div className="relative w-full max-w-xs px-4 py-2.5 bg-gradient-to-r from-slate-100 via-white to-slate-200 border-3 border-slate-900 rounded-lg shadow-xl flex items-center justify-between gap-3">
                   {/* Blue IND Badge */}
                   <div className="flex flex-col items-center justify-center text-blue-900 pr-2.5 border-r-2 border-slate-300 select-none">
@@ -317,9 +317,9 @@ export const LiveANPR = () => {
             </div>
 
             {/* 2. CONFIDENCE WITH ASCII & VISUAL BAR */}
-            <div className="space-y-2 pt-2 border-t border-slate-800/80">
+            <div className="space-y-2 pt-2 border-t border-[var(--color-border)]/80">
               <div className="flex items-center justify-between">
-                <label className="text-xs font-bold text-slate-400 uppercase tracking-widest">
+                <label className="text-xs font-bold text-[var(--color-text-muted)] uppercase tracking-widest">
                   Confidence
                 </label>
                 <span className="text-sm font-mono font-extrabold text-emerald-400">
@@ -328,43 +328,43 @@ export const LiveANPR = () => {
               </div>
 
               {/* ASCII Block Bar as specified in wireframe */}
-              <div className="font-mono text-xs text-cyan-400 tracking-wider bg-slate-950 p-2 rounded-lg border border-slate-800 select-none truncate">
+              <div className="font-mono text-xs text-[var(--color-amber)] tracking-wider bg-[var(--color-charcoal)] p-2 rounded-lg border border-[var(--color-border)] select-none truncate">
                 {getAsciiBar(currentVehicle.confidence)} {currentVehicle.confidence}%
               </div>
 
               {/* Smooth Animated Visual Gradient Bar */}
-              <div className="w-full h-2.5 rounded-full bg-slate-950 border border-slate-800 overflow-hidden p-0.5">
+              <div className="w-full h-2.5 rounded-full bg-[var(--color-charcoal)] border border-[var(--color-border)] overflow-hidden p-0.5">
                 <div
-                  className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-emerald-400 transition-all duration-500 shadow-[0_0_8px_rgba(0,210,255,0.6)]"
+                  className="h-full rounded-full bg-gradient-to-r from-[var(--color-amber)] to-emerald-400 transition-all duration-500 shadow-[0_0_8px_rgba(0,210,255,0.6)]"
                   style={{ width: `${currentVehicle.confidence}%` }}
                 />
               </div>
             </div>
 
             {/* 3. VEHICLE */}
-            <div className="pt-2 border-t border-slate-800/80">
-              <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
+            <div className="pt-2 border-t border-[var(--color-border)]/80">
+              <label className="block text-xs font-bold text-[var(--color-text-muted)] uppercase tracking-widest mb-1">
                 Vehicle
               </label>
-              <div className="p-3 rounded-xl bg-slate-950 border border-slate-800/90 flex items-center justify-between">
-                <span className="text-base font-bold text-white flex items-center gap-2">
-                  <Car className="w-4 h-4 text-cyan-400" />
+              <div className="p-3 rounded-xl bg-[var(--color-charcoal)] border border-[var(--color-border)]/90 flex items-center justify-between">
+                <span className="text-base font-bold text-[var(--color-text)] flex items-center gap-2">
+                  <Car className="w-4 h-4 text-[var(--color-amber)]" />
                   {currentVehicle.vehicle}
                 </span>
-                <span className="text-xs text-slate-400 font-medium">
+                <span className="text-xs text-[var(--color-text-muted)] font-medium">
                   {currentVehicle.vehicleDetail}
                 </span>
               </div>
             </div>
 
             {/* 4. TIME */}
-            <div className="pt-2 border-t border-slate-800/80">
-              <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
+            <div className="pt-2 border-t border-[var(--color-border)]/80">
+              <label className="block text-xs font-bold text-[var(--color-text-muted)] uppercase tracking-widest mb-1">
                 Time
               </label>
-              <div className="p-3 rounded-xl bg-slate-950 border border-slate-800/90 flex items-center justify-between">
-                <span className="font-mono text-base font-bold text-cyan-300 flex items-center gap-2">
-                  <Clock className="w-4 h-4 text-slate-400" />
+              <div className="p-3 rounded-xl bg-[var(--color-charcoal)] border border-[var(--color-border)]/90 flex items-center justify-between">
+                <span className="font-mono text-base font-bold text-[var(--color-amber)] flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-[var(--color-text-muted)]" />
                   {currentVehicle.time}
                 </span>
                 <Badge variant="info" size="sm">
@@ -374,14 +374,14 @@ export const LiveANPR = () => {
             </div>
 
             {/* 5. CAMERA */}
-            <div className="pt-2 border-t border-slate-800/80">
-              <label className="block text-xs font-bold text-slate-400 uppercase tracking-widest mb-1">
+            <div className="pt-2 border-t border-[var(--color-border)]/80">
+              <label className="block text-xs font-bold text-[var(--color-text-muted)] uppercase tracking-widest mb-1">
                 Camera
               </label>
-              <div className="p-3 rounded-xl bg-slate-950 border border-slate-800/90 space-y-1">
+              <div className="p-3 rounded-xl bg-[var(--color-charcoal)] border border-[var(--color-border)]/90 space-y-1">
                 <div className="flex items-center justify-between">
-                  <span className="font-mono font-bold text-base text-white flex items-center gap-2">
-                    <Camera className="w-4 h-4 text-cyan-400" />
+                  <span className="font-mono font-bold text-base text-[var(--color-text)] flex items-center gap-2">
+                    <Camera className="w-4 h-4 text-[var(--color-amber)]" />
                     {currentVehicle.camera}
                   </span>
                   <Badge
@@ -391,7 +391,7 @@ export const LiveANPR = () => {
                     {currentVehicle.status}
                   </Badge>
                 </div>
-                <p className="text-[11px] text-slate-400 pl-6">
+                <p className="text-[11px] text-[var(--color-text-muted)] pl-6">
                   {currentVehicle.cameraLocation}
                 </p>
               </div>
@@ -404,36 +404,36 @@ export const LiveANPR = () => {
           ARCHITECTURE PIPELINE FLOW BADGE (AS IN WIREFRAME)
           Camera → Backend → AI Model → WebSocket → React
       ──────────────────────────────────────────── */}
-      <Card variant="default" className="p-4 bg-[#070e1c] border-slate-800">
+      <Card variant="default" className="p-4 bg-[#070e1c] border-[var(--color-border)]">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2 text-xs font-semibold text-slate-300">
-            <Radio className="w-4 h-4 text-cyan-400 animate-pulse" />
+          <div className="flex items-center gap-2 text-xs font-semibold text-[var(--color-text-secondary)]">
+            <Radio className="w-4 h-4 text-[var(--color-amber)] animate-pulse" />
             <span className="uppercase tracking-wider">SIH Production Architecture Pipeline:</span>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-2 text-xs font-mono font-bold">
-            <span className="px-3 py-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 shadow">
+            <span className="px-3 py-1 rounded-lg bg-[var(--color-card)] border border-[var(--color-border)] text-[var(--color-text)] shadow">
               Camera
             </span>
-            <ArrowRight className="w-3.5 h-3.5 text-cyan-400" />
+            <ArrowRight className="w-3.5 h-3.5 text-[var(--color-amber)]" />
 
-            <span className="px-3 py-1 rounded-lg bg-slate-900 border border-slate-700 text-slate-200 shadow">
+            <span className="px-3 py-1 rounded-lg bg-[var(--color-card)] border border-[var(--color-border)] text-[var(--color-text)] shadow">
               Backend
             </span>
-            <ArrowRight className="w-3.5 h-3.5 text-cyan-400" />
+            <ArrowRight className="w-3.5 h-3.5 text-[var(--color-amber)]" />
 
-            <span className="px-3 py-1 rounded-lg bg-cyan-950/80 border border-cyan-500/50 text-cyan-300 shadow">
+            <span className="px-3 py-1 rounded-lg bg-cyan-950/80 border border-[var(--color-amber)]/50 text-[var(--color-amber)] shadow">
               AI Model (YOLOv8)
             </span>
-            <ArrowRight className="w-3.5 h-3.5 text-cyan-400" />
+            <ArrowRight className="w-3.5 h-3.5 text-[var(--color-amber)]" />
 
             <span className="px-3 py-1 rounded-lg bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 shadow flex items-center gap-1.5">
               <Wifi className="w-3 h-3" />
               WebSocket
             </span>
-            <ArrowRight className="w-3.5 h-3.5 text-cyan-400" />
+            <ArrowRight className="w-3.5 h-3.5 text-[var(--color-amber)]" />
 
-            <span className="px-3 py-1 rounded-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-md">
+            <span className="px-3 py-1 rounded-lg bg-gradient-to-r from-[var(--color-amber)] to-[var(--color-amber-dark)] text-slate-950 shadow-md">
               React UI
             </span>
           </div>

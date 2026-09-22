@@ -1,69 +1,130 @@
 import React from 'react';
-import LoadingSpinner from './LoadingSpinner';
 
 export const Button = ({
   children,
   variant = 'primary',
   size = 'md',
+  icon,
+  iconRight,
   isLoading = false,
   disabled = false,
-  leftIcon,
-  rightIcon,
   className = '',
-  type = 'button',
-  onClick,
   ...props
 }) => {
-  const baseStyles = 'inline-flex items-center justify-center font-medium rounded-lg transition-all duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-slate-900 disabled:opacity-50 disabled:cursor-not-allowed disabled:pointer-events-none select-none active:scale-[0.98] cursor-pointer';
-
   const sizeStyles = {
-    xs: 'text-xs px-2.5 py-1 gap-1.5',
-    sm: 'text-xs px-3 py-1.5 gap-1.5 font-semibold',
-    md: 'text-sm px-4 py-2 gap-2',
-    lg: 'text-base px-6 py-2.5 gap-2.5 font-semibold'
+    xs: 'px-2.5 py-1 text-[11px] gap-1.5 rounded',
+    sm: 'px-3 py-1.5 text-xs gap-1.5 rounded-md',
+    md: 'px-4 py-2 text-xs gap-2 rounded-lg',
+    lg: 'px-5 py-2.5 text-sm gap-2.5 rounded-lg'
   };
 
-  const variantStyles = {
-    primary: 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-semibold shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/40 focus:ring-cyan-400 border border-cyan-400/30',
-    secondary: 'bg-slate-800/90 hover:bg-slate-750 text-slate-100 border border-slate-700/80 hover:border-slate-600 shadow-sm focus:ring-slate-400',
-    danger: 'bg-gradient-to-r from-red-600 to-rose-700 hover:from-red-500 hover:to-rose-600 text-white shadow-lg shadow-red-500/25 hover:shadow-red-500/40 focus:ring-red-500 border border-red-500/30 font-semibold',
-    warning: 'bg-amber-500 hover:bg-amber-400 text-slate-950 font-semibold shadow-lg shadow-amber-500/20 focus:ring-amber-400 border border-amber-400/40',
-    outline: 'bg-transparent hover:bg-cyan-500/10 text-cyan-400 border border-cyan-500/40 hover:border-cyan-400 focus:ring-cyan-500',
-    ghost: 'bg-transparent hover:bg-slate-800/60 text-slate-300 hover:text-white border border-transparent focus:ring-slate-400'
+  const getVariantStyle = () => {
+    switch (variant) {
+      case 'primary':
+        return {
+          background: 'var(--color-amber)',
+          color: 'var(--color-charcoal)',
+          border: '1px solid var(--color-amber)',
+          fontWeight: 600,
+        };
+      case 'secondary':
+        return {
+          background: 'transparent',
+          color: 'var(--color-text)',
+          border: '1px solid var(--color-border-dark)',
+          fontWeight: 500,
+        };
+      case 'outline':
+        return {
+          background: 'transparent',
+          color: 'var(--color-text-secondary)',
+          border: '1px solid var(--color-border)',
+          fontWeight: 500,
+        };
+      case 'ghost':
+        return {
+          background: 'transparent',
+          color: 'var(--color-text-secondary)',
+          border: '1px solid transparent',
+          fontWeight: 500,
+        };
+      case 'danger':
+        return {
+          background: 'var(--color-danger)',
+          color: '#fff',
+          border: '1px solid var(--color-danger)',
+          fontWeight: 600,
+        };
+      case 'success':
+        return {
+          background: 'var(--color-success)',
+          color: '#fff',
+          border: '1px solid var(--color-success)',
+          fontWeight: 600,
+        };
+      default:
+        return {
+          background: 'var(--color-amber)',
+          color: 'var(--color-charcoal)',
+          border: '1px solid var(--color-amber)',
+          fontWeight: 600,
+        };
+    }
   };
 
-  const spinnerColorMap = {
-    primary: 'white',
-    secondary: 'white',
-    danger: 'white',
-    warning: 'white',
-    outline: 'primary',
-    ghost: 'primary'
+  const handleHover = (e, entering) => {
+    if (disabled || isLoading) return;
+    switch (variant) {
+      case 'primary':
+        e.currentTarget.style.background = entering ? 'var(--color-amber-dark)' : 'var(--color-amber)';
+        e.currentTarget.style.borderColor = entering ? 'var(--color-amber-dark)' : 'var(--color-amber)';
+        break;
+      case 'secondary':
+        e.currentTarget.style.background = entering ? 'var(--color-background)' : 'transparent';
+        break;
+      case 'outline':
+        e.currentTarget.style.background = entering ? 'var(--color-background)' : 'transparent';
+        e.currentTarget.style.borderColor = entering ? 'var(--color-border-dark)' : 'var(--color-border)';
+        break;
+      case 'ghost':
+        e.currentTarget.style.background = entering ? 'var(--color-background)' : 'transparent';
+        break;
+      case 'danger':
+        e.currentTarget.style.opacity = entering ? '0.9' : '1';
+        break;
+      case 'success':
+        e.currentTarget.style.opacity = entering ? '0.9' : '1';
+        break;
+      default:
+        break;
+    }
   };
 
   return (
     <button
-      type={type}
+      type="button"
       disabled={disabled || isLoading}
-      onClick={onClick}
-      className={`${baseStyles} ${sizeStyles[size] || sizeStyles.md} ${variantStyles[variant] || variantStyles.primary} ${className}`}
+      className={`inline-flex items-center justify-center font-medium tracking-wide transition-all duration-150 cursor-pointer select-none
+        ${sizeStyles[size] || sizeStyles.md}
+        ${disabled ? 'opacity-50 cursor-not-allowed' : ''}
+        ${className}`}
+      style={getVariantStyle()}
+      onMouseEnter={(e) => handleHover(e, true)}
+      onMouseLeave={(e) => handleHover(e, false)}
       {...props}
     >
-      {isLoading ? (
-        <>
-          <LoadingSpinner
-            size={size === 'lg' ? 'md' : 'sm'}
-            variant={spinnerColorMap[variant] || 'white'}
-          />
-          <span>{children}</span>
-        </>
-      ) : (
-        <>
-          {leftIcon && <span className="shrink-0 flex items-center">{leftIcon}</span>}
-          <span>{children}</span>
-          {rightIcon && <span className="shrink-0 flex items-center">{rightIcon}</span>}
-        </>
+      {isLoading && (
+        <div
+          className="w-3.5 h-3.5 border-2 rounded-full animate-spin"
+          style={{
+            borderColor: variant === 'primary' ? 'rgba(28,28,26,0.2)' : 'rgba(145,139,128,0.3)',
+            borderTopColor: variant === 'primary' ? 'var(--color-charcoal)' : 'var(--color-text-secondary)'
+          }}
+        />
       )}
+      {!isLoading && icon && <span className="shrink-0">{icon}</span>}
+      {children && <span>{children}</span>}
+      {iconRight && <span className="shrink-0">{iconRight}</span>}
     </button>
   );
 };

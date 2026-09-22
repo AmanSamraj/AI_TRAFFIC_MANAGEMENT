@@ -114,8 +114,8 @@ export const VehicleDetails = () => {
       key: 'camera',
       label: 'Camera',
       render: (val) => (
-        <span className="font-mono font-bold text-cyan-400 flex items-center gap-1.5">
-          <Camera className="w-3.5 h-3.5 text-slate-400" />
+        <span className="font-mono font-bold text-[var(--color-amber)] flex items-center gap-1.5">
+          <Camera className="w-3.5 h-3.5 text-[var(--color-text-muted)]" />
           {val}
         </span>
       )
@@ -124,8 +124,8 @@ export const VehicleDetails = () => {
       key: 'time',
       label: 'Time',
       render: (val) => (
-        <span className="font-mono text-slate-200 flex items-center gap-1.5">
-          <Clock className="w-3.5 h-3.5 text-slate-400" />
+        <span className="font-mono text-[var(--color-text)] flex items-center gap-1.5">
+          <Clock className="w-3.5 h-3.5 text-[var(--color-text-muted)]" />
           {val}
         </span>
       )
@@ -134,7 +134,7 @@ export const VehicleDetails = () => {
       key: 'location',
       label: 'Location',
       render: (val) => (
-        <span className="text-white font-medium flex items-center gap-1.5">
+        <span className="text-[var(--color-text)] font-medium flex items-center gap-1.5">
           <MapPin className="w-3.5 h-3.5 text-rose-400" />
           {val}
         </span>
@@ -143,7 +143,7 @@ export const VehicleDetails = () => {
     {
       key: 'speed',
       label: 'Recorded Speed',
-      render: (val) => <span className="font-mono text-xs text-slate-300">{val}</span>
+      render: (val) => <span className="font-mono text-xs text-[var(--color-text-secondary)]">{val}</span>
     },
     {
       key: 'confidence',
@@ -160,7 +160,7 @@ export const VehicleDetails = () => {
     {
       key: 'id',
       label: 'Challan ID',
-      render: (val) => <span className="font-mono text-cyan-300 font-semibold">{val}</span>
+      render: (val) => <span className="font-mono text-[var(--color-amber)] font-semibold">{val}</span>
     },
     { key: 'date', label: 'Timestamp' },
     { key: 'violation', label: 'Infraction' },
@@ -168,7 +168,7 @@ export const VehicleDetails = () => {
     {
       key: 'penalty',
       label: 'Fine Amount',
-      render: (val) => <span className="font-mono font-bold text-white">{val}</span>
+      render: (val) => <span className="font-mono font-bold text-[var(--color-text)]">{val}</span>
     },
     {
       key: 'status',
@@ -184,7 +184,7 @@ export const VehicleDetails = () => {
   return (
     <div className="space-y-6 max-w-6xl mx-auto">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-800">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-[var(--color-border)]">
         <div className="flex items-center gap-3">
           <Button
             variant="ghost"
@@ -196,11 +196,11 @@ export const VehicleDetails = () => {
           </Button>
 
           <div>
-            <h1 className="text-xl font-bold text-white flex items-center gap-2">
-              <Car className="w-5 h-5 text-cyan-400" />
+            <h1 className="text-xl font-bold text-[var(--color-text)] flex items-center gap-2">
+              <Car className="w-5 h-5 text-[var(--color-amber)]" />
               Dossier: {currentProfile.plate}
             </h1>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-xs text-[var(--color-text-muted)] mt-0.5">
               Integrated National Vahan 4.0 Telemetry & Traffic Enforcement Profile
             </p>
           </div>
@@ -245,7 +245,7 @@ export const VehicleDetails = () => {
       ──────────────────────────────────────────── */}
       <div className="space-y-3">
         <div className="flex items-center justify-between">
-          <h2 className="text-sm font-black text-cyan-400 uppercase tracking-widest flex items-center gap-2">
+          <h2 className="text-sm font-black text-[var(--color-amber)] uppercase tracking-widest flex items-center gap-2">
             <Layers className="w-4 h-4" />
             VEHICLE PROFILE
           </h2>
@@ -257,11 +257,11 @@ export const VehicleDetails = () => {
           </Badge>
         </div>
 
-        <Card variant="glow" className="bg-[#0c182b] border-2 border-cyan-500/40 p-6 shadow-2xl rounded-2xl">
+        <Card variant="glow" className="bg-[#0c182b] border-2 border-[var(--color-amber)] p-6 shadow-2xl rounded-2xl">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
             {/* Embossed Number Plate */}
-            <div className="lg:col-span-4 flex flex-col items-center justify-center p-4 bg-[#050b14] rounded-xl border border-slate-800 shadow-inner">
-              <div className="text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-2.5">
+            <div className="lg:col-span-4 flex flex-col items-center justify-center p-4 bg-[#050b14] rounded-xl border border-[var(--color-border)] shadow-inner">
+              <div className="text-[11px] font-bold text-[var(--color-text-muted)] uppercase tracking-wider mb-2.5">
                 Official Registration Plate
               </div>
               <div className="relative w-full max-w-xs px-4 py-2.5 bg-gradient-to-r from-slate-100 via-white to-slate-200 border-3 border-slate-950 rounded-lg shadow-2xl flex items-center justify-between gap-3 select-all">
@@ -278,42 +278,42 @@ export const VehicleDetails = () => {
                   ⚙
                 </div>
               </div>
-              <div className="text-[11px] font-mono text-slate-400 mt-3 text-center">
+              <div className="text-[11px] font-mono text-[var(--color-text-muted)] mt-3 text-center">
                 {currentProfile.vehicleDetail}
               </div>
             </div>
 
             {/* Wireframe Box */}
             <div className="lg:col-span-8">
-              <div className="p-5 rounded-xl bg-slate-950/80 border border-slate-800 font-mono space-y-3.5 text-sm">
-                <div className="flex items-center justify-between pb-2.5 border-b border-slate-800/80">
-                  <span className="text-slate-400 font-bold uppercase tracking-wider text-xs">Vehicle:</span>
-                  <span className="text-white font-bold text-base flex items-center gap-2">
-                    {currentProfile.vehicle === 'Car' && <Car className="w-4 h-4 text-cyan-400" />}
-                    {currentProfile.vehicle === 'SUV' && <Car className="w-4 h-4 text-cyan-400" />}
+              <div className="p-5 rounded-xl bg-[var(--color-charcoal)]/80 border border-[var(--color-border)] font-mono space-y-3.5 text-sm">
+                <div className="flex items-center justify-between pb-2.5 border-b border-[var(--color-border)]/80">
+                  <span className="text-[var(--color-text-muted)] font-bold uppercase tracking-wider text-xs">Vehicle:</span>
+                  <span className="text-[var(--color-text)] font-bold text-base flex items-center gap-2">
+                    {currentProfile.vehicle === 'Car' && <Car className="w-4 h-4 text-[var(--color-amber)]" />}
+                    {currentProfile.vehicle === 'SUV' && <Car className="w-4 h-4 text-[var(--color-amber)]" />}
                     {currentProfile.vehicle === 'Truck' && <Truck className="w-4 h-4 text-amber-400" />}
                     {currentProfile.vehicle === 'Motorcycle' && <Bike className="w-4 h-4 text-blue-400" />}
                     {currentProfile.vehicle}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between pb-2.5 border-b border-slate-800/80">
-                  <span className="text-slate-400 font-bold uppercase tracking-wider text-xs">Plate:</span>
-                  <span className="text-cyan-300 font-black text-lg tracking-widest">
+                <div className="flex items-center justify-between pb-2.5 border-b border-[var(--color-border)]/80">
+                  <span className="text-[var(--color-text-muted)] font-bold uppercase tracking-wider text-xs">Plate:</span>
+                  <span className="text-[var(--color-amber)] font-black text-lg tracking-widest">
                     {currentProfile.plate}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between pb-2.5 border-b border-slate-800/80">
-                  <span className="text-slate-400 font-bold uppercase tracking-wider text-xs">First Seen:</span>
+                <div className="flex items-center justify-between pb-2.5 border-b border-[var(--color-border)]/80">
+                  <span className="text-[var(--color-text-muted)] font-bold uppercase tracking-wider text-xs">First Seen:</span>
                   <span className="text-emerald-400 font-bold flex items-center gap-1.5">
                     <Clock className="w-4 h-4 text-emerald-500" />
                     {currentProfile.firstSeen}
                   </span>
                 </div>
 
-                <div className="flex items-center justify-between pb-2.5 border-b border-slate-800/80">
-                  <span className="text-slate-400 font-bold uppercase tracking-wider text-xs">Last Seen:</span>
+                <div className="flex items-center justify-between pb-2.5 border-b border-[var(--color-border)]/80">
+                  <span className="text-[var(--color-text-muted)] font-bold uppercase tracking-wider text-xs">Last Seen:</span>
                   <span className="text-amber-400 font-bold flex items-center gap-1.5">
                     <Clock className="w-4 h-4 text-amber-500" />
                     {currentProfile.lastSeen}
@@ -321,8 +321,8 @@ export const VehicleDetails = () => {
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-slate-400 font-bold uppercase tracking-wider text-xs">Total Detections:</span>
-                  <span className="text-white font-black text-lg bg-cyan-950/80 border border-cyan-500/50 px-3 py-0.5 rounded-lg text-cyan-300">
+                  <span className="text-[var(--color-text-muted)] font-bold uppercase tracking-wider text-xs">Total Detections:</span>
+                  <span className="text-[var(--color-text)] font-black text-lg bg-cyan-950/80 border border-[var(--color-amber)]/50 px-3 py-0.5 rounded-lg text-[var(--color-amber)]">
                     {currentProfile.totalDetections}
                   </span>
                 </div>
@@ -343,11 +343,11 @@ export const VehicleDetails = () => {
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-lg font-bold text-white uppercase tracking-wider flex items-center gap-2">
-              <Clock className="w-5 h-5 text-cyan-400" />
+            <h2 className="text-lg font-bold text-[var(--color-text)] uppercase tracking-wider flex items-center gap-2">
+              <Clock className="w-5 h-5 text-[var(--color-amber)]" />
               Detection History
             </h2>
-            <p className="text-xs text-slate-400 mt-0.5">
+            <p className="text-xs text-[var(--color-text-muted)] mt-0.5">
               Chronological surveillance logs and checkpoint captures for {currentProfile.plate}
             </p>
           </div>
@@ -358,23 +358,23 @@ export const VehicleDetails = () => {
         </div>
 
         {/* Visual Route Corridor Progression Bar */}
-        <Card variant="default" className="bg-[#070e1c] border-slate-800 p-4">
-          <div className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
+        <Card variant="default" className="bg-[#070e1c] border-[var(--color-border)] p-4">
+          <div className="text-xs font-bold text-[var(--color-text-muted)] uppercase tracking-wider mb-3">
             Corridor Movement Progression:
           </div>
           <div className="flex flex-wrap items-center gap-2 sm:gap-4 font-mono text-xs">
             {currentProfile.detectionHistory.map((step, idx) => (
               <React.Fragment key={step.camera + step.time}>
-                <div className="flex items-center gap-2 bg-slate-900 border border-slate-700/80 px-3 py-1.5 rounded-xl shadow">
+                <div className="flex items-center gap-2 bg-[var(--color-card)] border border-[var(--color-border)] px-3 py-1.5 rounded-xl shadow">
                   <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-                  <span className="font-bold text-cyan-300">{step.camera}</span>
-                  <span className="text-slate-500">|</span>
-                  <span className="text-slate-200">{step.location}</span>
+                  <span className="font-bold text-[var(--color-amber)]">{step.camera}</span>
+                  <span className="text-[var(--color-text-muted)]">|</span>
+                  <span className="text-[var(--color-text)]">{step.location}</span>
                   <span className="text-[11px] text-emerald-400 font-semibold">({step.time})</span>
                 </div>
 
                 {idx < currentProfile.detectionHistory.length - 1 && (
-                  <ArrowRight className="w-4 h-4 text-slate-500 shrink-0" />
+                  <ArrowRight className="w-4 h-4 text-[var(--color-text-muted)] shrink-0" />
                 )}
               </React.Fragment>
             ))}
@@ -382,7 +382,7 @@ export const VehicleDetails = () => {
         </Card>
 
         {/* Detection History Table */}
-        <Card variant="default" className="bg-[#070e1c] border-slate-800">
+        <Card variant="default" className="bg-[#070e1c] border-[var(--color-border)]">
           <CardContent className="p-0">
             <Table columns={detectionColumns} data={currentProfile.detectionHistory} />
           </CardContent>

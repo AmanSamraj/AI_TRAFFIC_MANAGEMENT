@@ -164,8 +164,8 @@ export const ANPR = () => {
       key: 'time',
       label: 'TIME',
       render: (val) => (
-        <span className="font-mono text-slate-300 font-semibold flex items-center gap-1.5">
-          <Clock className="w-3.5 h-3.5 text-cyan-400" />
+        <span className="font-mono text-[var(--color-text-secondary)] font-semibold flex items-center gap-1.5">
+          <Clock className="w-3.5 h-3.5 text-[var(--color-amber)]" />
           {val}
         </span>
       )
@@ -174,7 +174,7 @@ export const ANPR = () => {
       key: 'plate',
       label: 'PLATE',
       render: (val) => (
-        <span className="font-mono font-bold text-cyan-300 bg-cyan-950/60 px-2.5 py-1 rounded-md border border-cyan-500/40 tracking-wider inline-block">
+        <span className="font-mono font-bold text-[var(--color-amber)] bg-cyan-950/60 px-2.5 py-1 rounded-md border border-[var(--color-amber)] tracking-wider inline-block">
           {val}
         </span>
       )
@@ -183,8 +183,8 @@ export const ANPR = () => {
       key: 'vehicle',
       label: 'VEHICLE',
       render: (val) => (
-        <span className="text-slate-200 font-medium flex items-center gap-1.5">
-          <Car className="w-3.5 h-3.5 text-slate-400" />
+        <span className="text-[var(--color-text)] font-medium flex items-center gap-1.5">
+          <Car className="w-3.5 h-3.5 text-[var(--color-text-muted)]" />
           {val}
         </span>
       )
@@ -193,7 +193,7 @@ export const ANPR = () => {
       key: 'camera',
       label: 'CAMERA',
       render: (val) => (
-        <span className="font-mono font-semibold text-slate-300 bg-slate-800/80 px-2 py-0.5 rounded border border-slate-700">
+        <span className="font-mono font-semibold text-[var(--color-text-secondary)] bg-[var(--color-background)] px-2 py-0.5 rounded border border-[var(--color-border)]">
           {val}
         </span>
       )
@@ -222,19 +222,19 @@ export const ANPR = () => {
           HEADER: ANPR DETECTION
       ──────────────────────────────────────────────────── */}
       <div>
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-800">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-[var(--color-border)]">
           <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-cyan-500/10 border border-cyan-500/30 text-cyan-400">
+            <div className="p-2.5 rounded-xl bg-[rgba(245,166,35,0.06)] border border-[var(--color-amber)]/30 text-[var(--color-amber)]">
               <ScanLine className="w-6 h-6 stroke-[2.2]" />
             </div>
             <div>
-              <h1 className="text-xl sm:text-2xl font-black tracking-wider text-white uppercase flex items-center gap-2">
+              <h1 className="text-xl sm:text-2xl font-black tracking-wider text-[var(--color-text)] uppercase flex items-center gap-2">
                 ANPR DETECTION
                 <Badge variant="danger" size="sm" dot={true} pulse={true}>
                   LIVE ENGINE
                 </Badge>
               </h1>
-              <p className="text-xs text-slate-400 mt-0.5">
+              <p className="text-xs text-[var(--color-text-muted)] mt-0.5">
                 Automated Number Plate Recognition & High-Speed OCR Surveillance (SIH Core)
               </p>
             </div>
@@ -279,18 +279,18 @@ export const ANPR = () => {
           SEARCH & FILTER TOOLBAR
           [ Search Plate ] [ Camera ▼ ] [ Date ▼ ] [ Search ]
       ──────────────────────────────────────────────────── */}
-      <Card variant="default" className="p-4 bg-[#0c182b]/95 border-slate-800 shadow-xl">
+      <Card variant="default" className="p-4 bg-[#0c182b]/95 border-[var(--color-border)] shadow-xl">
         <div className="flex flex-wrap items-center gap-3">
           {/* [ Search Plate ] */}
           <div className="relative flex-1 min-w-[200px] max-w-sm">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-text-muted)] pointer-events-none" />
             <input
               type="text"
               value={searchPlate}
               onChange={(e) => setSearchPlate(e.target.value)}
               onKeyDown={(e) => e.key === 'Enter' && handleSearchClick()}
               placeholder="Search Plate (e.g. HP01, DL05)..."
-              className="w-full bg-[#070e1c] text-slate-100 placeholder-slate-500 border border-slate-700/80 rounded-xl pl-9 pr-3 py-2 text-xs font-mono focus:outline-none focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 transition-all"
+              className="w-full bg-[#070e1c] text-[var(--color-text)] placeholder-[var(--color-text-muted)] border border-[var(--color-border)] rounded-xl pl-9 pr-3 py-2 text-xs font-mono focus:outline-none focus:border-[var(--color-amber)] focus:ring-1 focus:ring-[var(--color-amber)] transition-all"
             />
           </div>
 
@@ -340,7 +340,7 @@ export const ANPR = () => {
       <Card variant="default">
         <CardHeader className="p-4 flex items-center justify-between">
           <div>
-            <CardTitle className="text-base font-bold text-slate-100 flex items-center gap-2">
+            <CardTitle className="text-base font-bold text-[var(--color-text)] flex items-center gap-2">
               Recent Number Plate Reads
             </CardTitle>
             <CardDescription>
@@ -348,7 +348,7 @@ export const ANPR = () => {
             </CardDescription>
           </div>
 
-          <span className="text-xs font-mono text-cyan-400 bg-cyan-950/40 px-2.5 py-1 rounded-md border border-cyan-500/30">
+          <span className="text-xs font-mono text-[var(--color-amber)] bg-[rgba(91,103,112,0.06)] px-2.5 py-1 rounded-md border border-[var(--color-amber)]/30">
             {filteredReads.length} Vehicles Logged
           </span>
         </CardHeader>
@@ -362,7 +362,7 @@ export const ANPR = () => {
           />
         </CardContent>
 
-        <div className="p-4 border-t border-slate-800/80">
+        <div className="p-4 border-t border-[var(--color-border)]/80">
           <Pagination
             currentPage={currentPage}
             totalPages={3}
@@ -420,13 +420,13 @@ export const ANPR = () => {
         }
       >
         {selectedDetection && (
-          <div className="space-y-5 text-slate-200">
+          <div className="space-y-5 text-[var(--color-text)]">
             {/* 1. Vehicle Image Frame */}
             <div>
-              <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+              <label className="block text-[11px] font-bold text-[var(--color-text-muted)] uppercase tracking-wider mb-1.5">
                 Vehicle Image (Optical Scene Capture)
               </label>
-              <div className="relative aspect-video rounded-xl bg-slate-950 border border-slate-800 overflow-hidden flex items-center justify-center select-none shadow-inner">
+              <div className="relative aspect-video rounded-xl bg-[var(--color-charcoal)] border border-[var(--color-border)] overflow-hidden flex items-center justify-center select-none shadow-inner">
                 {/* Simulated CCTV Grid & Frame */}
                 <div className="absolute inset-0 bg-[radial-gradient(#1e3a5f_1px,transparent_1px)] [background-size:16px_16px] opacity-35" />
 
@@ -436,15 +436,15 @@ export const ANPR = () => {
 
                 {/* Simulated Vehicle Bounding Box */}
                 <div className="relative z-10 w-3/4 max-w-sm h-36 border-2 border-cyan-400 rounded-lg bg-cyan-950/20 p-2 flex flex-col justify-between shadow-[0_0_15px_rgba(0,210,255,0.3)] animate-pulse">
-                  <div className="flex items-center justify-between text-[10px] font-mono bg-cyan-950/90 text-cyan-200 px-1.5 py-0.5 rounded border border-cyan-500/40">
+                  <div className="flex items-center justify-between text-[10px] font-mono bg-cyan-950/90 text-cyan-200 px-1.5 py-0.5 rounded border border-[var(--color-amber)]">
                     <span>{selectedDetection.vehicleModel}</span>
                     <span className="text-emerald-400 font-bold">{selectedDetection.confidence}</span>
                   </div>
 
                   {/* Vehicle Graphic Representation */}
-                  <div className="flex flex-col items-center justify-center my-auto text-slate-300">
-                    <Car className="w-12 h-12 text-cyan-400/90 stroke-[1.5]" />
-                    <span className="text-[11px] font-semibold text-slate-300">
+                  <div className="flex flex-col items-center justify-center my-auto text-[var(--color-text-secondary)]">
+                    <Car className="w-12 h-12 text-[var(--color-amber)]/90 stroke-[1.5]" />
+                    <span className="text-[11px] font-semibold text-[var(--color-text-secondary)]">
                       {selectedDetection.vehicle} (Velocity: {selectedDetection.speed})
                     </span>
                   </div>
@@ -456,10 +456,10 @@ export const ANPR = () => {
                 </div>
 
                 {/* CCTV Watermark */}
-                <div className="absolute top-2 left-2 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono text-red-400 font-bold">
+                <div className="absolute top-2 left-2 bg-black/70  px-2 py-0.5 rounded text-[10px] font-mono text-red-400 font-bold">
                   ● {selectedDetection.camera} REC
                 </div>
-                <div className="absolute bottom-2 right-2 bg-black/70 backdrop-blur-md px-2 py-0.5 rounded text-[10px] font-mono text-slate-300">
+                <div className="absolute bottom-2 right-2 bg-black/70  px-2 py-0.5 rounded text-[10px] font-mono text-[var(--color-text-secondary)]">
                   {selectedDetection.time}
                 </div>
               </div>
@@ -467,10 +467,10 @@ export const ANPR = () => {
 
             {/* 2. Number Plate Image (Zoomed OCR Crop) */}
             <div>
-              <label className="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">
+              <label className="block text-[11px] font-bold text-[var(--color-text-muted)] uppercase tracking-wider mb-1.5">
                 Number Plate Image (Cropped OCR Alignment)
               </label>
-              <div className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 flex items-center justify-center">
+              <div className="p-3.5 rounded-xl bg-[var(--color-charcoal)] border border-[var(--color-border)] flex items-center justify-center">
                 {/* Indian High Security Registration Plate Style */}
                 <div className="relative px-6 py-2.5 bg-gradient-to-r from-slate-100 via-white to-slate-200 border-2 border-slate-900 rounded-md shadow-lg flex items-center gap-3">
                   {/* Blue IND stripe */}
@@ -492,16 +492,16 @@ export const ANPR = () => {
             {/* 3. Detailed Telemetry Metadata Grid */}
             <div className="grid grid-cols-2 gap-3 text-xs">
               {/* Detected Plate */}
-              <div className="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
-                <span className="text-slate-400 font-medium block">Detected Plate:</span>
-                <p className="text-base font-mono font-bold text-cyan-300 mt-0.5">
+              <div className="p-3 rounded-xl bg-[var(--color-charcoal)]/70 border border-[var(--color-border)]">
+                <span className="text-[var(--color-text-muted)] font-medium block">Detected Plate:</span>
+                <p className="text-base font-mono font-bold text-[var(--color-amber)] mt-0.5">
                   {selectedDetection.plate}
                 </p>
               </div>
 
               {/* Confidence */}
-              <div className="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
-                <span className="text-slate-400 font-medium block">Confidence:</span>
+              <div className="p-3 rounded-xl bg-[var(--color-charcoal)]/70 border border-[var(--color-border)]">
+                <span className="text-[var(--color-text-muted)] font-medium block">Confidence:</span>
                 <p className="text-base font-mono font-bold text-emerald-400 mt-0.5 flex items-center gap-1.5">
                   <CheckCircle2 className="w-4 h-4" />
                   {selectedDetection.confidence}
@@ -509,27 +509,27 @@ export const ANPR = () => {
               </div>
 
               {/* Camera */}
-              <div className="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
-                <span className="text-slate-400 font-medium block">Camera:</span>
-                <p className="font-semibold text-slate-200 mt-0.5 flex items-center gap-1.5">
-                  <Camera className="w-3.5 h-3.5 text-cyan-400" />
+              <div className="p-3 rounded-xl bg-[var(--color-charcoal)]/70 border border-[var(--color-border)]">
+                <span className="text-[var(--color-text-muted)] font-medium block">Camera:</span>
+                <p className="font-semibold text-[var(--color-text)] mt-0.5 flex items-center gap-1.5">
+                  <Camera className="w-3.5 h-3.5 text-[var(--color-amber)]" />
                   {selectedDetection.cameraName}
                 </p>
               </div>
 
               {/* Timestamp */}
-              <div className="p-3 rounded-xl bg-slate-950/70 border border-slate-800">
-                <span className="text-slate-400 font-medium block">Timestamp:</span>
-                <p className="font-mono font-semibold text-slate-200 mt-0.5 flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5 text-slate-400" />
+              <div className="p-3 rounded-xl bg-[var(--color-charcoal)]/70 border border-[var(--color-border)]">
+                <span className="text-[var(--color-text-muted)] font-medium block">Timestamp:</span>
+                <p className="font-mono font-semibold text-[var(--color-text)] mt-0.5 flex items-center gap-1.5">
+                  <Clock className="w-3.5 h-3.5 text-[var(--color-text-muted)]" />
                   {selectedDetection.timestampFull}
                 </p>
               </div>
 
               {/* Location (Full width) */}
-              <div className="col-span-2 p-3 rounded-xl bg-slate-950/70 border border-slate-800">
-                <span className="text-slate-400 font-medium block">Location:</span>
-                <p className="font-semibold text-slate-100 mt-0.5 flex items-center gap-1.5">
+              <div className="col-span-2 p-3 rounded-xl bg-[var(--color-charcoal)]/70 border border-[var(--color-border)]">
+                <span className="text-[var(--color-text-muted)] font-medium block">Location:</span>
+                <p className="font-semibold text-[var(--color-text)] mt-0.5 flex items-center gap-1.5">
                   <MapPin className="w-4 h-4 text-red-400 shrink-0" />
                   {selectedDetection.location}
                 </p>

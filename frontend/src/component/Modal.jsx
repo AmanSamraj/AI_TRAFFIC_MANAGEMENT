@@ -13,9 +13,7 @@ export const Modal = ({
 }) => {
   useEffect(() => {
     const handleKeyDown = (e) => {
-      if (e.key === 'Escape' && isOpen) {
-        onClose?.();
-      }
+      if (e.key === 'Escape' && isOpen) onClose?.();
     };
 
     if (isOpen) {
@@ -35,29 +33,39 @@ export const Modal = ({
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
       {/* Backdrop */}
       <div
-        className="fixed inset-0 bg-slate-950/80 backdrop-blur-sm transition-opacity animate-in fade-in duration-200"
+        className="fixed inset-0 transition-opacity"
+        style={{ background: 'rgba(28,28,26,0.5)' }}
         onClick={onClose}
         aria-hidden="true"
       />
 
       {/* Modal Card */}
       <div
-        className={`relative w-full ${maxWidth} bg-slate-900 border border-slate-700/80 rounded-2xl shadow-2xl shadow-cyan-950/30 overflow-hidden z-10 transition-all transform animate-in zoom-in-95 duration-200`}
+        className={`relative w-full ${maxWidth} overflow-hidden z-10`}
+        style={{
+          background: 'var(--color-card)',
+          border: '1px solid var(--color-border-dark)',
+          borderRadius: '10px',
+          boxShadow: '0 8px 40px rgba(0,0,0,0.18)',
+        }}
         role="dialog"
         aria-modal="true"
-        aria-labelledby={title ? "modal-title" : undefined}
+        aria-labelledby={title ? 'modal-title' : undefined}
       >
         {/* Header */}
         {(title || showClose) && (
-          <div className="flex items-center justify-between p-5 border-b border-slate-800 bg-slate-900/90">
+          <div
+            className="flex items-center justify-between p-5"
+            style={{ borderBottom: '1px solid var(--color-border)' }}
+          >
             <div>
               {title && (
-                <h3 id="modal-title" className="text-base font-semibold text-slate-100 tracking-wide">
+                <h3 id="modal-title" className="text-sm font-semibold" style={{ color: 'var(--color-text)' }}>
                   {title}
                 </h3>
               )}
               {subtitle && (
-                <p className="text-xs text-slate-400 mt-0.5">
+                <p className="text-xs mt-0.5" style={{ color: 'var(--color-text-secondary)' }}>
                   {subtitle}
                 </p>
               )}
@@ -67,7 +75,10 @@ export const Modal = ({
               <button
                 type="button"
                 onClick={onClose}
-                className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors focus:outline-none focus:ring-2 focus:ring-cyan-500 cursor-pointer"
+                className="p-1.5 rounded-md transition-colors cursor-pointer"
+                style={{ color: 'var(--color-text-muted)' }}
+                onMouseEnter={(e) => { e.currentTarget.style.background = 'var(--color-background)'; e.currentTarget.style.color = 'var(--color-text)'; }}
+                onMouseLeave={(e) => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = 'var(--color-text-muted)'; }}
                 aria-label="Close modal"
               >
                 <X className="w-4 h-4" />
@@ -76,14 +87,17 @@ export const Modal = ({
           </div>
         )}
 
-        {/* Body Content */}
-        <div className="p-6 max-h-[75vh] overflow-y-auto text-slate-200 text-sm">
+        {/* Body */}
+        <div className="p-6 max-h-[75vh] overflow-y-auto text-sm" style={{ color: 'var(--color-text)' }}>
           {children}
         </div>
 
         {/* Footer */}
         {footer && (
-          <div className="flex items-center justify-end gap-3 p-4 px-6 bg-slate-950/60 border-t border-slate-800">
+          <div
+            className="flex items-center justify-end gap-3 px-6 py-4"
+            style={{ borderTop: '1px solid var(--color-border)', background: 'var(--color-background)' }}
+          >
             {footer}
           </div>
         )}

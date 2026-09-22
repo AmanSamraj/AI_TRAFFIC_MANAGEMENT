@@ -10,73 +10,59 @@ export const StatusIndicator = ({
 }) => {
   const statusConfig = {
     online: {
-      color: 'bg-emerald-500',
-      pingColor: 'bg-emerald-400',
-      textColor: 'text-emerald-400',
+      color: 'var(--color-success)',
       defaultLabel: 'Online'
     },
     warning: {
-      color: 'bg-amber-500',
-      pingColor: 'bg-amber-400',
-      textColor: 'text-amber-400',
+      color: 'var(--color-amber)',
       defaultLabel: 'Warning'
     },
     alert: {
-      color: 'bg-red-500',
-      pingColor: 'bg-red-500',
-      textColor: 'text-red-400',
+      color: 'var(--color-danger)',
       defaultLabel: 'Alert / Congested'
     },
     offline: {
-      color: 'bg-slate-500',
-      pingColor: 'bg-slate-400',
-      textColor: 'text-slate-400',
+      color: 'var(--color-text-muted)',
       defaultLabel: 'Offline'
     },
     tracking: {
-      color: 'bg-cyan-500',
-      pingColor: 'bg-cyan-400',
-      textColor: 'text-cyan-400',
+      color: 'var(--color-amber-dark)',
       defaultLabel: 'AI Tracking Active'
     }
   };
 
   const config = statusConfig[status] || statusConfig.online;
 
-  const dotSizes = {
-    sm: 'h-2 w-2',
-    md: 'h-2.5 w-2.5',
-    lg: 'h-3.5 w-3.5'
-  };
+  const dotSizes = { sm: 6, md: 8, lg: 10 };
+  const ringSizes = { sm: 16, md: 20, lg: 28 };
 
-  const ringSizes = {
-    sm: 'h-4 w-4',
-    md: 'h-5 w-5',
-    lg: 'h-7 w-7'
-  };
+  const dotSize = dotSizes[size] || dotSizes.md;
+  const ringSize = ringSizes[size] || ringSizes.md;
 
   return (
-    <div className={`inline-flex items-center gap-2.5 ${className}`}>
-      <div className={`relative flex items-center justify-center ${ringSizes[size] || ringSizes.md}`}>
+    <div className={`inline-flex items-center gap-2 ${className}`}>
+      <div className="relative flex items-center justify-center" style={{ width: ringSize, height: ringSize }}>
         {pulse && status !== 'offline' && (
           <span
-            className={`absolute inline-flex h-full w-full rounded-full opacity-60 animate-ping ${config.pingColor}`}
+            className="absolute rounded-full animate-ping opacity-40"
+            style={{ background: config.color, width: ringSize, height: ringSize }}
           />
         )}
         <span
-          className={`relative inline-flex rounded-full ${dotSizes[size] || dotSizes.md} ${config.color} shadow-sm`}
+          className="relative inline-flex rounded-full"
+          style={{ background: config.color, width: dotSize, height: dotSize }}
         />
       </div>
 
       {(label || sublabel) && (
         <div className="flex flex-col">
           {label && (
-            <span className="text-xs font-semibold tracking-wide text-slate-200">
+            <span className="text-xs font-semibold tracking-wide" style={{ color: 'var(--color-text)' }}>
               {label}
             </span>
           )}
           {sublabel && (
-            <span className={`text-[10px] font-medium tracking-wider ${config.textColor}`}>
+            <span className="text-[10px] font-medium tracking-wider" style={{ color: config.color }}>
               {sublabel}
             </span>
           )}
