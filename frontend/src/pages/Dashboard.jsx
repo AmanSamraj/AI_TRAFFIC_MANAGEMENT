@@ -31,6 +31,7 @@ import {
   Volume2,
   TrendingUp
 } from 'lucide-react';
+import { Search, User } from 'lucide-react';
 import playAlert from '../component/alert';
 
 const initialTrafficLogs = [
@@ -118,7 +119,7 @@ export const Dashboard = () => {
   const [btnLoading, setBtnLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize, setPageSize] = useState(5);
-  const [chartType, setChartType] = useState('area');
+  const [chartType, setChartType] = useState('bar');
 
   const filteredData = initialTrafficLogs.filter((item) => {
     const matchesSearch =
@@ -205,13 +206,13 @@ export const Dashboard = () => {
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-xl font-bold tracking-tight text-[var(--color-text)] flex items-center gap-2">
-            Central Traffic Telemetry Dashboard
+            Dashboard
             <Badge variant="info" size="sm" dot={true} pulse={true}>
-              Real-Time
+              Live
             </Badge>
           </h2>
           <p className="text-xs text-[var(--color-text-muted)] mt-0.5">
-            Autonomous AI surveillance, ANPR tracking, and signal violation detection
+            Live traffic monitoring overview
           </p>
         </div>
 
@@ -263,7 +264,7 @@ export const Dashboard = () => {
         <Card variant="default">
           <CardContent className="p-5 flex items-center justify-between">
             <div>
-              <p className="text-xs text-[var(--color-text-muted)] font-medium">Total Monitored Vehicles</p>
+              <p className="text-xs text-[var(--color-text-muted)] font-medium">Vehicles Monitored</p>
               <h3 className="text-2xl font-extrabold text-[var(--color-text)] mt-1">18,492</h3>
               <span className="text-[11px] text-emerald-400 flex items-center gap-1 mt-1 font-medium">
                 <TrendingUp className="w-3.5 h-3.5" /> +12.4% vs peak hour
@@ -310,7 +311,7 @@ export const Dashboard = () => {
         <Card variant="default">
           <CardContent className="p-5 flex items-center justify-between">
             <div>
-              <p className="text-xs text-[var(--color-text-muted)] font-medium">Corridor Congestion Index</p>
+              <p className="text-xs text-[var(--color-text-muted)] font-medium">Congestion</p>
               <h3 className="text-2xl font-extrabold text-amber-400 mt-1">64%</h3>
               <span className="text-[11px] text-amber-400/90 flex items-center gap-1 mt-1 font-medium">
                 Moderate congestion detected
@@ -328,29 +329,11 @@ export const Dashboard = () => {
         <CardHeader>
           <div>
             <CardTitle>
-              <Radio className="w-4 h-4 text-[var(--color-amber)]" />
-              Traffic Volume vs Violation Rate
+              Traffic & Violations
             </CardTitle>
             <CardDescription>
-              Telemetry stream across primary highway intersections
+              Hourly count across intersections
             </CardDescription>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-[var(--color-text-muted)]">View:</span>
-            {['area', 'bar', 'line'].map((t) => (
-              <button
-                key={t}
-                type="button"
-                onClick={() => setChartType(t)}
-                className={`px-2.5 py-1 text-xs rounded-md font-medium capitalize cursor-pointer transition-colors ${
-                  chartType === t
-                    ? 'bg-[var(--color-amber)] text-[var(--color-charcoal)] font-bold'
-                    : 'bg-[var(--color-background)] text-[var(--color-text-secondary)] hover:bg-slate-700'
-                }`}
-              >
-                {t}
-              </button>
-            ))}
           </div>
         </CardHeader>
         <CardContent>
@@ -371,9 +354,9 @@ export const Dashboard = () => {
       <Card variant="default">
         <CardHeader>
           <div>
-            <CardTitle>Live ANPR & Vehicle Detections</CardTitle>
+            <CardTitle>Recent Detections</CardTitle>
             <CardDescription>
-              Click any record to inspect OCR plate alignment and issue e-challan
+              Click a row for details
             </CardDescription>
           </div>
 
@@ -430,8 +413,8 @@ export const Dashboard = () => {
       <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
-        title="Vehicle Telemetry & ANPR Inspection"
-        subtitle={selectedVehicle ? `Record ID: ${selectedVehicle.id}` : ''}
+        title="Vehicle Details"
+        subtitle={selectedVehicle ? `Record: ${selectedVehicle.id}` : ''}
         footer={
           <>
             <Button variant="ghost" onClick={() => setIsModalOpen(false)}>
@@ -502,7 +485,7 @@ export const Dashboard = () => {
             <div className="p-3 rounded-lg bg-[var(--color-surface)] border border-[var(--color-amber)]/20 text-xs text-[var(--color-amber)] flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 shrink-0 text-[var(--color-amber)]" />
               <span>
-                AI Confidence Score: <strong>99.4%</strong> (YOLOv8 + OCR Alignment)
+                Confidence: <strong>99.4%</strong>
               </span>
             </div>
           </div>

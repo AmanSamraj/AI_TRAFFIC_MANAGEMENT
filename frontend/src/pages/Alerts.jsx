@@ -61,8 +61,8 @@ export const Alerts = () => {
       speed: '34 km/h',
       confidence: '99.4%',
       status: 'Action Required',
-      description: 'Unauthorized commercial/private vehicle breached designated restricted government perimeter zone.',
-      evidenceSnapshot: 'White Sedan (Hyundai Verna) traversing inner bus bay cordon.',
+      description: 'Vehicle entered a restricted zone without permission.',
+      evidenceSnapshot: 'White Sedan detected in bus bay area.',
       fineAmount: '₹5,000',
       actionTaken: 'Pending Dispatch'
     },
@@ -80,8 +80,8 @@ export const Alerts = () => {
       speed: '62 km/h',
       confidence: '98.8%',
       status: 'Interception Active',
-      description: 'Vehicle matched against State Police Stolen Vehicle Database (FIR #2026/8912).',
-      evidenceSnapshot: 'Grey SUV detected crossing North Inter-state toll checkpoint.',
+      description: 'Vehicle matched against stolen vehicle database (FIR #2026/8912).',
+      evidenceSnapshot: 'Grey SUV detected at North toll checkpoint.',
       fineAmount: 'Impound Warrant',
       actionTaken: 'Patrol Car PCR-02 Dispatched'
     },
@@ -99,10 +99,10 @@ export const Alerts = () => {
       speed: '0 km/h (Impact)',
       confidence: '96.2%',
       status: 'Emergency Units Enroute',
-      description: 'Computer vision kinetic shock detection confirmed dual-vehicle collision obstructing Lane 2.',
-      evidenceSnapshot: 'Collision involving private sedan and light logistics carrier.',
+      description: 'Two-vehicle collision detected, Lane 2 blocked.',
+      evidenceSnapshot: 'Collision between sedan and delivery vehicle.',
       fineAmount: 'N/A (Accident)',
-      actionTaken: 'Ambulance AMB-03 & PCR-04 Preempted'
+      actionTaken: 'Ambulance AMB-03 & PCR-04 Dispatched'
     },
     {
       id: 'ALT-1004',
@@ -118,8 +118,8 @@ export const Alerts = () => {
       speed: '38 km/h (Reverse Flow)',
       confidence: '97.5%',
       status: 'Urgent Intercept',
-      description: 'Vehicle traveling against the designated one-way flow on one-way connector ramp.',
-      evidenceSnapshot: 'Black Hatchback entering descending ramp in counter-traffic direction.',
+      description: 'Vehicle driving the wrong way on a one-way ramp.',
+      evidenceSnapshot: 'Black Hatchback going against traffic on ramp.',
       fineAmount: '₹5,000',
       actionTaken: 'Overhead VMS Warning Triggered'
     },
@@ -137,8 +137,8 @@ export const Alerts = () => {
       speed: '88 km/h',
       confidence: '99.1%',
       status: 'Challan Queued',
-      description: 'Radar and AI vector triangulation measured velocity +38 km/h in excess of urban speed ceiling.',
-      evidenceSnapshot: 'Dark Blue Sedan captured on radar trigger checkpoint.',
+      description: 'Vehicle detected 38 km/h over the speed limit.',
+      evidenceSnapshot: 'Dark Blue Sedan captured at speed checkpoint.',
       fineAmount: '₹2,000',
       actionTaken: 'Automated E-Challan Pending'
     },
@@ -156,8 +156,8 @@ export const Alerts = () => {
       speed: '46 km/h',
       confidence: '98.0%',
       status: 'Challan Auto-Issued',
-      description: 'Front axle crossed virtual stop-line 3.4 seconds after the signal switched to solid red.',
-      evidenceSnapshot: 'White Commercial Van traversing zebra marking during pedestrian cycle.',
+      description: 'Vehicle crossed stop-line 3.4 seconds after red signal.',
+      evidenceSnapshot: 'White Van crossing zebra marking during red light.',
       fineAmount: '₹1,000',
       actionTaken: 'Challan #ECH-9042 Issued'
     },
@@ -175,8 +175,8 @@ export const Alerts = () => {
       speed: '14 km/h',
       confidence: '99.9%',
       status: 'Signal Timing Adaptive',
-      description: 'Vehicular density exceeded 90% threshold; average queue length 380m with +18 min delay.',
-      evidenceSnapshot: 'Stationary multi-car queue stretching from Mall Road to Ridge radial.',
+      description: 'Road density above 90%; queue length 380m, 18 min delay.',
+      evidenceSnapshot: 'Stationary queue from Mall Road to Ridge area.',
       fineAmount: 'N/A (Congestion)',
       actionTaken: 'Green Signal Cycle Extended +35s'
     },
@@ -194,10 +194,10 @@ export const Alerts = () => {
       speed: 'N/A',
       confidence: '0%',
       status: 'Technician Assigned',
-      description: 'RTSP video stream lost; watchdog ping failed 3 consecutive health checks. Possible fiber cut.',
-      evidenceSnapshot: 'No signal frame received from IP 192.168.10.108.',
+      description: 'Camera stream lost; 3 consecutive health checks failed.',
+      evidenceSnapshot: 'No signal from IP 192.168.10.108.',
       fineAmount: 'N/A (Hardware)',
-      actionTaken: 'Field Unit Ticket #TCK-881 Dispatched'
+      actionTaken: 'Technician Ticket #TCK-881 Created'
     },
     {
       id: 'ALT-1009',
@@ -213,8 +213,8 @@ export const Alerts = () => {
       speed: '28 km/h',
       confidence: '61.4%',
       status: 'Manual Review Required',
-      description: 'Mud occlusion or headlight reflection caused OCR ambiguity on characters 6 through 8.',
-      evidenceSnapshot: 'Rear plate surface obscured by road residue on commercial carrier.',
+      description: 'Plate characters 6-8 unclear due to dirt or glare.',
+      evidenceSnapshot: 'Rear plate partially obscured on commercial vehicle.',
       fineAmount: 'Pending Review',
       actionTaken: 'Queued for Manual Operator Verification'
     }
@@ -230,7 +230,7 @@ export const Alerts = () => {
     toast.addToast({
       type: 'success',
       title: `Alert ${alertId} Acknowledged`,
-      message: 'Status updated and incident logged into operator audit log.'
+      message: 'Alert acknowledged and logged.'
     });
   };
 
@@ -244,7 +244,7 @@ export const Alerts = () => {
     toast.addToast({
       type: 'danger',
       title: `Patrol Dispatched for ${alertItem.id}`,
-      message: `Emergency response unit routed to ${alertItem.camera} (${alertItem.cameraName}).`
+      message: `Unit dispatched to ${alertItem.camera}.`
     });
   };
 
@@ -416,14 +416,14 @@ export const Alerts = () => {
             <div>
               <div className="flex items-center gap-2">
                 <h1 className="text-xl font-extrabold text-[var(--color-text)] tracking-tight">
-                  Automated Anomaly & Emergency Alert Matrix
+                  Alerts
                 </h1>
                 <Badge variant="danger" size="sm" dot={true} pulse={true}>
                   {alertsList.filter((a) => a.severity === 'critical').length} CRITICAL
                 </Badge>
               </div>
               <p className="text-xs text-[var(--color-text-muted)] mt-0.5">
-                Real-time law enforcement notification stream powered by edge YOLOv8 vision triggers & ANPR verification
+                Real-time alerts from cameras and ANPR
               </p>
             </div>
           </div>
@@ -440,14 +440,14 @@ export const Alerts = () => {
                 playAlert();
                 toast.addToast({
                   type: 'danger',
-                  title: 'Emergency Audio Siren Activated',
-                  message: 'Broadcasting critical audio alert tone to control operator consoles.'
+                  title: 'Siren Activated',
+                  message: 'Alert tone playing.'
                 });
               } else {
                 toast.addToast({
                   type: 'info',
-                  title: 'Audio Siren Muted',
-                  message: 'Automated audible siren notifications suppressed.'
+                  title: 'Siren Muted',
+                  message: 'Siren notifications muted.'
                 });
               }
               setIsSirenMuted(!isSirenMuted);
@@ -480,7 +480,7 @@ export const Alerts = () => {
               <span className="text-2xl font-black font-mono text-red-400">
                 {alertsList.filter((a) => a.severity === 'critical').length}
               </span>
-              <span className="text-[10px] text-red-300 font-semibold animate-pulse">● Immediate Action</span>
+              <span className="text-[10px] text-red-300 font-semibold">● Immediate Action</span>
             </div>
           </div>
           <AlertOctagon className="w-7 h-7 text-red-400 opacity-80" />
@@ -505,11 +505,11 @@ export const Alerts = () => {
               Hardware Outages
             </span>
             <div className="flex items-baseline gap-2 mt-0.5">
-              <span className="text-2xl font-black font-mono text-purple-400">1 Node</span>
-              <span className="text-[10px] text-purple-300">CAM-08 Offline</span>
+              <span className="text-2xl font-black font-mono text-[var(--color-text)]">1 Node</span>
+              <span className="text-[10px] text-[var(--color-text-muted)]">CAM-08 Offline</span>
             </div>
           </div>
-          <WifiOff className="w-7 h-7 text-purple-400 opacity-80" />
+          <WifiOff className="w-7 h-7 text-[var(--color-text-secondary)] opacity-80" />
         </div>
 
         <div className="p-3.5 rounded-xl bg-[var(--color-card)] border border-[var(--color-border)] flex items-center justify-between">
@@ -518,11 +518,11 @@ export const Alerts = () => {
               Average Response Time
             </span>
             <div className="flex items-baseline gap-2 mt-0.5">
-              <span className="text-2xl font-black font-mono text-emerald-400">1.8 min</span>
-              <span className="text-[10px] text-emerald-400 font-semibold">● Optimal</span>
+              <span className="text-2xl font-black font-mono text-[var(--color-amber)]">1.8 min</span>
+              <span className="text-[10px] text-[var(--color-text-muted)] font-semibold">● Optimal</span>
             </div>
           </div>
-          <Clock className="w-7 h-7 text-emerald-400 opacity-80" />
+          <Clock className="w-7 h-7 text-[var(--color-amber)] opacity-80" />
         </div>
       </div>
 
@@ -542,10 +542,10 @@ export const Alerts = () => {
               <div className="flex items-center gap-2.5">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-red-600 text-[var(--color-text)] text-xs font-black tracking-wider uppercase shadow-sm">
                   <span className="w-2 h-2 rounded-full bg-white animate-ping inline-block" />
-                  🔴 HIGH PRIORITY
+                  HIGH PRIORITY
                 </span>
                 <span className="text-xs font-mono font-bold text-red-400 uppercase tracking-wide">
-                  Live Perimeter Breach Incident • #{heroAlert.id}
+                  Active Alert • #{heroAlert.id}
                 </span>
               </div>
 
@@ -555,7 +555,7 @@ export const Alerts = () => {
                   {heroAlert.title}
                 </h2>
                 <p className="text-xs text-[var(--color-text-secondary)] mt-1 max-w-2xl">
-                  {heroAlert.description} Computer vision geo-fence detected an unpermitted vehicle entering the designated high-security corridor.
+                  {heroAlert.description}
                 </p>
               </div>
 
@@ -567,7 +567,7 @@ export const Alerts = () => {
                     <Car className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-[10px] text-[var(--color-text-muted)] uppercase font-bold block">Vehicle Plate</span>
+                    <span className="text-[10px] text-[var(--color-text-muted)] uppercase font-bold block">Plate</span>
                     <span className="text-sm font-mono font-black text-[var(--color-text)] tracking-wider">
                       {heroAlert.plate}
                     </span>
@@ -580,8 +580,8 @@ export const Alerts = () => {
                     <Camera className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-[10px] text-[var(--color-text-muted)] uppercase font-bold block">Surveillance Camera</span>
-                    <span className="text-sm font-mono font-black text-amber-300">
+                    <span className="text-[10px] text-[var(--color-text-muted)] uppercase font-bold block">Camera</span>
+                    <span className="text-sm font-mono font-black text-[var(--color-amber)]">
                       {heroAlert.camera}
                     </span>
                     <span className="text-[10px] text-[var(--color-text-muted)] block truncate">({heroAlert.cameraName})</span>
@@ -590,12 +590,12 @@ export const Alerts = () => {
 
                 {/* Time Card */}
                 <div className="p-2.5 rounded-xl bg-[var(--color-charcoal)]/80 border border-[var(--color-border)] flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-[rgba(25,135,84,0.08)] text-emerald-400">
+                  <div className="p-2 rounded-lg bg-[rgba(245,166,35,0.06)] text-[var(--color-amber)]">
                     <Clock className="w-4 h-4" />
                   </div>
                   <div>
-                    <span className="text-[10px] text-[var(--color-text-muted)] uppercase font-bold block">Detection Time</span>
-                    <span className="text-sm font-mono font-black text-emerald-400">
+                    <span className="text-[10px] text-[var(--color-text-muted)] uppercase font-bold block">Time</span>
+                    <span className="text-sm font-mono font-black text-[var(--color-text)]">
                       {heroAlert.time}
                     </span>
                     <span className="text-[10px] text-[var(--color-text-muted)] block font-mono">Today, 21 Sep</span>
@@ -613,7 +613,7 @@ export const Alerts = () => {
                 onClick={() => handleDispatch(heroAlert)}
                 className="w-full sm:w-auto"
               >
-                Dispatch Interceptor Unit
+                Dispatch
               </Button>
 
               <Button
@@ -623,7 +623,7 @@ export const Alerts = () => {
                 onClick={() => navigate(`/tracking/${heroAlert.plate}`)}
                 className="w-full sm:w-auto"
               >
-                Track Trajectory on Map
+                Track on Map
               </Button>
 
               <Button
@@ -636,7 +636,7 @@ export const Alerts = () => {
                 }}
                 className="w-full sm:w-auto"
               >
-                Inspect AI Evidence Dossier
+                View Details
               </Button>
             </div>
           </div>
@@ -787,16 +787,16 @@ export const Alerts = () => {
                   {/* Core Telemetry Strip */}
                   <div className="grid grid-cols-2 gap-2 p-2.5 rounded-xl bg-[var(--color-charcoal)]/70 border border-[var(--color-border)]/80 font-mono text-xs">
                     <div>
-                      <span className="text-[10px] text-[var(--color-text-muted)] uppercase block font-sans">Target Plate</span>
+                      <span className="text-[10px] text-[var(--color-text-muted)] uppercase block font-sans">Plate</span>
                       <span className="font-bold text-[var(--color-text)] tracking-wide">{item.plate}</span>
                     </div>
                     <div>
-                      <span className="text-[10px] text-[var(--color-text-muted)] uppercase block font-sans">Surveillance Node</span>
+                      <span className="text-[10px] text-[var(--color-text-muted)] uppercase block font-sans">Camera</span>
                       <span className="font-bold text-[var(--color-amber)]">{item.camera}</span>
                     </div>
                     <div>
-                      <span className="text-[10px] text-[var(--color-text-muted)] uppercase block font-sans">Recorded Velocity</span>
-                      <span className="font-bold text-emerald-400">{item.speed}</span>
+                      <span className="text-[10px] text-[var(--color-text-muted)] uppercase block font-sans">Speed</span>
+                      <span className="font-bold text-[var(--color-text)]">{item.speed}</span>
                     </div>
                     <div>
                       <span className="text-[10px] text-[var(--color-text-muted)] uppercase block font-sans">Time</span>
@@ -852,9 +852,9 @@ export const Alerts = () => {
       ) : (
         <Card variant="default">
           <CardHeader className="p-4">
-            <CardTitle className="text-sm">Alerts Telemetry Grid</CardTitle>
+            <CardTitle className="text-sm">Alerts Table</CardTitle>
             <CardDescription className="text-xs">
-              Direct live feed synchronization showing {filteredAlerts.length} recorded events
+              Showing {filteredAlerts.length} alerts
             </CardDescription>
           </CardHeader>
           <CardContent className="p-0">
@@ -869,7 +869,7 @@ export const Alerts = () => {
       <Modal
         isOpen={isDetailModalOpen}
         onClose={() => setIsDetailModalOpen(false)}
-        title={selectedAlert ? `Incident Dossier: ${selectedAlert.id}` : 'Alert Details'}
+        title={selectedAlert ? `Alert Details: ${selectedAlert.id}` : 'Alert Details'}
         size="lg"
       >
         {selectedAlert && (
@@ -915,7 +915,7 @@ export const Alerts = () => {
 
               <div className="absolute top-2 left-2 z-20 flex items-center gap-1.5 bg-black/80 px-2 py-0.5 rounded text-[10px] font-mono text-[var(--color-text)]">
                 <span className="w-2 h-2 rounded-full bg-red-500 animate-ping" />
-                <span>AI CAMERA RECORDING • {selectedAlert.camera}</span>
+                <span>CAMERA FEED • {selectedAlert.camera}</span>
               </div>
 
               <div className="absolute bottom-2 left-2 z-20 text-[10px] font-mono text-[var(--color-text-muted)]">
@@ -926,25 +926,25 @@ export const Alerts = () => {
             {/* Incident Specification Table */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
               <div className="p-2.5 rounded-lg bg-[var(--color-charcoal)]/70 border border-[var(--color-border)]">
-                <span className="text-[var(--color-text-muted)] block text-[10px] uppercase">Vehicle Plate</span>
+                <span className="text-[var(--color-text-muted)] block text-[10px] uppercase">Plate</span>
                 <span className="font-mono font-bold text-[var(--color-text)] text-xs mt-0.5 block">
                   {selectedAlert.plate}
                 </span>
               </div>
               <div className="p-2.5 rounded-lg bg-[var(--color-charcoal)]/70 border border-[var(--color-border)]">
-                <span className="text-[var(--color-text-muted)] block text-[10px] uppercase">Camera Node</span>
+                <span className="text-[var(--color-text-muted)] block text-[10px] uppercase">Camera</span>
                 <span className="font-mono font-bold text-[var(--color-amber)] text-xs mt-0.5 block">
                   {selectedAlert.camera}
                 </span>
               </div>
               <div className="p-2.5 rounded-lg bg-[var(--color-charcoal)]/70 border border-[var(--color-border)]">
-                <span className="text-[var(--color-text-muted)] block text-[10px] uppercase">Exact Time</span>
-                <span className="font-mono font-bold text-emerald-400 text-xs mt-0.5 block">
+                <span className="text-[var(--color-text-muted)] block text-[10px] uppercase">Time</span>
+                <span className="font-mono font-bold text-[var(--color-text)] text-xs mt-0.5 block">
                   {selectedAlert.time}
                 </span>
               </div>
               <div className="p-2.5 rounded-lg bg-[var(--color-charcoal)]/70 border border-[var(--color-border)]">
-                <span className="text-[var(--color-text-muted)] block text-[10px] uppercase">Penal Fine</span>
+                <span className="text-[var(--color-text-muted)] block text-[10px] uppercase">Fine</span>
                 <span className="font-mono font-bold text-amber-400 text-xs mt-0.5 block">
                   {selectedAlert.fineAmount}
                 </span>
@@ -953,9 +953,9 @@ export const Alerts = () => {
 
             {/* Narrative & Audit */}
             <div className="p-3 rounded-xl bg-[var(--color-charcoal)]/50 border border-[var(--color-border)] space-y-1.5">
-              <span className="font-bold text-[var(--color-text-secondary)] block text-xs">Computer Vision Audit Log:</span>
+              <span className="font-bold text-[var(--color-text-secondary)] block text-xs">Details:</span>
               <p className="text-[var(--color-text-muted)] leading-relaxed text-xs">
-                {selectedAlert.description} Real-time spatial tracking logged at {selectedAlert.rawTimestamp}.
+                {selectedAlert.description} Logged at {selectedAlert.rawTimestamp}.
               </p>
               <div className="text-[11px] text-[var(--color-amber)] font-mono mt-1">
                 Action Executed: {selectedAlert.actionTaken}

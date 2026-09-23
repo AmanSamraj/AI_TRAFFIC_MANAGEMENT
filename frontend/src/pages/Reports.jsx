@@ -37,7 +37,7 @@ const REPORT_TYPES = [
     id: 'daily-traffic',
     title: 'Daily Traffic Report',
     icon: <BarChart3 className="w-5 h-5 text-[var(--color-amber)]" />,
-    description: 'Hourly vehicular throughput, corridor flow velocities, and peak morning/evening demand.',
+    description: 'Hourly vehicle counts, speeds, and peak hours.',
     coverage: '24-Hour Operating Cycle',
     defaultMetrics: {
       primaryLabel: 'Total Vehicles Recorded',
@@ -52,7 +52,7 @@ const REPORT_TYPES = [
     id: 'weekly-anpr',
     title: 'Weekly ANPR Report',
     icon: <ScanLine className="w-5 h-5 text-emerald-400" />,
-    description: 'Optical license plate recognition accuracy, character confidence distribution, and hotlist hits.',
+    description: 'Plate recognition accuracy and hotlist matches.',
     coverage: 'Rolling 7-Day Cycle',
     defaultMetrics: {
       primaryLabel: 'Plates Digitized',
@@ -67,7 +67,7 @@ const REPORT_TYPES = [
     id: 'camera-performance',
     title: 'Camera Performance Report',
     icon: <Camera className="w-5 h-5 text-purple-400" />,
-    description: 'CCTV sensor uptime, stream RTSP frame rate stability, packet loss, and hardware MTBF.',
+    description: 'Camera uptime, stream quality, latency, and hardware health.',
     coverage: 'Hardware Operations',
     defaultMetrics: {
       primaryLabel: 'Network Sensor Uptime',
@@ -82,7 +82,7 @@ const REPORT_TYPES = [
     id: 'violation-report',
     title: 'Violation Report',
     icon: <ShieldAlert className="w-5 h-5 text-red-400" />,
-    description: 'Statutory E-Challan ledger, speed breaches, red light jumps, wrong-way driving, and recovery rates.',
+    description: 'E-Challan records, speed breaches, red light violations, and fine recovery.',
     coverage: 'Enforcement Division',
     defaultMetrics: {
       primaryLabel: 'Total Citations Issued',
@@ -97,7 +97,7 @@ const REPORT_TYPES = [
     id: 'vehicle-movement',
     title: 'Vehicle Movement Report',
     icon: <Navigation className="w-5 h-5 text-amber-400" />,
-    description: 'Corridor origin-destination matrix, inter-camera trajectory timing, and checkpoint progressions.',
+    description: 'Vehicle routes, travel times between cameras, and checkpoint data.',
     coverage: 'Spatial Intelligence',
     defaultMetrics: {
       primaryLabel: 'Monitored Trajectories',
@@ -112,7 +112,7 @@ const REPORT_TYPES = [
     id: 'traffic-density',
     title: 'Traffic Density Report',
     icon: <Flame className="w-5 h-5 text-red-500" />,
-    description: 'Arterial bottleneck heatmaps, lane capacity saturation, queue delays, and adaptive cycle efficiency.',
+    description: 'Congestion heatmaps, lane usage, queue delays, and signal efficiency.',
     coverage: 'Smart City Operations',
     defaultMetrics: {
       primaryLabel: 'Arterial Congestion Index',
@@ -370,11 +370,11 @@ export const Reports = () => {
                   REPORTS
                 </h1>
                 <Badge variant="info" size="sm" dot={true}>
-                  SIH 2026 STATUTORY AUDIT
+                  REPORTS
                 </Badge>
               </div>
               <p className="text-xs text-[var(--color-text-muted)] mt-0.5">
-                Comprehensive smart city intelligence, telemetry analytics, and legal compliance dossiers
+                Generate and export traffic reports
               </p>
             </div>
           </div>
@@ -408,7 +408,7 @@ export const Reports = () => {
       <div>
         <div className="text-xs font-bold text-[var(--color-text-muted)] uppercase tracking-wider mb-2.5 flex items-center gap-1.5">
           <Layers className="w-3.5 h-3.5 text-[var(--color-amber)]" />
-          Standardized Intelligent Audit Reports
+          Report Types
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5">
@@ -469,9 +469,9 @@ export const Reports = () => {
           <div className="flex items-center justify-between">
             <CardTitle className="text-sm flex items-center gap-2">
               <Sparkles className="w-4 h-4 text-[var(--color-amber)]" />
-              Configure Parameters for: <span className="text-[var(--color-amber)]">{currentSelectedConfig.title}</span>
+              Configure Filters for: <span className="text-[var(--color-amber)]">{currentSelectedConfig.title}</span>
             </CardTitle>
-            <span className="text-xs font-mono text-[var(--color-text-muted)]">SIH 2026 Rule Engine</span>
+            <span className="text-xs font-mono text-[var(--color-text-muted)]"></span>
           </div>
         </CardHeader>
 
@@ -578,11 +578,9 @@ export const Reports = () => {
           <div>
             <div className="flex items-center gap-2">
               <Badge variant="purple" size="sm">
-                OFFICIAL REPORT DOSSIER
+                REPORT
               </Badge>
-              <span className="text-xs font-mono text-[var(--color-text-muted)]">
-                Hash: SIH-2026-REP-{generatedReport.id.toUpperCase()}
-              </span>
+              <span className="text-xs font-mono text-[var(--color-text-muted)]"></span>
             </div>
             <CardTitle className="text-base mt-1 text-[var(--color-text)] flex items-center gap-2">
               {generatedReport.title}
@@ -652,10 +650,10 @@ export const Reports = () => {
           <div className="p-3.5 rounded-xl bg-[var(--color-charcoal)]/50 border border-[var(--color-border)]/80 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs text-[var(--color-text-muted)] font-mono">
             <div>
               <span className="text-[var(--color-text-secondary)] font-semibold">Government of India / Smart Cities Mission</span>
-              <span className="block text-[11px] text-[var(--color-text-muted)]">Digitally Verified by Chief Traffic Controller</span>
+              <span className="block text-[11px] text-[var(--color-text-muted)]">Verified Report</span>
             </div>
             <div className="text-right text-[var(--color-amber)] font-bold">
-              SIH 2026 • AI ENGINE CERTIFIED
+              Traffic Management System
             </div>
           </div>
         </CardContent>
